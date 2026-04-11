@@ -1,40 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DMVCars - Temporary License Plates</title>
+<title>DMVCars - Placas Temporales y Seguros</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-:root{--blue:#003087;--red:#BF0A30;--light-blue:#0052cc;--dark-blue:#001a4d}
-
-/* PROMO BANNER */
+:root{--blue:#003087;--red:#BF0A30;--light-blue:#0052cc;--dark-blue:#001a4d;--green:#1a7a1a}
 .promo-banner{background:var(--red);color:white;padding:10px 0;overflow:hidden}
 .promo-text{display:inline-block;white-space:nowrap;animation:marquee 25s linear infinite;font-size:14px;font-weight:600}
 .promo-text span{margin:0 40px}
 @keyframes marquee{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
-
-/* NAVBAR */
 .navbar{background:var(--blue);padding:15px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
 .logo-icon{width:45px;height:45px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px}
 .logo-text{color:white;font-size:26px;font-weight:800;letter-spacing:2px}
 .logo-text span{color:#FFD700}
-.nav-links{display:flex;gap:25px;list-style:none;align-items:center}
-.nav-links a{color:white;text-decoration:none;font-size:15px;font-weight:500;transition:color 0.3s}
+.nav-links{display:flex;gap:20px;list-style:none;align-items:center}
+.nav-links a{color:white;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.3s}
 .nav-links a:hover{color:#FFD700}
-.nav-btn{background:var(--red)!important;padding:10px 25px!important;border-radius:25px!important}
+.nav-btn{background:var(--red)!important;padding:10px 20px!important;border-radius:25px!important}
 .hamburger{display:none;color:white;font-size:28px;cursor:pointer;background:none;border:none}
 .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--blue);z-index:9998;flex-direction:column;align-items:center;justify-content:center;gap:30px}
 .mobile-menu.active{display:flex}
 .mobile-menu a{color:white;text-decoration:none;font-size:22px;font-weight:700}
 .mobile-menu-close{position:absolute;top:20px;right:20px;color:white;font-size:35px;cursor:pointer;background:none;border:none}
-
-/* HERO */
 .hero{background:linear-gradient(135deg,var(--dark-blue),var(--blue),var(--light-blue));min-height:90vh;display:flex;align-items:center;padding:60px 40px;position:relative;overflow:hidden}
 .hero-content{max-width:580px;z-index:1}
 .hero-badge{background:var(--red);color:white;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;display:inline-block;margin-bottom:20px}
-.hero h1{color:white;font-size:50px;font-weight:900;line-height:1.1;margin-bottom:20px}
+.hero h1{color:white;font-size:52px;font-weight:900;line-height:1.1;margin-bottom:20px}
 .hero h1 span{color:#FFD700}
 .hero p{color:rgba(255,255,255,0.85);font-size:18px;line-height:1.7;margin-bottom:30px}
 .hero-buttons{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:25px}
@@ -47,20 +41,16 @@
 .plate-number{font-size:55px;font-weight:900;color:#333;letter-spacing:5px}
 .plate-label{font-size:12px;color:#666;letter-spacing:2px}
 .plate-temp{background:var(--red);color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;margin-top:8px;display:inline-block}
-
-/* BUTTONS */
 .btn-primary{background:var(--red);color:white;padding:15px 35px;border-radius:30px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.3s;border:none;cursor:pointer;display:inline-block}
 .btn-primary:hover{background:#8B0000;transform:translateY(-2px)}
 .btn-secondary{background:transparent;color:white;padding:15px 35px;border-radius:30px;text-decoration:none;font-size:16px;font-weight:700;border:2px solid white;cursor:pointer;display:inline-block;transition:all 0.3s}
 .btn-secondary:hover{background:white;color:var(--blue)}
-
-/* STATS */
+.btn-green{background:#25D366;color:white;padding:15px 35px;border-radius:30px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.3s;border:none;cursor:pointer;display:inline-block}
+.btn-green:hover{background:#1da851;transform:translateY(-2px)}
 .stats{background:var(--red);padding:40px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
 .stat-item{color:white;padding:10px}
 .stat-number{font-size:42px;font-weight:900;display:block}
 .stat-label{font-size:14px;opacity:0.9}
-
-/* SERVICES */
 .services{padding:80px 40px;background:#f8f9fa}
 .section-header{text-align:center;margin-bottom:60px}
 .section-badge{background:var(--red);color:white;padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:2px;display:inline-block;margin-bottom:15px}
@@ -73,8 +63,6 @@
 .service-card h3{font-size:20px;font-weight:700;color:var(--blue);margin-bottom:12px}
 .service-card p{color:#666;font-size:15px;line-height:1.6;margin-bottom:15px}
 .service-price{color:var(--red);font-size:18px;font-weight:800}
-
-/* HOW IT WORKS */
 .how-it-works{padding:80px 40px;background:white}
 .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1100px;margin:0 auto;position:relative}
 .steps-grid::before{content:'';position:absolute;top:40px;left:12%;right:12%;height:3px;background:linear-gradient(to right,var(--blue),var(--red))}
@@ -82,8 +70,6 @@
 .step-number{width:80px;height:80px;background:var(--blue);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;margin:0 auto 20px;border:4px solid white;box-shadow:0 5px 20px rgba(0,48,135,0.3)}
 .step-item h3{font-size:17px;font-weight:700;color:var(--blue);margin-bottom:10px}
 .step-item p{color:#666;font-size:14px;line-height:1.6}
-
-/* VERIFY */
 .verify-section{padding:80px 40px;background:linear-gradient(135deg,var(--dark-blue),var(--blue))}
 .verify-container{max-width:700px;margin:0 auto;text-align:center}
 .verify-container h2{color:white;font-size:38px;font-weight:800;margin-bottom:15px}
@@ -101,7 +87,56 @@
 .verify-result.success{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32;display:block}
 .verify-result.error{background:#ffebee;border:2px solid #f44336;color:#c62828;display:block}
 .verify-result.pending{background:#fff8e1;border:2px solid #ffc107;color:#856404;display:block}
-
+/* SEGUROS */
+.insurance-section{padding:80px 40px;background:linear-gradient(135deg,#f0f7ff,#e8f4ff)}
+.insurance-container{max-width:1100px;margin:0 auto}
+.insurance-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:60px}
+.insurance-image-box{position:relative}
+.insurance-card-img{background:white;border-radius:20px;padding:30px;box-shadow:0 20px 60px rgba(0,48,135,0.2);position:relative;overflow:hidden}
+.insurance-card-img::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(to right,var(--blue),var(--green))}
+.insurance-badge-verified{position:absolute;top:15px;right:15px;background:#4caf50;color:white;padding:8px 15px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px}
+.insurance-doc{background:linear-gradient(135deg,#f8f9ff,#eef2ff);border-radius:15px;padding:25px;border:2px solid #e0e8ff}
+.insurance-doc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:2px solid #e0e8ff}
+.insurance-doc-logo{font-size:24px;font-weight:900;color:var(--blue)}
+.insurance-doc-logo span{color:var(--red)}
+.insurance-doc-title{font-size:18px;font-weight:800;color:var(--blue);margin-bottom:15px;text-align:center}
+.insurance-doc-seal{width:80px;height:80px;background:linear-gradient(135deg,var(--blue),var(--light-blue));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:35px;margin:0 auto 15px}
+.insurance-doc-info{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.insurance-doc-field{background:white;padding:10px 15px;border-radius:8px;border-left:3px solid var(--blue)}
+.insurance-doc-field label{font-size:11px;color:#888;font-weight:600;display:block}
+.insurance-doc-field span{font-size:14px;color:#333;font-weight:700}
+.insurance-doc-footer{margin-top:15px;padding:10px;background:var(--blue);border-radius:8px;text-align:center;color:white;font-size:12px;font-weight:600}
+.insurance-content h2{font-size:38px;font-weight:900;color:var(--blue);margin-bottom:15px;line-height:1.2}
+.insurance-content h2 span{color:var(--red)}
+.insurance-content p{color:#555;font-size:16px;line-height:1.7;margin-bottom:25px}
+.insurance-features{list-style:none;margin-bottom:30px}
+.insurance-features li{padding:10px 0;display:flex;align-items:center;gap:12px;font-size:15px;color:#444;border-bottom:1px solid #eee}
+.insurance-features li
+  ::before{content:'✅';font-size:18px}
+.insurance-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.insurance-plan-card{background:white;border-radius:15px;padding:25px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all 0.3s;border-top:4px solid var(--blue);cursor:pointer}
+.insurance-plan-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,0,0,0.15);border-top-color:var(--red)}
+.insurance-plan-icon{font-size:40px;margin-bottom:10px}
+.insurance-plan-name{font-size:17px;font-weight:800;color:var(--blue);margin-bottom:5px}
+.insurance-plan-price{font-size:26px;font-weight:900;color:var(--red);margin-bottom:5px}
+.insurance-plan-period{font-size:12px;color:#888;margin-bottom:12px}
+.insurance-plan-features{list-style:none;text-align:left;font-size:13px;color:#555}
+.insurance-plan-features li{padding:4px 0}
+.insurance-plan-features li::before{content:'✓ ';color:#4caf50;font-weight:700}
+/* VERIFY INSURANCE */
+.verify-insurance{padding:80px 40px;background:linear-gradient(135deg,var(--green),#2d8a2d)}
+.verify-insurance-container{max-width:700px;margin:0 auto;text-align:center}
+.verify-insurance-container h2{color:white;font-size:38px;font-weight:800;margin-bottom:15px}
+.verify-insurance-container p{color:rgba(255,255,255,0.85);font-size:17px;margin-bottom:40px}
+.verify-insurance-box{background:white;border-radius:20px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.verify-insurance-form{display:flex;flex-direction:column;gap:15px;margin-bottom:20px}
+.verify-insurance-form input{width:100%;padding:15px 20px;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;outline:none;transition:border-color 0.3s}
+.verify-insurance-form input:focus{border-color:#4caf50}
+.btn-verify-insurance{width:100%;padding:16px;background:linear-gradient(135deg,var(--green),#2d8a2d);color:white;border:none;border-radius:12px;font-size:17px;font-weight:800;cursor:pointer;transition:all 0.3s}
+.btn-verify-insurance:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(26,122,26,0.4)}
+.insurance-result{margin-top:20px;padding:20px;border-radius:10px;font-size:15px;font-weight:600;text-align:left;display:none}
+.insurance-result.success{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32;display:block}
+.insurance-result.error{background:#ffebee;border:2px solid #f44336;color:#c62828;display:block}
 /* ORDER */
 .order-section{padding:80px 40px;background:linear-gradient(180deg,#f8f9fa,white)}
 .order-container{max-width:900px;margin:0 auto}
@@ -112,7 +147,7 @@
 .form-group{display:flex;flex-direction:column;gap:8px}
 .form-group label{font-size:14px;font-weight:700;color:var(--blue)}
 .form-group input,.form-group select,.form-group textarea{padding:14px 18px;border:2px solid #e8e8e8;border-radius:12px;font-size:15px;outline:none;transition:all 0.3s;background:#fafafa}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);background:white;box-shadow:0 0 0 4px rgba(0,48,135,0.08)}
+.form-group input:focus,.form-group select:focus{border-color:var(--blue);background:white;box-shadow:0 0 0 4px rgba(0,48,135,0.08)}
 .plan-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0 30px}
 .plan-card{border:2px solid #e8e8e8;border-radius:15px;padding:25px 20px;text-align:center;cursor:pointer;transition:all 0.3s;position:relative;background:white}
 .plan-card:hover{border-color:var(--blue);transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,48,135,0.15)}
@@ -127,7 +162,7 @@
 .plan-features li::before{content:'✓ ';color:#4caf50;font-weight:700}
 .delivery-options{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:15px 0 25px}
 .delivery-card{border:2px solid #e8e8e8;border-radius:12px;padding:20px 15px;text-align:center;cursor:pointer;transition:all 0.3s;background:white}
-  .delivery-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.delivery-card:hover{border-color:var(--blue);transform:translateY(-3px)}
 .delivery-card.selected{border-color:var(--blue);background:#f0f4ff}
 .delivery-icon{font-size:28px;margin-bottom:8px;display:block}
 .delivery-name{font-size:14px;font-weight:700;color:var(--blue);margin-bottom:3px}
@@ -142,20 +177,53 @@
 .submit-btn:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,48,135,0.4);background:linear-gradient(135deg,var(--red),#ff4444)}
 .security-badges{display:flex;justify-content:center;gap:20px;margin-top:20px;flex-wrap:wrap}
 .security-badge{display:flex;align-items:center;gap:6px;font-size:13px;color:#888;font-weight:500}
+/* TESTIMONIOS */
+.testimonials{padding:80px 40px;background:#f8f9fa}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1100px;margin:0 auto}
+.testimonial-card{background:white;border-radius:20px;padding:30px;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all 0.3s;position:relative}
+.testimonial-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.12)}
+.testimonial-card::before{content:'"';position:absolute;top:15px;right:20px;font-size:80px;color:#f0f0f0;font-family:Georgia,serif;line-height:1}
+.testimonial-stars{color:#FFD700;font-size:20px;margin-bottom:15px}
+.testimonial-text{color:#555;font-size:15px;line-height:1.7;margin-bottom:20px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:white}
+.testimonial-name{font-size:15px;font-weight:700;color:var(--blue)}
+.testimonial-location{font-size:13px;color:#888}
+/* FAQ */
+.faq-section{padding:80px 40px;background:white}
+.faq-container{max-width:800px;margin:0 auto}
+.faq-item{border:2px solid #e8e8e8;border-radius:15px;margin-bottom:15px;overflow:hidden;transition:all 0.3s}
+.faq-item.active{border-color:var(--blue)}
+.faq-question{padding:20px 25px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:white;transition:all 0.3s}
+.faq-question:hover{background:#f8f9fa}
+.faq-question h3{font-size:16px;font-weight:700;color:var(--blue)}
+.faq-icon{font-size:22px;color:var(--blue);transition:transform 0.3s;font-weight:700}
+.faq-item.active .faq-icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.faq-answer.open{max-height:300px}
+.faq-answer p{padding:0 25px 20px;color:#666;font-size:15px;line-height:1.7}
+/* WHATSAPP */
+.whatsapp-btn{position:fixed;bottom:30px;right:30px;width:65px;height:65px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:35px;box-shadow:0 5px 25px rgba(37,211,102,0.5);z-index:9997;text-decoration:none;animation:wapulse 2s infinite}
+@keyframes wapulse{0%,100%{box-shadow:0 5px 25px rgba(37,211,102,0.5)}50%{box-shadow:0 5px 40px rgba(37,211,102,0.8),0 0 0 10px rgba(37,211,102,0.1)}}
+.whatsapp-tooltip{position:absolute;right:75px;background:#333;color:white;padding:8px 15px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap;opacity:0;transition:opacity 0.3s}
+.whatsapp-btn:hover .whatsapp-tooltip{opacity:1}
+/* MODAL */
 .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center}
 .modal-overlay.active{display:flex}
-.modal-box{background:white;border-radius:25px;padding:50px 40px;max-width:500px;width:90%;text-align:center;animation:popIn 0.4s ease;position:relative}
+.modal-box{background:white;border-radius:25px;padding:50px 40px;max-width:500px;width:90%;text-align:center;animation:popIn 0.4s ease}
 @keyframes popIn{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}
 .modal-icon{font-size:70px;margin-bottom:20px;display:block;animation:bounce 1s ease infinite}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .modal-box h2{font-size:28px;font-weight:900;color:var(--blue);margin-bottom:10px}
 .modal-box p{color:#666;font-size:16px;line-height:1.6;margin-bottom:20px}
 .modal-order-id{background:#f0f4ff;border:2px dashed var(--blue);border-radius:10px;padding:15px;font-size:22px;font-weight:900;color:var(--blue);letter-spacing:3px;margin-bottom:25px}
+/* FOOTER */
 .footer{background:var(--dark-blue);color:white;padding:60px 40px 30px}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
 .footer-brand p{color:rgba(255,255,255,0.7);font-size:14px;line-height:1.7;margin:15px 0 20px}
 .footer-col h4{font-size:16px;font-weight:700;margin-bottom:20px;color:#FFD700}
-.footer-col ul{list-style:none}
+.footer-col ul
+  {list-style:none}
 .footer-col ul li{margin-bottom:10px}
 .footer-col ul li a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;transition:color 0.3s}
 .footer-col ul li a:hover{color:white}
@@ -164,164 +232,97 @@
 .payment-icons{display:flex;gap:10px}
 .payment-icon{background:rgba(255,255,255,0.1);padding:5px 12px;border-radius:5px;font-size:12px;color:white;font-weight:600}
 
-/* ================================
-   RESPONSIVE MOBILE
-================================ */
-/* ================================
-   RESPONSIVE MOBILE
-================================ */
+/* RESPONSIVE */
 @media(max-width:768px){
-  .navbar{padding:12px 20px}
-  .nav-links{display:none}
-  .hamburger{display:block}
-  
-  /* HERO FIXES */
-  .hero{
-    min-height:100vh;
-    padding:40px 20px 60px;
-    flex-direction:column;
-    justify-content:center;
-    text-align:center;
-    align-items:center;
-  }
-  .hero-content{max-width:100%;width:100%}
-  .hero-badge{font-size:11px;padding:6px 15px}
-  
-  /* TITULO MAS GRANDE */
-  .hero h1{font-size:38px;line-height:1.2}
-  .hero p{font-size:15px}
-  .hero-buttons{justify-content:center;flex-direction:column;align-items:center}
-  .hero-buttons a{width:100%;text-align:center}
-  .hero-trust{justify-content:center}
-  
-  /* PLACA VISIBLE EN MOVIL */
-  .hero-image{
-    position:relative;
-    right:auto;
-    top:auto;
-    transform:none;
-    margin-top:40px;
-    display:flex;
-    justify-content:center;
-    width:100%;
-  }
-  .plate-display{
-    padding:20px 35px;
-    transform:none;
-  }
-  @keyframes float{
-    0%,100%{transform:translateY(0) rotate(-2deg)}
-    50%{transform:translateY(-10px) rotate(-2deg)}
-  }
-  .plate-number{font-size:38px}
-  .plate-state{font-size:12px}
-  
-  /* STATS */
-  .stats{grid-template-columns:repeat(2,1fr);padding:20px}
-  .stat-number{font-size:30px}
-  .stat-label{font-size:12px}
-  
-  /* SERVICES */
-  .services{padding:50px 20px}
-  .section-header h2{font-size:26px}
-  .services-grid{grid-template-columns:1fr;gap:20px}
-  
-  /* HOW IT WORKS */
-  .how-it-works{padding:50px 20px}
-  .steps-grid{grid-template-columns:repeat(2,1fr)}
-  .steps-grid::before{display:none}
-  
-  /* VERIFY */
-  .verify-section{padding:50px 20px}
-  .verify-container h2{font-size:26px}
-  .verify-box{padding:25px 15px}
-  .verify-tabs{flex-direction:column}
-  .verify-form{flex-direction:column}
-  .verify-form input,.verify-form select{
-    width:100%;
-    min-width:unset;
-    flex:none;
-  }
-  
-  /* ORDER FIXES */
-  .order-section{padding:50px 20px}
-  .order-form-box{padding:25px 15px}
-  .form-grid{grid-template-columns:1fr}
-  
-  /* FIX STATE AND ADDRESS */
-  .form-group[style*="grid-column:span 2"]{
-    grid-column:span 1 !important;
-  }
-  .form-grid .form-group:nth-child(3){
-    grid-column:span 1 !important;
-  }
-  
-  .plan-selector{grid-template-columns:1fr}
-  .delivery-options{grid-template-columns:1fr}
-  
-  /* FOOTER */
-  .footer{padding:40px 20px 20px}
-  .footer-grid{grid-template-columns:1fr;gap:25px}
-  .footer-bottom{flex-direction:column;text-align:center}
-  
-  /* MODAL */
-  .modal-box{padding:30px 20px}
-  .modal-icon{font-size:50px}
-  .modal-box h2{font-size:22px}
-  .modal-order-id{font-size:16px;letter-spacing:1px}
-  
-  .btn-primary,.btn-secondary{padding:12px 25px;font-size:14px}
-  .submit-btn{font-size:15px;padding:16px}
-  
-  /* SECURITY BADGES */
-  .security-badges{
-    flex-direction:column;
-    align-items:center;
-    gap:10px;
-  }
+.navbar{padding:12px 20px}
+.nav-links{display:none}
+.hamburger{display:block}
+.hero{min-height:100vh;padding:40px 20px 60px;flex-direction:column;justify-content:center;text-align:center;align-items:center}
+.hero-content{max-width:100%;width:100%}
+.hero h1{font-size:38px;line-height:1.2}
+.hero p{font-size:15px}
+.hero-buttons{justify-content:center;flex-direction:column;align-items:center}
+.hero-buttons a{width:100%;text-align:center}
+.hero-trust{justify-content:center}
+.hero-image{position:relative;right:auto;top:auto;transform:none;margin-top:40px;display:flex;justify-content:center;width:100%}
+.plate-display{padding:20px 35px}
+.plate-number{font-size:38px}
+.stats{grid-template-columns:repeat(2,1fr);padding:20px}
+.stat-number{font-size:30px}
+.services{padding:50px 20px}
+.section-header h2{font-size:26px}
+.services-grid{grid-template-columns:1fr;gap:20px}
+.how-it-works{padding:50px 20px}
+.steps-grid{grid-template-columns:repeat(2,1fr)}
+.steps-grid::before{display:none}
+.verify-section{padding:50px 20px}
+.verify-container h2{font-size:26px}
+.verify-box{padding:25px 15px}
+.verify-tabs{flex-direction:column}
+.verify-form{flex-direction:column}
+.verify-form input,.verify-form select{width:100%;min-width:unset;flex:none}
+.insurance-section{padding:50px 20px}
+.insurance-grid{grid-template-columns:1fr;gap:30px}
+.insurance-plans{grid-template-columns:1fr}
+.insurance-doc-info{grid-template-columns:1fr}
+.verify-insurance{padding:50px 20px}
+.verify-insurance-container h2{font-size:26px}
+.verify-insurance-box{padding:25px 15px}
+.order-section{padding:50px 20px}
+.order-form-box{padding:25px 15px}
+.form-grid{grid-template-columns:1fr}
+.plan-selector{grid-template-columns:1fr}
+.delivery-options{grid-template-columns:1fr}
+.testimonials{padding:50px 20px}
+.testimonials-grid{grid-template-columns:1fr}
+.faq-section{padding:50px 20px}
+.footer{padding:40px 20px 20px}
+.footer-grid{grid-template-columns:1fr;gap:25px}
+.footer-bottom{flex-direction:column;text-align:center}
+.modal-box{padding:30px 20px}
+.whatsapp-btn{bottom:20px;right:20px;width:55px;height:55px;font-size:28px}
+[style*="grid-column:span 2"]{grid-column:1!important}
 }
-
 @media(max-width:480px){
-  /* TITULO AUN MAS GRANDE EN PANTALLAS PEQUEÑAS */
-  .hero h1{font-size:34px}
-  .logo-text{font-size:20px}
-  .section-header h2{font-size:22px}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .stat-number{font-size:26px}
-  .plan-price{font-size:22px}
-  .steps-grid{grid-template-columns:1fr}
-  .plate-number{font-size:32px}
-  .plate-display{padding:15px 25px}
-  
-  /* FIX SPAN 2 EN MOVIL */
-  [style*="grid-column:span 2"]{
-    grid-column:1 !important;
-  }
+.hero h1{font-size:30px}
+.logo-text{font-size:20px}
+.section-header h2{font-size:22px}
+.stat-number{font-size:26px}
+.steps-grid{grid-template-columns:1fr}
+.plate-number{font-size:32px}
+.plate-display{padding:15px 25px}
 }
 </style>
 </head>
 <body>
 
+<!-- WHATSAPP -->
+<a href="https://wa.me/1TUNUMERO" target="_blank" class="whatsapp-btn">
+  <span class="whatsapp-tooltip">¡Chatea con nosotros!</span>
+  💬
+</a>
+
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
-  <a href="#home" onclick="toggleMenu()">Home</a>
-  <a href="#services" onclick="toggleMenu()">Services</a>
-  <a href="#verify" onclick="toggleMenu()">Verify Plate</a>
-  <a href="#order" onclick="toggleMenu()">Order Now</a>
-  <a href="#contact" onclick="toggleMenu()">Contact</a>
-  <a href="#order" onclick="toggleMenu()" style="background:var(--red);padding:12px 30px;border-radius:25px">Get My Plate</a>
+  <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+  <a href="#seguros" onclick="toggleMenu()">Seguros</a>
+  <a href="#verificar" onclick="toggleMenu()">Verificar Placa</a>
+  <a href="#orden" onclick="toggleMenu()">Ordenar</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  <a href="#orden" onclick="toggleMenu()" style="background:var(--red);padding:12px 30px;border-radius:25px">Obtener Mi Placa</a>
 </div>
 
 <!-- PROMO BANNER -->
 <div class="promo-banner">
   <div class="promo-text">
-    <span>🚗 SPECIAL OFFER: Get your Temporary Plate in 24 hours!</span>
-    <span>⭐ FREE SHIPPING on orders over $50!</span>
-    <span>🇺🇸 Valid in all 50 States!</span>
-    <span>✅ 100% Legal & DMV Approved!</span>
-    <span>🚗 SPECIAL OFFER: Get your Temporary Plate in 24 hours!</span>
-    <span>⭐ FREE SHIPPING on orders over $50!</span>
+    <span>🚗 OFERTA ESPECIAL: Obtén tu Placa Temporal en 24 horas!</span>
+    <span>⭐ ENVÍO GRATIS en órdenes mayores a $50!</span>
+    <span>🇺🇸 Válido en los 50 Estados!</span>
+    <span>✅ 100% Legal y Aprobado por el DMV!</span>
+    <span>🛡️ Seguros de Auto disponibles en todo USA!</span>
+    <span>🚗 OFERTA ESPECIAL: Obtén tu Placa Temporal en 24 horas!</span>
   </div>
 </div>
 
@@ -332,99 +333,99 @@
     <span class="logo-text">DMV<span>CARS</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#verify">Verify Plate</a></li>
-    <li><a href="#order">Order Now</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#order" class="nav-btn">Get My Plate</a></li>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#seguros">Seguros</a></li>
+    <li><a href="#verificar">Verificar Placa</a></li>
+    <li><a href="#orden">Ordenar</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#orden" class="nav-btn">Obtener Mi Placa</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMenu()">☰</button>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section class="hero" id="inicio">
   <div class="hero-content">
-    <div class="hero-badge">🇺🇸 #1 Temporary Plate Service in the USA</div>
-    <h1>Get Your <span>Temporary</span> License Plate Fast & Easy</h1>
-    <p>Order your official temporary license plate online. Valid in all 50 states. Delivered to your door in 24-48 hours.</p>
+    <div class="hero-badge">🇺🇸 Servicio #1 de Placas Temporales en USA</div>
+    <h1>Obtén Tu <span>Placa Temporal</span> Rápido y Fácil</h1>
+    <p>Ordena tu placa temporal oficial en línea. Válida en los 50 estados. Entregada en tu puerta en 24-48 horas.</p>
     <div class="hero-buttons">
-      <a href="#order" class="btn-primary">Order Now →</a>
-      <a href="#verify" class="btn-secondary">Verify My Plate</a>
+      <a href="#orden" class="btn-primary">Ordenar Ahora →</a>
+      <a href="#verificar" class="btn-secondary">Verificar Mi Placa</a>
     </div>
     <div class="hero-trust">
-      <span>✅ DMV Approved</span>
-      <span>🔒 Secure Payment</span>
-      <span>⚡ Fast Delivery</span>
+      <span>✅ Aprobado por DMV</span>
+      <span>🔒 Pago Seguro</span>
+      <span>⚡ Entrega Rápida</span>
     </div>
   </div>
   <div class="hero-image">
     <div class="plate-display">
       <div class="plate-state">CALIFORNIA</div>
       <div class="plate-number">ABC·1234</div>
-      <div class="plate-label">TEMPORARY PERMIT</div>
-      <div class="plate-temp">TEMP TAG</div>
+      <div class="plate-label">PERMISO TEMPORAL</div>
+      <div class="plate-temp">PLACA TEMP</div>
     </div>
   </div>
 </section>
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat-item"><span class="stat-number" id="s1">0</span><span class="stat-label">Plates Issued</span></div>
-  <div class="stat-item"><span class="stat-number" id="s2">0</span><span class="stat-label">States Covered</span></div>
-  <div class="stat-item"><span class="stat-number" id="s3">0</span><span class="stat-label">Hour Delivery</span></div>
-  <div class="stat-item"><span class="stat-number" id="s4">0</span><span class="stat-label">% Satisfaction</span></div>
+  <div class="stat-item"><span class="stat-number" id="s1">0</span><span class="stat-label">Placas Emitidas</span></div>
+  <div class="stat-item"><span class="stat-number" id="s2">0</span><span class="stat-label">Estados Cubiertos</span></div>
+  <div class="stat-item"><span class="stat-number" id="s3">0</span><span class="stat-label">Horas de Entrega</span></div>
+  <div class="stat-item"><span class="stat-number" id="s4">0</span><span class="stat-label">% Satisfacción</span></div>
 </div>
 
 <!-- SERVICES -->
-<section class="services" id="services">
+<section class="services" id="servicios">
   <div class="section-header">
-    <div class="section-badge">OUR SERVICES</div>
-    <h2>Everything You Need for Your Temporary Plate</h2>
-    <p>Fast, legal, and hassle-free temporary license plate services for all vehicle types.</p>
+    <div class="section-badge">NUESTROS SERVICIOS</div>
+    <h2>Todo lo que Necesitas para tu Placa Temporal</h2>
+    <p>Servicios rápidos, legales y sin complicaciones para todo tipo de vehículos.</p>
   </div>
   <div class="services-grid">
-    <div class="service-card"><div class="service-icon">🚗</div><h3>Standard Temp Plate</h3><p>Official temporary license plate valid for 30 days. Perfect for newly purchased vehicles.</p><div class="service-price">From $29.99</div></div>
-    <div class="service-card"><div class="service-icon">⚡</div><h3>Express Processing</h3><p>Get your temporary plate processed and shipped within 24 hours. Same day available.</p><div class="service-price">From $49.99</div></div>
-    <div class="service-card"><div class="service-icon">🔄</div><h3>Plate Renewal</h3><p>Renew your existing temporary plate easily online. Extended validity options available.</p><div class="service-price">From $19.99</div></div>
-    <div class="service-card"><div class="service-icon">🚛</div><h3>Commercial Vehicles</h3><p>Temporary plates for trucks, vans, and commercial vehicles. All sizes available.</p><div class="service-price">From $39.99</div></div>
-    <div class="service-card"><div class="service-icon">🏍️</div><h3>Motorcycle Plates</h3><p>Specialized temporary plates for motorcycles and scooters. Quick and easy process.</p><div class="service-price">From $24.99</div></div>
-    <div class="service-card"><div class="service-icon">📋</div><h3>DMV Assistance</h3><p>Full assistance with DMV paperwork and registration process. Expert guidance included.</p><div class="service-price">From $59.99</div></div>
+    <div class="service-card"><div class="service-icon">🚗</div><h3>Placa Temporal Estándar</h3><p>Placa temporal oficial válida por 30 días. Perfecta para vehículos recién comprados.</p><div class="service-price">Desde $29.99</div></div>
+    <div class="service-card"><div class="service-icon">⚡</div><h3>Procesamiento Express</h3><p>Obtén tu placa procesada y enviada en 24 horas. Disponible el mismo día.</p><div class="service-price">Desde $49.99</div></div>
+    <div class="service-card"><div class="service-icon">🔄</div><h3>Renovación de Placa</h3><p>Renueva tu placa temporal fácilmente en línea. Opciones de validez extendida.</p><div class="service-price">Desde $19.99</div></div>
+    <div class="service-card"><div class="service-icon">🚛</div><h3>Vehículos Comerciales</h3><p>Placas temporales para camiones, furgonetas y vehículos comerciales.</p><div class="service-price">Desde $39.99</div></div>
+    <div class="service-card"><div class="service-icon">🏍️</div><h3>Placas para Motos</h3><p>Placas temporales especializadas para motocicletas y scooters.</p><div class="service-price">Desde $24.99</div></div>
+    <div class="service-card"><div class="service-icon">📋</div><h3>Asistencia DMV</h3><p>Asistencia completa con trámites del DMV y proceso de registro.</p><div class="service-price">Desde $59.99</div></div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="how-it-works">
   <div class="section-header">
-    <div class="section-badge">HOW IT WORKS</div>
-    <h2>Get Your Plate in 4 Simple Steps</h2>
-    <p>Our streamlined process makes getting your temporary plate quick and easy.</p>
+    <div class="section-badge">CÓMO FUNCIONA</div>
+    <h2>Obtén Tu Placa en 4 Simples Pasos</h2>
+    <p>Nuestro proceso simplificado hace que obtener tu placa temporal sea rápido y fácil.</p>
   </div>
   <div class="steps-grid">
-    <div class="step-item"><div class="step-number">1</div><h3>Fill Out Form</h3><p>Enter your vehicle information and personal details in our secure online form.</p></div>
-    <div class="step-item"><div class="step-number">2</div><h3>Choose Your State</h3><p>Select your state and the type of temporary plate you need.</p></div>
-    <div class="step-item"><div class="step-number">3</div><h3>Secure
-      Payment</h3><p>Pay safely with credit card, debit card, or PayPal. 100% encrypted.</p></div>
-    <div class="step-item"><div class="step-number">4</div><h3>Receive Your Plate</h3><p>Get your temporary plate delivered to your door within 24-48 hours.</p></div>
+    <div class="step-item"><div class="step-number">1</div><h3>Llena el Formulario</h3><p>Ingresa la información de tu vehículo y datos personales en nuestro formulario seguro.</p></div>
+    <div class="step-item"><div class="step-number">2</div><h3>Elige tu Estado</h3><p>Selecciona tu estado y el tipo de placa temporal que necesitas.</p></div>
+    <div class="step-item"><div class="step-number">3</div><h3>Pago Seguro</h3><p>Paga de forma segura con tarjeta de crédito, débito o PayPal. 100% encriptado.</p></div>
+    <div class="step-item"><div class="step-number">4</div><h3>Recibe tu Placa</h3><p>Recibe tu placa temporal en tu puerta en 24-48 horas.</p></div>
   </div>
 </section>
 
-<!-- VERIFY -->
-<section class="verify-section" id="verify">
+<!-- VERIFY PLATE -->
+<section class="verify-section" id="verificar">
   <div class="verify-container">
-    <div class="section-badge">PLATE VERIFICATION</div>
-    <h2>Verify Your Temporary Plate</h2>
-    <p>Check the status of your temporary license plate instantly.</p>
+    <div class="section-badge">VERIFICACIÓN DE PLACA</div>
+    <h2>Verifica Tu Placa Temporal</h2>
+    <p>Consulta el estado de tu placa temporal al instante.</p>
     <div class="verify-box">
       <div class="verify-tabs">
-        <button class="verify-tab active" onclick="switchTab('plate',event)">By Plate Number</button>
-        <button class="verify-tab" onclick="switchTab('order',event)">By Order ID</button>
+        <button class="verify-tab active" onclick="switchTab('plate',event)">Por Número de Placa</button>
+        <button class="verify-tab" onclick="switchTab('order',event)">Por ID de Orden</button>
       </div>
       <div id="plate-tab" class="tab-content active">
         <div class="verify-form">
-          <input type="text" id="plateInput" placeholder="Enter plate number (e.g. ABC1234)">
+          <input type="text" id="plateInput" placeholder="Ingresa número de placa (ej. ABC1234)">
           <select id="stateSelect">
-            <option value="">Select State</option>
+            <option value="">Selecciona Estado</option>
             <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
             <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
             <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
@@ -435,100 +436,218 @@
             <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
             <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
             <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
-            <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+            <option>South Dakota</option><option>Tennessee
+              </option><option>Texas</option><option>Utah</option>
             <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
             <option>Wisconsin</option><option>Wyoming</option>
           </select>
         </div>
-        <button class="btn-primary" onclick="verifyPlate()" style="width:100%;padding:15px">🔍 Verify Plate Status</button>
+        <button class="btn-primary" onclick="verifyPlate()" style="width:100%;padding:15px">🔍 Verificar Estado de Placa</button>
       </div>
       <div id="order-tab" class="tab-content">
         <div class="verify-form">
-          <input type="text" id="orderInput" placeholder="Enter your Order ID (e.g. DMV-12345)">
+          <input type="text" id="orderInput" placeholder="Ingresa tu ID de Orden (ej. DMV-12345)">
         </div>
-        <button class="btn-primary" onclick="verifyOrder()" style="width:100%;padding:15px">🔍 Check Order Status</button>
+        <button class="btn-primary" onclick="verifyOrder()" style="width:100%;padding:15px">🔍 Verificar Estado de Orden</button>
       </div>
       <div id="verify-result" class="verify-result"></div>
     </div>
   </div>
 </section>
 
+<!-- SEGUROS -->
+<section class="insurance-section" id="seguros">
+  <div class="insurance-container">
+    <div class="section-header">
+      <div class="section-badge">SEGUROS DE AUTO</div>
+      <h2>Protege Tu Vehículo con Nuestros <span style="color:var(--red)">Seguros Verificados</span></h2>
+      <p>Cobertura completa disponible en los 50 estados de USA. Rápido, fácil y 100% legal.</p>
+    </div>
+    <div class="insurance-grid">
+      <div class="insurance-image-box">
+        <div class="insurance-card-img">
+          <div class="insurance-badge-verified">✅ Verificado</div>
+          <div class="insurance-doc">
+            <div class="insurance-doc-header">
+              <div class="insurance-doc-logo">DMV<span>CARS</span></div>
+              <span style="font-size:12px;color:#888;font-weight:600">ID: INS-2024-001</span>
+            </div>
+            <div class="insurance-doc-seal">🛡️</div>
+            <div class="insurance-doc-title">CERTIFICADO DE SEGURO VEHICULAR</div>
+            <div class="insurance-doc-info">
+              <div class="insurance-doc-field"><label>Titular</label><span>Juan García</span></div>
+              <div class="insurance-doc-field"><label>Vehículo</label><span>Toyota Camry 2023</span></div>
+              <div class="insurance-doc-field"><label>Estado</label><span>California</span></div>
+              <div class="insurance-doc-field"><label>Cobertura</label><span>Completa</span></div>
+              <div class="insurance-doc-field"><label>Vigencia</label><span>01/2024 - 01/2025</span></div>
+              <div class="insurance-doc-field"><label>Prima Mensual</label><span>$89.99/mes</span></div>
+            </div>
+            <div class="insurance-doc-footer">✅ SEGURO ACTIVO Y VERIFICADO - DMVCARS USA</div>
+          </div>
+        </div>
+      </div>
+      <div class="insurance-content">
+        <h2>Seguro de Auto <span>Completo</span> para Todo USA</h2>
+        <p>Obtén tu seguro de auto de forma rápida y sencilla. Cobertura inmediata disponible en los 50 estados con las mejores tarifas del mercado.</p>
+        <ul class="insurance-features">
+          <li>Cobertura de responsabilidad civil completa</li>
+          <li>Protección contra colisión y daños</li>
+          <li>Cobertura médica para conductor y pasajeros</li>
+          <li>Asistencia en carretera 24/7</li>
+          <li>Válido en los 50 estados de USA</li>
+          <li>Activación inmediata al contratar</li>
+          <li>Documentos digitales al instante</li>
+        </ul>
+        <a href="#orden-seguro" class="btn-primary">🛡️ Obtener Mi Seguro →</a>
+      </div>
+    </div>
+    <div class="section-header" style="margin-top:60px">
+      <div class="section-badge">PLANES DE SEGURO</div>
+      <h2>Elige el Plan que Mejor se Adapte a Ti</h2>
+    </div>
+    <div class="insurance-plans">
+      <div class="insurance-plan-card">
+        <div class="insurance-plan-icon">🛡️</div>
+        <div class="insurance-plan-name">Básico</div>
+        <div class="insurance-plan-price">$49.99</div>
+        <div class="insurance-plan-period">por mes</div>
+        <ul class="insurance-plan-features">
+          <li>Responsabilidad Civil</li>
+          <li>Daños a Terceros</li>
+          <li>Asistencia Básica</li>
+          <li>Válido en 50 Estados</li>
+        </ul>
+        <br>
+        <button class="btn-primary" style="width:100%;padding:12px" onclick="selectInsurancePlan('Básico','49.99')">Seleccionar</button>
+      </div>
+      <div class="insurance-plan-card" style="border-top-color:var(--red);position:relative">
+        <div class="popular-badge">⭐ MÁS POPULAR</div>
+        <div class="insurance-plan-icon">🛡️🛡️</div>
+        <div class="insurance-plan-name">Completo</div>
+        <div class="insurance-plan-price">$89.99</div>
+        <div class="insurance-plan-period">por mes</div>
+        <ul class="insurance-plan-features">
+          <li>Todo el Plan Básico</li>
+          <li>Cobertura por Colisión</li>
+          <li>Cobertura Médica</li>
+          <li>Asistencia 24/7</li>
+          <li>Auto de Reemplazo</li>
+        </ul>
+        <br>
+        <button class="btn-primary" style="width:100%;padding:12px" onclick="selectInsurancePlan('Completo','89.99')">Seleccionar</button>
+      </div>
+      <div class="insurance-plan-card">
+        <div class="insurance-plan-icon">👑</div>
+        <div class="insurance-plan-name">Premium</div>
+        <div class="insurance-plan-price">$129.99</div>
+        <div class="insurance-plan-period">por mes</div>
+        <ul class="insurance-plan-features">
+          <li>Todo el Plan Completo</li>
+          <li>Cobertura Total</li>
+          <li>Robo y Vandalismo</li>
+          <li>Desastres Naturales</li>
+          <li>Agente Personal</li>
+        </ul>
+        <br>
+        <button class="btn-primary" style="width:100%;padding:12px" onclick="selectInsurancePlan('Premium','129.99')">Seleccionar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFY INSURANCE -->
+<section class="verify-insurance" id="verificar-seguro">
+  <div class="verify-insurance-container">
+    <div class="section-badge" style="background:white;color:var(--green)">VERIFICAR SEGURO</div>
+    <h2>Verifica el Estado de Tu Seguro</h2>
+    <p>Ingresa tu nombre e ID de seguro para consultar el estado de tu póliza al instante.</p>
+    <div class="verify-insurance-box">
+      <div class="verify-insurance-form">
+        <input type="text" id="insuranceName" placeholder="Ingresa tu Nombre Completo">
+        <input type="text" id="insuranceId" placeholder="Ingresa tu ID de Seguro (ej. INS-12345)">
+      </div>
+      <button class="btn-verify-insurance" onclick="verifyInsurance()">🛡️ Verificar Estado de Seguro</button>
+      <div id="insurance-result" class="insurance-result"></div>
+    </div>
+  </div>
+</section>
+
 <!-- ORDER -->
-<section class="order-section" id="order">
+<section class="order-section" id="orden">
   <div class="section-header">
-    <div class="section-badge">ORDER NOW</div>
-    <h2>Order Your Temporary Plate</h2>
-    <p>Fill out the form below to get your temporary license plate delivered fast.</p>
+    <div class="section-badge">ORDENAR AHORA</div>
+    <h2>Ordena Tu Placa Temporal</h2>
+    <p>Llena el formulario para recibir tu placa temporal rápidamente.</p>
   </div>
   <div class="order-container">
     <div class="order-form-box">
-      <div class="form-section-title">🚗 Choose Your Plan</div>
+      <div class="form-section-title">🚗 Elige Tu Plan</div>
       <div class="plan-selector">
-        <div class="plan-card" onclick="selectPlan(this,'29.99','Standard')">
+        <div class="plan-card" onclick="selectPlan(this,'29.99','Estándar')">
           <span class="plan-icon">🪪</span>
-          <div class="plan-name">Standard</div>
+          <div class="plan-name">Estándar</div>
           <div class="plan-price">$29.99</div>
-          <div class="plan-duration">30 Day Validity</div>
+          <div class="plan-duration">Validez 30 Días</div>
           <ul class="plan-features">
-            <li>Standard Processing</li>
-            <li>3-5 Day Delivery</li>
-            <li>Email Confirmation</li>
+            <li>Procesamiento Estándar</li>
+            <li>Entrega 3-5 Días</li>
+            <li>Confirmación por Email</li>
           </ul>
         </div>
         <div class="plan-card popular" onclick="selectPlan(this,'49.99','Express')">
-          <div class="popular-badge">⭐ MOST POPULAR</div>
+          <div class="popular-badge">⭐ MÁS POPULAR</div>
           <span class="plan-icon">⚡</span>
           <div class="plan-name">Express</div>
           <div class="plan-price">$49.99</div>
-          <div class="plan-duration">60 Day Validity</div>
+          <div class="plan-duration">Validez 60 Días</div>
           <ul class="plan-features">
-            <li>Express Processing</li>
-            <li>24-48hr Delivery</li>
-            <li>SMS + Email Updates</li>
+            <li>Procesamiento Express</li>
+            <li>Entrega 24-48hrs</li>
+            <li>SMS + Email</li>
           </ul>
         </div>
         <div class="plan-card" onclick="selectPlan(this,'79.99','Premium')">
           <span class="plan-icon">👑</span>
           <div class="plan-name">Premium</div>
           <div class="plan-price">$79.99</div>
-          <div class="plan-duration">90 Day Validity</div>
+          <div class="plan-duration">Validez 90 Días</div>
           <ul class="plan-features">
-            <li>Priority Processing</li>
-            <li>Same Day Delivery</li>
-            <li>24/7 Support</li>
+            <li>Procesamiento Prioritario</li>
+            <li>Entrega Mismo Día</li>
+            <li>Soporte 24/7</li>
           </ul>
         </div>
       </div>
 
-      <div class="form-section-title">👤 Personal Information</div>
+      <div class="form-section-title">👤 Información Personal</div>
       <div class="form-grid">
-        <div class="form-group"><label>First Name *</label><input type="text" id="firstName" placeholder="John" required></div>
-        <div class="form-group"><label>Last Name *</label><input type="text" id="lastName" placeholder="Doe" required></div>
-        <div class="form-group"><label>Email Address *</label><input type="email" id="email" placeholder="john@email.com" required></div>
-        <div class="form-group"><label>Phone Number *</label><input type="tel" id="phone" placeholder="(555) 000-0000" required></div>
+        <div class="form-group"><label>Nombre *</label><input type="text" id="firstName" placeholder="Juan" required></div>
+        <div class="form-group"><label>Apellido *</label><input type="text" id="lastName" placeholder="García" required></div>
+        <div class="form-group"><label>Correo Electrónico *</label><input type="email" id="email" placeholder="juan@email.com" required></div>
+        <div class="form-group"><label>Teléfono *</label><input type="tel" id="phone" placeholder="(555) 000-0000" required></div>
       </div>
 
-      <div class="form-section-title">🚗 Vehicle Information</div>
+      <div class="form-section-title">🚗 Información del Vehículo</div>
       <div class="form-grid">
-        <div class="form-group"><label>Vehicle Make *</label><input type="text" id="make" placeholder="Toyota" required></div>
-        <div class="form-group"><label>Vehicle Model *</label><input type="text" id="model" placeholder="Camry" required></div>
-        <div class="form-group"><label>Year *</label><input type="number" id="year" placeholder="2024" min="1990" max="2025" required></div>
-        <div class="form-group"><label>VIN Number *</label><input type="text" id="vin" placeholder="1HGBH41JXMN109186" maxlength="17" required></div>
-        <div class="form-group"><label>Vehicle Color *</label><input type="text" id="color" placeholder="Silver" required></div>
-        <div class="form-group"><label>Vehicle Type *</label>
+        <div class="form-group"><label>Marca *</label><input type="text" id="make" placeholder="Toyota" required></div>
+        <div class="form-group"><label>Modelo *</label><input type="text" id="model" placeholder="Camry" required></div>
+        <div class="form-group"><label>Año *</label><input type="number" id="year" placeholder="2024" min="1990" max="2025" required></div>
+        <div class="form-group"><label>Número VIN *</label><input type="text" id="vin" placeholder="1HGBH41JXMN109186" maxlength="17" required></div>
+        <div class="form-group"><label>Color *</label><input type="text" id="color" placeholder="Plateado" required></div>
+        <div class="form-group"><label>Tipo de Vehículo *</label>
           <select id="vehicleType" required>
-            <option value="">Select Type</option>
-            <option>Sedan</option><option>SUV</option><option>Truck</option>
-            <option>Van</option><option>Motorcycle</option><option>Commercial</option>
+            <option value="">Seleccionar Tipo</option>
+            <option>Sedán</option><option>SUV</option><option>Camioneta</option>
+            <option>Van</option><option>Motocicleta</option><option>Comercial</option>
           </select>
         </div>
       </div>
 
-      <div class="form-section-title">📍 State & Address</div>
+      <div class="form-section-title">📍 Estado y Dirección</div>
       <div class="form-grid">
-        <div class="form-group"><label>State *</label>
+        <div class="form-group"><label>Estado *</label>
           <select id="orderState" required>
-            <option value="">Select Your State</option>
+            <option value="">Selecciona tu Estado</option>
             <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
             <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
             <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
@@ -544,79 +663,239 @@
             <option>Wisconsin</option><option>Wyoming</option>
           </select>
         </div>
-        <div class="form-group"><label>ZIP Code *</label><input type="text" id="zip" placeholder="90210" maxlength="5" required></div>
-        <div class="form-group" style="grid-column:span 2"><label>Street Address *</label><input type="text" id="address" placeholder="123 Main Street" required></div>
-        <div class="form-group"><label>City *</label><input type="text" id="city" placeholder="Los Angeles" required></div>
+        <div class="form-group"><label>Código ZIP *</label><input type="text" id="zip" placeholder="90210" maxlength="5" required></div>
+        <div class="form-group" style="grid-column:span 2"><label>Dirección *</label><input type="text" id="address" placeholder="123 Calle Principal" required></div>
+        <div class="form-group"><label>Ciudad *</label><input type="text" id="city" placeholder="Los Angeles" required></div>
       </div>
 
-      <div class="form-section-title">🚚 Delivery Method</div>
+      <div class="form-section-title">🚚 Método de Entrega</div>
       <div class="delivery-options">
-        <div class="delivery-card" onclick="selectDelivery(this,'0.00','Standard Shipping')">
-          <span class="delivery-icon">📦</span>
-          <div class="delivery-name">Standard</div>
-          <div class="delivery-time">3-5 Business Days</div>
-          <div class="delivery-price">FREE</div>
+        <div class="delivery-card" onclick="selectDelivery(this,'0.00','Envío Estándar')">
+                    <span class="delivery-icon">📦</span>
+          <div class="delivery-name">Estándar</div>
+          <div class="delivery-time">3-5 Días Hábiles</div>
+          <div class="delivery-price">GRATIS</div>
         </div>
-        <div class="delivery-card selected" onclick="selectDelivery(this,'9.99','Express Shipping')">
+        <div class="delivery-card selected" onclick="selectDelivery(this,'9.99','Envío Express')">
           <span class="delivery-icon">⚡</span>
           <div class="delivery-name">Express</div>
-          <div class="delivery-time">24-48 Hours</div>
+          <div class="delivery-time">24-48 Horas</div>
           <div class="delivery-price">$9.99</div>
         </div>
-        <div class="delivery-card" onclick="selectDelivery(this,'24.99','Same Day Delivery')">
+        <div class="delivery-card" onclick="selectDelivery(this,'24.99','Entrega Mismo Día')">
           <span class="delivery-icon">🚀</span>
-          <div class="delivery-name">Same Day</div>
-          <div class="delivery-time">Today</div>
+          <div class="delivery-name">Mismo Día</div>
+          <div class="delivery-time">Hoy</div>
           <div class="delivery-price">$24.99</div>
         </div>
       </div>
 
-      <div class="form-section-title">💳 Payment Information</div>
+      <div class="form-section-title">💳 Información de Pago</div>
       <div class="form-grid">
-        <div class="form-group" style="grid-column:span 2"><label>Card Number *</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"></div>
-        <div class="form-group"><label>Expiry Date *</label><input type="text" id="expiry" placeholder="MM/YY" maxlength="5" oninput="formatExpiry(this)"></div>
+        <div class="form-group" style="grid-column:span 2"><label>Número de Tarjeta *</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"></div>
+        <div class="form-group"><label>Fecha de Vencimiento *</label><input type="text" id="expiry" placeholder="MM/AA" maxlength="5" oninput="formatExpiry(this)"></div>
         <div class="form-group"><label>CVV *</label><input type="text" id="cvv" placeholder="123" maxlength="3"></div>
-        <div class="form-group" style="grid-column:span 2"><label>Name on Card *</label><input type="text" id="cardName" placeholder="John Doe"></div>
+        <div class="form-group" style="grid-column:span 2"><label>Nombre en la Tarjeta *</label><input type="text" id="cardName" placeholder="Juan García"></div>
       </div>
 
       <div class="order-summary">
-        <div class="summary-title">📋 Order Summary</div>
-        <div class="summary-row"><span>Plan Selected</span><span id="summaryPlan">Not selected</span></div>
-        <div class="summary-row"><span>Delivery Method</span><span id="summaryDelivery">Express Shipping</span></div>
-        <div class="summary-row"><span>Plan Price</span><span id="summaryPrice">$0.00</span></div>
-        <div class="summary-row"><span>Delivery Fee</span><span id="summaryDeliveryPrice">$9.99</span></div>
-        <div class="summary-total"><span>Total Amount</span><span id="summaryTotal">$0.00</span></div>
+        <div class="summary-title">📋 Resumen de Orden</div>
+        <div class="summary-row"><span>Plan Seleccionado</span><span id="summaryPlan">No seleccionado</span></div>
+        <div class="summary-row"><span>Método de Entrega</span><span id="summaryDelivery">Envío Express</span></div>
+        <div class="summary-row"><span>Precio del Plan</span><span id="summaryPrice">$0.00</span></div>
+        <div class="summary-row"><span>Costo de Envío</span><span id="summaryDeliveryPrice">$9.99</span></div>
+        <div class="summary-total"><span>Total</span><span id="summaryTotal">$0.00</span></div>
       </div>
 
-      <button class="submit-btn" onclick="submitOrder()">🚗 Complete Order & Get My Plate →</button>
+      <button class="submit-btn" onclick="submitOrder()">🚗 Completar Orden y Obtener Mi Placa →</button>
 
       <div class="security-badges">
-        <span class="security-badge">🔒 SSL Encrypted</span>
-        <span class="security-badge">✅ DMV Approved</span>
-        <span class="security-badge">💳 Secure Payment</span>
-        <span class="security-badge">🇺🇸 USA Official</span>
+        <span class="security-badge">🔒 SSL Encriptado</span>
+        <span class="security-badge">✅ Aprobado DMV</span>
+        <span class="security-badge">💳 Pago Seguro</span>
+        <span class="security-badge">🇺🇸 Oficial USA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials" id="testimonios">
+  <div class="section-header">
+    <div class="section-badge">TESTIMONIOS</div>
+    <h2>Lo que Dicen Nuestros Clientes</h2>
+    <p>Miles de clientes satisfechos en todo USA confían en DMVCars.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonial-text">"Increíble servicio! Obtuve mi placa temporal en menos de 24 horas. El proceso fue muy fácil y rápido. Totalmente recomendado!"</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:var(--blue)">MR</div>
+        <div>
+          <div class="testimonial-name">María Rodríguez</div>
+          <div class="testimonial-location">📍 Miami, Florida</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonial-text">"Excelente atención al cliente. Tuve un problema con mi orden y lo resolvieron en minutos. El seguro también es muy bueno y económico."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:var(--red)">CL</div>
+        <div>
+          <div class="testimonial-name">Carlos López</div>
+          <div class="testimonial-location">📍 Houston, Texas</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonial-text">"Llevaba semanas buscando cómo obtener mi placa temporal. DMVCars lo hizo súper fácil. En 2 días ya tenía todo listo. 100% recomendado!"</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:#25D366">AG</div>
+        <div>
+          <div class="testimonial-name">Ana González</div>
+          <div class="testimonial-location">📍 Los Angeles, California</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonial-text">"El seguro de auto que contraté es excelente. Cobertura completa a un precio muy accesible. El proceso fue rápido y sin complicaciones."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:#FF6B35">JM</div>
+        <div>
+          <div class="testimonial-name">José Martínez</div>
+          <div class="testimonial-location">📍 Chicago, Illinois</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonial-text">"Pensé que sería complicado pero fue muy sencillo. Llené el formulario, pagué y en 24 horas tenía mi placa. El mejor servicio que he usado!"</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:#9C27B0">LP</div>
+        <div>
+          <div class="testimonial-name">Laura Pérez</div>
+          <div class="testimonial-location">📍 New York, NY</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+      <p class="testimonial-text">"Contraté el plan premium de seguro y estoy muy satisfecho. La asistencia en carretera me salvó cuando tuve una llanta ponchada. Gracias DMVCars!"</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:#FF5722">RF</div>
+        <div>
+          <div class="testimonial-name">Roberto Flores</div>
+          <div class="testimonial-location">📍 Phoenix, Arizona</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-header">
+    <div class="section-badge">PREGUNTAS FRECUENTES</div>
+    <h2>¿Tienes Preguntas? Tenemos Respuestas</h2>
+    <p>Encuentra respuestas a las preguntas más comunes sobre nuestros servicios.</p>
+  </div>
+  <div class="faq-container">
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>¿Cuánto tiempo tarda en llegar mi placa temporal?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Dependiendo del plan que elijas, tu placa puede llegar en 3-5 días hábiles con el plan Estándar, 24-48 horas con el plan Express, o el mismo día con el plan Premium.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>¿Es legal la placa temporal que emiten?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Sí, todas nuestras placas temporales son 100% legales y están aprobadas por el DMV. Son válidas en los 50 estados de USA y cumplen con todos los requisitos legales.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>¿En qué estados puedo usar la placa temporal?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Nuestras placas temporales son válidas en los 50 estados de USA. No importa en qué estado te encuentres, nuestra placa será reconocida y aceptada legalmente.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>¿Qué documentos necesito para obtener mi placa?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Solo necesitas el número VIN de tu vehículo, tu información personal y una forma de pago válida. No se requieren documentos físicos adicionales para el proceso en línea.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>¿Puedo renovar mi placa temporal?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Sí, puedes renovar tu placa temporal fácilmente desde nuestra página web. El proceso de renovación es igual de rápido y sencillo que la primera vez.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>¿Cómo funciona el seguro de auto?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Nuestros seguros de auto ofrecen cobertura inmediata al contratar. Recibirás tu certificado digital al instante y tu póliza física en 2-3 días hábiles. Cobertura disponible en los 50 estados.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>¿Qué métodos de pago aceptan?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Aceptamos todas las tarjetas de crédito y débito principales (Visa, Mastercard, American Express), PayPal y transferencias bancarias. Todos los pagos son 100% seguros y encriptados.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggleFaq(this)">
+        <h3>¿Tienen servicio al cliente en español?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-answer">
+        <p>Sí! Nuestro equipo de atención al cliente está disponible en español e inglés. Puedes contactarnos por WhatsApp, email o teléfono de lunes a domingo de 8am a 8pm EST.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="footer" id="contact">
+<footer class="footer" id="contacto">
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="#" class="logo">
         <div class="logo-icon">🚗</div>
         <span class="logo-text">DMV<span>CARS</span></span>
       </a>
-      <p>The #1 trusted source for temporary license plates in the USA. Fast, legal, and hassle-free service for all 50 states.</p>
+      <p>La fuente #1 de confianza para placas temporales y seguros de auto en USA. Servicio rápido, legal y sin complicaciones para los 50 estados.</p>
     </div>
-    <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Standard Plate</a></li><li><a href="#">Express Plate</a></li><li><a href="#">Plate Renewal</a></li><li><a href="#">Commercial</a></li><li><a href="#">Motorcycle</a></li></ul></div>
-    <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About Us</a></li><li><a href="#">How It Works</a></li><li><a href="#">Testimonials</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li></ul></div>
-    <div class="footer-col"><h4>Support</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Track Order</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div>
+    <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#">Placa Estándar</a></li><li><a href="#">Placa Express</a></li><li><a href="#">Renovación</a></li><li><a href="#">Seguros de Auto</a></li><li><a href="#">Vehículos Comerciales</a></li></ul></div>
+    <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#">Sobre Nosotros</a></li><li><a href="#">Cómo Funciona</a></li><li><a href="#">Testimonios</a></li><li><a href="#">Blog</a></li><li><a href="#">Carreras</a></li></ul></div>
+    <div class="footer-col"><h4>Soporte</h4><ul><li><a href="#">Contáctanos</a></li><li><a href="#">Preguntas Frecuentes</a></li><li><a href="#">Rastrear Orden</a></li><li><a href="#">Política de Privacidad</a></li><li><a href="#">Términos de Servicio</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <p>© 2024 DMVCars. All rights reserved. | Not affiliated with any government agency.</p>
-    <div class="payment-icons">
+    <p>© 2024 DMVCars. Todos los derechos reservados. | No afiliado con ninguna agencia gubernamental.</p>
+        <div class="payment-icons">
       <span class="payment-icon">VISA</span>
       <span class="payment-icon">MC</span>
       <span class="payment-icon">AMEX</span>
@@ -625,41 +904,48 @@
   </div>
 </footer>
 
-<!-- SUCCESS MODAL -->
+<!-- MODAL EXITO -->
 <div class="modal-overlay" id="successModal">
   <div class="modal-box">
     <span class="modal-icon">🎉</span>
-    <h2>Order Placed Successfully!</h2>
-    <p>Your temporary
-      plate order has been received. You will receive a confirmation email shortly.</p>
+    <h2>¡Orden Completada!</h2>
+    <p>Tu orden de placa temporal ha sido recibida. Recibirás un correo de confirmación en breve.</p>
     <div class="modal-order-id" id="modalOrderId">DMV-000000</div>
-    <p style="font-size:14px;color:#888;margin-bottom:25px">Save this order ID to track your plate status</p>
-    <button class="btn-primary" onclick="closeModal()" style="width:100%;padding:15px">✅ Got It!</button>
+    <p style="font-size:14px;color:#888;margin-bottom:25px">Guarda este ID para rastrear tu placa</p>
+    <button class="btn-primary" onclick="closeModal()" style="width:100%;padding:15px">✅ ¡Entendido!</button>
+  </div>
+</div>
+
+<!-- MODAL SEGURO -->
+<div class="modal-overlay" id="insuranceModal">
+  <div class="modal-box">
+    <span class="modal-icon">🛡️</span>
+    <h2>¡Seguro Activado!</h2>
+    <p>Tu seguro de auto ha sido procesado exitosamente. Recibirás tu certificado digital por correo.</p>
+    <div class="modal-order-id" id="modalInsuranceId">INS-000000</div>
+    <p style="font-size:14px;color:#888;margin-bottom:25px">Guarda este ID para verificar tu seguro</p>
+    <button class="btn-primary" onclick="closeInsuranceModal()" style="width:100%;padding:15px">✅ ¡Entendido!</button>
   </div>
 </div>
 
 <script>
-// MOBILE MENU
+// MENU MOVIL
 function toggleMenu(){
   const menu = document.getElementById('mobileMenu');
   menu.classList.toggle('active');
   document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
 }
 
-// COUNTER ANIMATION
+// CONTADOR ANIMADO
 function animateCounter(id, target, suffix){
   let count = 0;
   const step = target / 60;
   const timer = setInterval(() => {
     count += step;
-    if(count >= target){
-      count = target;
-      clearInterval(timer);
-    }
-    document.getElementById(id).textContent = Math.floor(count).toLocaleString() + (suffix || '');
+    if(count >= target){ count = target; clearInterval(timer); }
+    document.getElementById(id).textContent = Math.floor(count).toLocaleString() + (suffix||'');
   }, 30);
 }
-
 window.addEventListener('load', () => {
   animateCounter('s1', 50000, '+');
   animateCounter('s2', 50, '');
@@ -667,15 +953,15 @@ window.addEventListener('load', () => {
   animateCounter('s4', 99, '%');
 });
 
-// PLAN SELECTION
-let selectedPlan = { price: 0, name: 'Not selected' };
+// PLAN PLACAS
+let selectedPlan = { price:0, name:'No seleccionado' };
 let selectedDeliveryPrice = 9.99;
-let selectedDeliveryName = 'Express Shipping';
+let selectedDeliveryName = 'Envío Express';
 
 function selectPlan(card, price, name){
   document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
   card.classList.add('selected');
-  selectedPlan = { price: parseFloat(price), name: name };
+  selectedPlan = { price:parseFloat(price), name:name };
   updateSummary();
 }
 
@@ -689,14 +975,57 @@ function selectDelivery(card, price, name){
 
 function updateSummary(){
   const total = selectedPlan.price + selectedDeliveryPrice;
-  document.getElementById('summaryPlan').textContent = selectedPlan.name || 'Not selected';
+  document.getElementById('summaryPlan').textContent = selectedPlan.name;
   document.getElementById('summaryDelivery').textContent = selectedDeliveryName;
   document.getElementById('summaryPrice').textContent = '$' + selectedPlan.price.toFixed(2);
-  document.getElementById('summaryDeliveryPrice').textContent = selectedDeliveryPrice === 0 ? 'FREE' : '$' + selectedDeliveryPrice.toFixed(2);
+  document.getElementById('summaryDeliveryPrice').textContent = selectedDeliveryPrice === 0 ? 'GRATIS' : '$' + selectedDeliveryPrice.toFixed(2);
   document.getElementById('summaryTotal').textContent = '$' + total.toFixed(2);
 }
 
-// VERIFY TABS
+// SEGURO
+function selectInsurancePlan(name, price){
+  const insId = 'INS-' + Math.floor(Math.random() * 900000 + 100000);
+  document.getElementById('modalInsuranceId').textContent = insId;
+  document.getElementById('insuranceModal').classList.add('active');
+}
+
+function closeInsuranceModal(){
+  document.getElementById('insuranceModal').classList.remove('active');
+}
+
+// VERIFICAR SEGURO
+function verifyInsurance(){
+  const name = document.getElementById('insuranceName').value.trim();
+  const id = document.getElementById('insuranceId').value.trim();
+  const result = document.getElementById('insurance-result');
+  if(!name || !id){
+    result.className = 'insurance-result error';
+    result.innerHTML = '❌ Por favor ingresa tu nombre e ID de seguro.';
+    return;
+  }
+  result.className = 'insurance-result';
+  result.style.display = 'block';
+  result.innerHTML = '⏳ Verificando...';
+  setTimeout(() => {
+    if(id.toUpperCase().startsWith('INS-')){
+      result.className = 'insurance-result success';
+      result.innerHTML = `✅ <strong>SEGURO ACTIVO</strong><br>
+      Titular: ${name}<br>
+      ID de Póliza: ${id.toUpperCase()}<br>
+      Estado: Activo y Vigente<br>
+      Cobertura: Completa<br>
+      Vence: ${getRandomDate()}<br>
+      ✅ Válido en los 50 estados de USA`;
+    } else {
+      result.className = 'insurance-result error';
+      result.innerHTML = `❌ <strong>SEGURO NO ENCONTRADO</strong><br>
+      No se encontró ningún seguro con ID: ${id}<br>
+      Por favor verifica tu ID o contáctanos por WhatsApp.`;
+    }
+  }, 1500);
+}
+
+// VERIFICAR PLACA
 function switchTab(tab, event){
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.verify-tab').forEach(t => t.classList.remove('active'));
@@ -704,54 +1033,52 @@ function switchTab(tab, event){
   event.target.classList.add('active');
 }
 
-// VERIFY PLATE
 function verifyPlate(){
   const plate = document.getElementById('plateInput').value.trim();
   const state = document.getElementById('stateSelect').value;
   const result = document.getElementById('verify-result');
   if(!plate || !state){
     result.className = 'verify-result error';
-    result.innerHTML = '❌ Please enter a plate number and select a state.';
+    result.innerHTML = '❌ Por favor ingresa el número de placa y selecciona un estado.';
     return;
   }
   result.className = 'verify-result';
   result.style.display = 'block';
-  result.innerHTML = '⏳ Searching...';
+  result.innerHTML = '⏳ Buscando...';
   setTimeout(() => {
     const statuses = ['active','expired','pending'];
     const status = statuses[Math.floor(Math.random() * statuses.length)];
     if(status === 'active'){
       result.className = 'verify-result success';
-      result.innerHTML = `✅ <strong>PLATE ACTIVE</strong><br>Plate: ${plate.toUpperCase()} | State: ${state}<br>Status: Valid & Active<br>Expires: ${getRandomDate()}<br>Order ID: DMV-${Math.floor(Math.random()*90000+10000)}`;
+      result.innerHTML = `✅ <strong>PLACA ACTIVA</strong><br>Placa: ${plate.toUpperCase()} | Estado: ${state}<br>Estado: Válida y Activa<br>Vence: ${getRandomDate()}<br>ID de Orden: DMV-${Math.floor(Math.random()*90000+10000)}`;
     } else if(status === 'expired'){
       result.className = 'verify-result error';
-      result.innerHTML = `❌ <strong>PLATE EXPIRED</strong><br>Plate: ${plate.toUpperCase()} | State: ${state}<br>This temporary plate has expired. Please renew.`;
+      result.innerHTML = `❌ <strong>PLACA VENCIDA</strong><br>Placa: ${plate.toUpperCase()} | Estado: ${state}<br>Esta placa temporal ha vencido. Por favor renuévala.`;
     } else {
       result.className = 'verify-result pending';
-      result.innerHTML = `⏳ <strong>PLATE PENDING</strong><br>Plate: ${plate.toUpperCase()} | State: ${state}<br>Your plate is being processed. Check back in 24 hours.`;
+      result.innerHTML = `⏳ <strong>PLACA EN PROCESO</strong><br>Placa: ${plate.toUpperCase()} | Estado: ${state}<br>Tu placa está siendo procesada. Verifica en 24 horas.`;
     }
   }, 1500);
 }
 
-// VERIFY ORDER
 function verifyOrder(){
   const orderId = document.getElementById('orderInput').value.trim();
   const result = document.getElementById('verify-result');
   if(!orderId){
     result.className = 'verify-result error';
-    result.innerHTML = '❌ Please enter your Order ID.';
+    result.innerHTML = '❌ Por favor ingresa tu ID de orden.';
     return;
   }
   result.className = 'verify-result';
   result.style.display = 'block';
-  result.innerHTML = '⏳ Searching...';
+  result.innerHTML = '⏳ Buscando...';
   setTimeout(() => {
     if(orderId.toUpperCase().startsWith('DMV-')){
       result.className = 'verify-result success';
-      result.innerHTML = `✅ <strong>ORDER FOUND</strong><br>Order ID: ${orderId.toUpperCase()}<br>Status: Processing<br>Estimated Delivery: ${getRandomDate()}<br>Tracking: TRK${Math.floor(Math.random()*900000+100000)}`;
+      result.innerHTML = `✅ <strong>ORDEN ENCONTRADA</strong><br>ID: ${orderId.toUpperCase()}<br>Estado: En Proceso<br>Entrega Estimada: ${getRandomDate()}<br>Rastreo: TRK${Math.floor(Math.random()*900000+100000)}`;
     } else {
       result.className = 'verify-result error';
-      result.innerHTML = `❌ <strong>ORDER NOT FOUND</strong><br>No order found with ID: ${orderId}<br>Please check your email for the correct Order ID.`;
+      result.innerHTML = `❌ <strong>ORDEN NO ENCONTRADA</strong><br>No se encontró orden con ID: ${orderId}<br>Revisa tu correo para el ID correcto.`;
     }
   }, 1500);
 }
@@ -759,10 +1086,10 @@ function verifyOrder(){
 function getRandomDate(){
   const d = new Date();
   d.setDate(d.getDate() + Math.floor(Math.random() * 60 + 30));
-  return d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  return d.toLocaleDateString('es-US',{year:'numeric',month:'long',day:'numeric'});
 }
 
-// FORMAT CARD
+// FORMATO TARJETA
 function formatCard(input){
   let value = input.value.replace(/\D/g,'').substring(0,16);
   input.value = value.replace(/(.{4})/g,'$1 ').trim();
@@ -774,36 +1101,26 @@ function formatExpiry(input){
   input.value = value;
 }
 
-// SUBMIT ORDER
+// ENVIAR ORDEN
 function submitOrder(){
   const fields = ['firstName','lastName','email','phone','make','model','year','vin','color','vehicleType','orderState','zip','address','city','cardNumber','expiry','cvv','cardName'];
   let empty = false;
   fields.forEach(id => {
     const el = document.getElementById(id);
-    if(!el.value){
-      el.style.borderColor = 'var(--red)';
-      empty = true;
-    } else {
-      el.style.borderColor = '#4caf50';
-    }
+    if(!el.value){ el.style.borderColor = 'var(--red)'; empty = true; }
+    else { el.style.borderColor = '#4caf50'; }
   });
-  if(empty){
-    alert('⚠️ Please fill out all required fields before submitting.');
-    return;
-  }
-  if(selectedPlan.price === 0){
-    alert('⚠️ Please select a plan before submitting.');
-    return;
-  }
+  if(empty){ alert('⚠️ Por favor completa todos los campos requeridos.'); return; }
+  if(selectedPlan.price === 0){ alert('⚠️ Por favor selecciona un plan.'); return; }
   const btn = document.querySelector('.submit-btn');
-  btn.textContent = '⏳ Processing your order...';
+  btn.textContent = '⏳ Procesando tu orden...';
   btn.style.background = '#ccc';
   btn.style.pointerEvents = 'none';
   setTimeout(() => {
     const orderId = 'DMV-' + Math.floor(Math.random() * 900000 + 100000);
     document.getElementById('modalOrderId').textContent = orderId;
     document.getElementById('successModal').classList.add('active');
-    btn.textContent = '🚗 Complete Order & Get My Plate →';
+    btn.textContent = '🚗 Completar Orden y Obtener Mi Placa →';
     btn.style.background = '';
     btn.style.pointerEvents = '';
   }, 2500);
@@ -813,7 +1130,25 @@ function closeModal(){
   document.getElementById('successModal').classList.remove('active');
 }
 
-// SCROLL ANIMATIONS
+// FAQ
+function toggleFaq(question){
+  const item = question.parentElement;
+  const answer = item.querySelector('.faq-answer');
+  const icon = item.querySelector('.faq-icon');
+  const isOpen = item.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.classList.remove('active');
+    i.querySelector('.faq-answer').classList.remove('open');
+    i.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+  });
+  if(!isOpen){
+    item.classList.add('active');
+    answer.classList.add('open');
+    icon.style.transform = 'rotate(45deg)';
+  }
+}
+
+// ANIMACIONES SCROLL
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
@@ -821,9 +1156,9 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.style.transform = 'translateY(0)';
     }
   });
-}, { threshold: 0.1 });
+}, { threshold:0.1 });
 
-document.querySelectorAll('.service-card,.step-item,.plan-card,.delivery-card').forEach(el => {
+document.querySelectorAll('.service-card,.step-item,.plan-card,.delivery-card,.testimonial-card,.insurance-plan-card,.faq-item').forEach(el => {
   el.style.opacity = '0';
   el.style.transform = 'translateY(30px)';
   el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -839,9 +1174,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// CLOSE MODAL CLICKING OUTSIDE
+// CERRAR MODAL CLICKANDO FUERA
 document.getElementById('successModal').addEventListener('click', function(e){
   if(e.target === this) closeModal();
+});
+document.getElementById('insuranceModal').addEventListener('click', function(e){
+  if(e.target === this) closeInsuranceModal();
 });
 </script>
 </body>
