@@ -167,67 +167,136 @@
 /* ================================
    RESPONSIVE MOBILE
 ================================ */
+/* ================================
+   RESPONSIVE MOBILE
+================================ */
 @media(max-width:768px){
   .navbar{padding:12px 20px}
   .nav-links{display:none}
   .hamburger{display:block}
   
-  .hero{min-height:100vh;padding:40px 20px;flex-direction:column;justify-content:center;text-align:center}
-  .hero-content{max-width:100%}
+  /* HERO FIXES */
+  .hero{
+    min-height:100vh;
+    padding:40px 20px 60px;
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+    align-items:center;
+  }
+  .hero-content{max-width:100%;width:100%}
   .hero-badge{font-size:11px;padding:6px 15px}
-  .hero h1{font-size:32px}
-  .hero p{font-size:15px}
-  .hero-buttons{justify-content:center}
-  .hero-trust{justify-content:center}
-  .hero-image{display:none}
   
+  /* TITULO MAS GRANDE */
+  .hero h1{font-size:38px;line-height:1.2}
+  .hero p{font-size:15px}
+  .hero-buttons{justify-content:center;flex-direction:column;align-items:center}
+  .hero-buttons a{width:100%;text-align:center}
+  .hero-trust{justify-content:center}
+  
+  /* PLACA VISIBLE EN MOVIL */
+  .hero-image{
+    position:relative;
+    right:auto;
+    top:auto;
+    transform:none;
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    width:100%;
+  }
+  .plate-display{
+    padding:20px 35px;
+    transform:none;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0) rotate(-2deg)}
+    50%{transform:translateY(-10px) rotate(-2deg)}
+  }
+  .plate-number{font-size:38px}
+  .plate-state{font-size:12px}
+  
+  /* STATS */
   .stats{grid-template-columns:repeat(2,1fr);padding:20px}
   .stat-number{font-size:30px}
   .stat-label{font-size:12px}
   
+  /* SERVICES */
   .services{padding:50px 20px}
   .section-header h2{font-size:26px}
   .services-grid{grid-template-columns:1fr;gap:20px}
   
+  /* HOW IT WORKS */
   .how-it-works{padding:50px 20px}
   .steps-grid{grid-template-columns:repeat(2,1fr)}
   .steps-grid::before{display:none}
   
+  /* VERIFY */
   .verify-section{padding:50px 20px}
   .verify-container h2{font-size:26px}
-  .verify-box{padding:25px 20px}
+  .verify-box{padding:25px 15px}
+  .verify-tabs{flex-direction:column}
   .verify-form{flex-direction:column}
-  .verify-form input,.verify-form select{width:100%;min-width:unset}
+  .verify-form input,.verify-form select{
+    width:100%;
+    min-width:unset;
+    flex:none;
+  }
   
+  /* ORDER FIXES */
   .order-section{padding:50px 20px}
-  .order-form-box{padding:25px 20px}
+  .order-form-box{padding:25px 15px}
   .form-grid{grid-template-columns:1fr}
+  
+  /* FIX STATE AND ADDRESS */
+  .form-group[style*="grid-column:span 2"]{
+    grid-column:span 1 !important;
+  }
+  .form-grid .form-group:nth-child(3){
+    grid-column:span 1 !important;
+  }
+  
   .plan-selector{grid-template-columns:1fr}
   .delivery-options{grid-template-columns:1fr}
   
+  /* FOOTER */
   .footer{padding:40px 20px 20px}
   .footer-grid{grid-template-columns:1fr;gap:25px}
   .footer-bottom{flex-direction:column;text-align:center}
   
+  /* MODAL */
   .modal-box{padding:30px 20px}
   .modal-icon{font-size:50px}
   .modal-box h2{font-size:22px}
-  .modal-order-id{font-size:16px}
+  .modal-order-id{font-size:16px;letter-spacing:1px}
   
   .btn-primary,.btn-secondary{padding:12px 25px;font-size:14px}
   .submit-btn{font-size:15px;padding:16px}
+  
+  /* SECURITY BADGES */
+  .security-badges{
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
 }
 
 @media(max-width:480px){
-  .hero h1{font-size:26px}
+  /* TITULO AUN MAS GRANDE EN PANTALLAS PEQUEÑAS */
+  .hero h1{font-size:34px}
   .logo-text{font-size:20px}
   .section-header h2{font-size:22px}
   .stats{grid-template-columns:repeat(2,1fr)}
   .stat-number{font-size:26px}
   .plan-price{font-size:22px}
   .steps-grid{grid-template-columns:1fr}
-  .security-badges{gap:10px}
-  .security-badge{font-size:11px}
+  .plate-number{font-size:32px}
+  .plate-display{padding:15px 25px}
+  
+  /* FIX SPAN 2 EN MOVIL */
+  [style*="grid-column:span 2"]{
+    grid-column:1 !important;
+  }
 }
 </style>
 </head>
