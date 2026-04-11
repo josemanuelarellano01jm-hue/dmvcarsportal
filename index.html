@@ -27,4 +27,118 @@
     <div class="bg-slate-900 text-white py-2 px-6 text-sm font-bold flex flex-wrap justify-center items-center gap-4 sticky top-0 z-[70]">
         <span><i class="fas fa-truck-loading mr-2 text-red-500"></i> TRACK YOUR SHIPMENT:</span>
         <div class="flex">
-            <input type="text
+            <input type="text" placeholder="Order ID or VIN" class="px-3 py-1 text-slate-800 rounded-l text-xs outline-none w-40 md:w-64">
+            <button class="bg-red-600 px-4 py-1 rounded-r hover:bg-red-700 transition text-[10px] uppercase">Track Now</button>
+        </div>
+    </div>
+
+    <nav class="bg-white shadow-md border-b sticky top-[36px] z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-red-600 p-2 rounded shadow-lg">
+                    <i class="fas fa-car-side text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-black text-slate-800 tracking-tighter uppercase">DMV CAR<span class="text-red-600"> PORTAL</span></span>
+            </div>
+            <div class="hidden lg:flex space-x-8 text-xs font-black uppercase tracking-widest text-slate-600">
+                <a href="#coverage" class="hover:text-red-600">Coverage</a>
+                <a href="#guides" class="hover:text-red-600">Guides</a>
+                <a href="#reviews" class="hover:text-red-600">Reviews</a>
+            </div>
+            <button class="bg-blue-700 text-white px-6 py-2 rounded-full font-black text-xs hover:bg-blue-800 transition shadow-lg uppercase">Get Started</button>
+        </div>
+    </nav>
+
+    <section class="bg-white py-12 border-b-8 border-red-600">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto bg-blue-50 rounded-3xl p-6 md:p-10 border-2 border-blue-200 shadow-2xl overflow-hidden relative">
+                <div class="flex flex-col lg:flex-row items-center gap-10">
+                    
+                    <div class="flex-1 text-center lg:text-left space-y-6">
+                        <span class="bg-red-600 text-white px-4 py-1 rounded-full text-sm font-black uppercase tracking-widest promo-pulse">Limited Time Offer</span>
+                        <h2 class="text-6xl md:text-8xl font-black text-slate-900 leading-none tracking-tighter">
+                            OFFICIAL <br><span class="text-blue-700 italic">PROMO</span>
+                        </h2>
+                        <div class="flex flex-col md:flex-row items-center gap-4 justify-center lg:justify-start">
+                            <span class="text-4xl md:text-5xl font-bold text-slate-700">30 DAYS</span>
+                            <div class="h-12 w-1 bg-gray-300 hidden md:block"></div>
+                            <p class="text-xl md:text-2xl font-bold text-slate-600">Temp Tag + <span class="text-blue-600 underline">Insurance</span></p>
+                        </div>
+                        <div class="flex items-center justify-center lg:justify-start gap-6">
+                            <div class="text-6xl font-black text-red-600">$174.99</div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/GEICO_logo.svg/1200px-GEICO_logo.svg.png" alt="GEICO" class="h-10">
+                        </div>
+                        <button class="bg-red-600 hover:bg-red-700 text-white text-2xl font-black py-5 px-12 rounded-2xl shadow-xl transition-all w-full md:w-auto uppercase italic transform hover:-translate-y-1">
+                            Claim Offer Now <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex-1 w-full max-w-md">
+                        <div class="bg-white border-4 border-slate-900 rounded-2xl p-6 shadow-2xl transform rotate-2">
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-[10px] font-black text-gray-400 tracking-widest uppercase">Georgia Temporary License</span>
+                                <i class="fas fa-shield-alt text-blue-600 text-xs"></i>
+                            </div>
+                            <div class="text-6xl font-black tracking-tighter text-slate-900 mb-4">S2470850</div>
+                            <div class="flex justify-between items-end border-t-2 pt-4">
+                                <div>
+                                    <span class="block text-[10px] text-gray-400 font-bold uppercase tracking-widest">Expires</span>
+                                    <span class="text-xl font-black text-red-600">23-DEC-2025</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="block text-[8px] text-slate-400 leading-tight italic uppercase">Verified by DMV</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guides" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <div class="inline-block bg-slate-900 text-white px-10 py-3 rounded-lg font-black text-xl mb-4 shadow-xl uppercase italic">
+                Instructional Guides
+            </div>
+            <p class="text-slate-500 mb-12 font-bold italic text-lg">Download and follow these steps to use your tag correctly.</p>
+
+            <div class="grid gap-12 max-w-5xl mx-auto">
+                <div class="bg-white p-4 rounded-3xl shadow-2xl border border-gray-200">
+                    <h3 class="text-blue-800 font-black mb-4 uppercase">1. How to buy your temporary license</h3>
+                    <img src="copia q.jpg" alt="Guía Paso a Paso" class="w-full h-auto rounded-xl">
+                </div>
+                <div class="bg-white p-4 rounded-3xl shadow-2xl border border-gray-200">
+                    <h3 class="text-blue-800 font-black mb-4 uppercase">2. How to print and install</h3>
+                    <img src="corte 2.jpg" alt="Instalación" class="w-full h-auto rounded-xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-20 bg-white">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-center italic text-sm text-slate-500 font-bold">
+            <div class="p-8 border-t-4 border-blue-600 shadow-lg rounded-xl">"Got my Georgia tag in 30 minutes! Amazing service."</div>
+            <div class="p-8 border-t-4 border-blue-600 shadow-lg rounded-xl">"The Geico insurance bundle is a lifesaver."</div>
+            <div class="p-8 border-t-4 border-blue-600 shadow-lg rounded-xl">"100% Secure and much faster than the DMV."</div>
+        </div>
+    </section>
+
+    <div class="bg-red-600 text-white py-4 overflow-hidden">
+        <div class="marquee font-black uppercase tracking-tighter text-lg">
+            🔥 SPECIAL OFFER: TEMP TAG + GEICO INSURANCE FOR $174.99! — 100% LEGAL & VERIFIED — APPLY NOW! 🔥
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 text-gray-500 py-16 px-6 text-center">
+        <div class="flex items-center justify-center space-x-2 mb-6">
+            <i class="fas fa-car-side text-white text-2xl"></i>
+            <span class="text-white text-2xl font-black tracking-tighter">DMV CAR PORTAL GROUP</span>
+        </div>
+        <p class="text-[10px] max-w-2xl mx-auto italic mb-10 text-gray-400">
+            *DISCLAIMER: We are a private documentation service. We are not a government agency (DMV).
+        </p>
+    </footer>
+
+</body>
+</html>
