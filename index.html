@@ -3,1184 +3,1938 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DMVCars - Placas Temporales y Seguros</title>
+<title>DMVCarPortal - Placas, Seguros, Títulos y Licencias</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-:root{--blue:#003087;--red:#BF0A30;--light-blue:#0052cc;--dark-blue:#001a4d;--green:#1a7a1a}
-.promo-banner{background:var(--red);color:white;padding:10px 0;overflow:hidden}
-.promo-text{display:inline-block;white-space:nowrap;animation:marquee 25s linear infinite;font-size:14px;font-weight:600}
-.promo-text span{margin:0 40px}
-@keyframes marquee{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
-.navbar{background:var(--blue);padding:15px 40px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-icon{width:45px;height:45px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:22px}
-.logo-text{color:white;font-size:26px;font-weight:800;letter-spacing:2px}
+:root{
+  --blue:#003087;
+  --blue2:#0052cc;
+  --blue3:#1a6fd4;
+  --blue4:#e8f0fe;
+  --blue5:#f0f5ff;
+  --dark:#001a4d;
+  --red:#BF0A30;
+  --white:#ffffff;
+  --gray:#f4f6fb;
+  --text:#1a2340;
+  --text2:#4a5568;
+}
+html{scroll-behavior:smooth}
+body{color:var(--text);background:var(--white)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f0f5ff}
+::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:3px}
+
+/* PROMO BANNER */
+.promo-banner{background:linear-gradient(90deg,var(--dark),var(--blue),var(--blue2));color:white;padding:10px 0;overflow:hidden}
+.promo-track{display:flex;animation:marquee 35s linear infinite;white-space:nowrap}
+.promo-track span{margin:0 50px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+.promo-track span i{color:#FFD700}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* NAVBAR */
+.navbar{background:var(--blue);padding:0 50px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999;box-shadow:0 2px 20px rgba(0,0,0,0.3);height:70px}
+.logo{display:flex;align-items:center;text-decoration:none;flex-direction:column;justify-content:center;line-height:1.1}
+.logo-text{color:white;font-size:20px;font-weight:900;letter-spacing:1px}
 .logo-text span{color:#FFD700}
-.nav-links{display:flex;gap:20px;list-style:none;align-items:center}
-.nav-links a{color:white;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.3s}
-.nav-links a:hover{color:#FFD700}
-.nav-btn{background:var(--red)!important;padding:10px 20px!important;border-radius:25px!important}
-.hamburger{display:none;color:white;font-size:28px;cursor:pointer;background:none;border:none}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--blue);z-index:9998;flex-direction:column;align-items:center;justify-content:center;gap:30px}
+.logo-sub{color:rgba(255,255,255,0.55);font-size:10px;font-weight:400;letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:2px;list-style:none;align-items:center}
+.nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:13px;font-weight:500;padding:8px 12px;border-radius:6px;transition:all 0.3s;display:flex;align-items:center;gap:6px}
+.nav-links a:hover,.nav-links a.active-nav{color:white;background:rgba(255,255,255,0.12)}
+.nav-links a i{font-size:11px}
+.nav-btn{background:var(--red)!important;color:white!important;padding:9px 18px!important;border-radius:25px!important;font-weight:700!important}
+.nav-btn:hover{background:#8B0000!important}
+.hamburger{display:none;color:white;font-size:22px;cursor:pointer;background:none;border:none}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--dark);z-index:9998;flex-direction:column;align-items:center;justify-content:center;gap:15px}
 .mobile-menu.active{display:flex}
-.mobile-menu a{color:white;text-decoration:none;font-size:22px;font-weight:700}
-.mobile-menu-close{position:absolute;top:20px;right:20px;color:white;font-size:35px;cursor:pointer;background:none;border:none}
-.hero{background:linear-gradient(135deg,var(--dark-blue),var(--blue),var(--light-blue));min-height:90vh;display:flex;align-items:center;padding:60px 40px;position:relative;overflow:hidden}
-.hero-content{max-width:580px;z-index:1}
-.hero-badge{background:var(--red);color:white;padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;display:inline-block;margin-bottom:20px}
-.hero h1{color:white;font-size:52px;font-weight:900;line-height:1.1;margin-bottom:20px}
+.mobile-menu a{color:white;text-decoration:none;font-size:17px;font-weight:600;padding:12px 40px;border-radius:10px;transition:background 0.3s;width:80%;text-align:center;display:flex;align-items:center;justify-content:center;gap:10px}
+.mobile-menu a:hover{background:rgba(255,255,255,0.1)}
+.mobile-menu-close{position:absolute;top:20px;right:25px;color:white;font-size:28px;cursor:pointer;background:none;border:none}
+.mobile-cta{background:var(--red)!important;border-radius:25px!important}
+
+/* PAGES */
+.page{display:none}
+.page.active{display:block}
+
+/* BUTTONS */
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;padding:13px 30px;border-radius:30px;text-decoration:none;font-size:14px;font-weight:700;transition:all 0.3s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 15px rgba(0,82,204,0.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,82,204,0.5)}
+.btn-red{background:linear-gradient(135deg,var(--red),#e01535);color:white;padding:13px 30px;border-radius:30px;text-decoration:none;font-size:14px;font-weight:700;transition:all 0.3s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 15px rgba(191,10,48,0.35)}
+.btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(191,10,48,0.5)}
+.btn-outline{background:transparent;color:white;padding:12px 28px;border-radius:30px;text-decoration:none;font-size:14px;font-weight:700;border:2px solid rgba(255,255,255,0.5);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.3s}
+.btn-outline:hover{background:rgba(255,255,255,0.1);border-color:white}
+.btn-white{background:white;color:var(--blue);padding:13px 30px;border-radius:30px;text-decoration:none;font-size:14px;font-weight:700;transition:all 0.3s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 15px rgba(0,0,0,0.15)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.2)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--dark) 0%,var(--blue) 55%,var(--blue2) 100%);min-height:91vh;display:flex;align-items:center;padding:80px 50px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;opacity:0.04;background-image:radial-gradient(circle,white 1px,transparent 1px);background-size:30px 30px}
+.hero-wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:60px;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-badge{background:var(--red);color:white;padding:8px 20px;border-radius:20px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;letter-spacing:1.5px;text-transform:uppercase}
+.hero h1{color:white;font-size:48px;font-weight:900;line-height:1.1;margin-bottom:18px}
 .hero h1 span{color:#FFD700}
-.hero p{color:rgba(255,255,255,0.85);font-size:18px;line-height:1.7;margin-bottom:30px}
-.hero-buttons{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:25px}
-.hero-trust{display:flex;gap:20px;flex-wrap:wrap}
-.hero-trust span{color:rgba(255,255,255,0.9);font-size:14px}
-.hero-image{position:absolute;right:80px;top:50%;transform:translateY(-50%)}
-.plate-display{background:#f5f5dc;border:8px solid #333;border-radius:15px;padding:30px 50px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:float 3s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-15px) rotate(-3deg)}}
-.plate-state{font-size:14px;font-weight:700;color:var(--blue);letter-spacing:3px}
-.plate-number{font-size:55px;font-weight:900;color:#333;letter-spacing:5px}
-.plate-label{font-size:12px;color:#666;letter-spacing:2px}
-.plate-temp{background:var(--red);color:white;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;margin-top:8px;display:inline-block}
-.btn-primary{background:var(--red);color:white;padding:15px 35px;border-radius:30px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.3s;border:none;cursor:pointer;display:inline-block}
-.btn-primary:hover{background:#8B0000;transform:translateY(-2px)}
-.btn-secondary{background:transparent;color:white;padding:15px 35px;border-radius:30px;text-decoration:none;font-size:16px;font-weight:700;border:2px solid white;cursor:pointer;display:inline-block;transition:all 0.3s}
-.btn-secondary:hover{background:white;color:var(--blue)}
-.btn-green{background:#25D366;color:white;padding:15px 35px;border-radius:30px;text-decoration:none;font-size:16px;font-weight:700;transition:all 0.3s;border:none;cursor:pointer;display:inline-block}
-.btn-green:hover{background:#1da851;transform:translateY(-2px)}
-.stats{background:var(--red);padding:40px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
-.stat-item{color:white;padding:10px}
-.stat-number{font-size:42px;font-weight:900;display:block}
-.stat-label{font-size:14px;opacity:0.9}
-.services{padding:80px 40px;background:#f8f9fa}
-.section-header{text-align:center;margin-bottom:60px}
-.section-badge{background:var(--red);color:white;padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:2px;display:inline-block;margin-bottom:15px}
-.section-header h2{font-size:38px;font-weight:800;color:var(--blue);margin-bottom:15px}
-.section-header p{color:#666;font-size:17px;max-width:600px;margin:0 auto}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1100px;margin:0 auto}
-.service-card{background:white;border-radius:15px;padding:40px 30px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all 0.3s;border-top:4px solid var(--blue)}
-.service-card:hover{transform:translateY(-10px);box-shadow:0 15px 40px rgba(0,0,0,0.15);border-top-color:var(--red)}
-.service-icon{width:70px;height:70px;background:linear-gradient(135deg,var(--blue),var(--light-blue));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto 20px}
-.service-card h3{font-size:20px;font-weight:700;color:var(--blue);margin-bottom:12px}
-.service-card p{color:#666;font-size:15px;line-height:1.6;margin-bottom:15px}
-.service-price{color:var(--red);font-size:18px;font-weight:800}
-.how-it-works{padding:80px 40px;background:white}
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1100px;margin:0 auto;position:relative}
-.steps-grid::before{content:'';position:absolute;top:40px;left:12%;right:12%;height:3px;background:linear-gradient(to right,var(--blue),var(--red))}
-.step-item{text-align:center;position:relative;z-index:1}
-.step-number{width:80px;height:80px;background:var(--blue);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;margin:0 auto 20px;border:4px solid white;box-shadow:0 5px 20px rgba(0,48,135,0.3)}
-.step-item h3{font-size:17px;font-weight:700;color:var(--blue);margin-bottom:10px}
-.step-item p{color:#666;font-size:14px;line-height:1.6}
-.verify-section{padding:80px 40px;background:linear-gradient(135deg,var(--dark-blue),var(--blue))}
-.verify-container{max-width:700px;margin:0 auto;text-align:center}
-.verify-container h2{color:white;font-size:38px;font-weight:800;margin-bottom:15px}
-.verify-container p{color:rgba(255,255,255,0.8);font-size:17px;margin-bottom:40px}
-.verify-box{background:white;border-radius:20px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.verify-tabs{display:flex;gap:10px;margin-bottom:25px}
-.verify-tab{flex:1;padding:12px;border:2px solid #e0e0e0;border-radius:10px;background:white;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s;color:#666}
-.verify-tab.active{background:var(--blue);color:white;border-color:var(--blue)}
-.tab-content{display:none}
-.tab-content.active{display:block}
-.verify-form{display:flex;gap:15px;margin-bottom:15px;flex-wrap:wrap}
-.verify-form input,.verify-form select{flex:1;padding:15px 20px;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;outline:none;transition:border-color 0.3s;min-width:150px}
-.verify-form input:focus,.verify-form select:focus{border-color:var(--blue)}
-.verify-result{margin-top:20px;padding:20px;border-radius:10px;font-size:15px;font-weight:600;text-align:left;display:none}
-.verify-result.success{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32;display:block}
-.verify-result.error{background:#ffebee;border:2px solid #f44336;color:#c62828;display:block}
-.verify-result.pending{background:#fff8e1;border:2px solid #ffc107;color:#856404;display:block}
-/* SEGUROS */
-.insurance-section{padding:80px 40px;background:linear-gradient(135deg,#f0f7ff,#e8f4ff)}
-.insurance-container{max-width:1100px;margin:0 auto}
-.insurance-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:60px}
-.insurance-image-box{position:relative}
-.insurance-card-img{background:white;border-radius:20px;padding:30px;box-shadow:0 20px 60px rgba(0,48,135,0.2);position:relative;overflow:hidden}
-.insurance-card-img::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(to right,var(--blue),var(--green))}
-.insurance-badge-verified{position:absolute;top:15px;right:15px;background:#4caf50;color:white;padding:8px 15px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:5px}
-.insurance-doc{background:linear-gradient(135deg,#f8f9ff,#eef2ff);border-radius:15px;padding:25px;border:2px solid #e0e8ff}
-.insurance-doc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:2px solid #e0e8ff}
-.insurance-doc-logo{font-size:24px;font-weight:900;color:var(--blue)}
-.insurance-doc-logo span{color:var(--red)}
-.insurance-doc-title{font-size:18px;font-weight:800;color:var(--blue);margin-bottom:15px;text-align:center}
-.insurance-doc-seal{width:80px;height:80px;background:linear-gradient(135deg,var(--blue),var(--light-blue));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:35px;margin:0 auto 15px}
-.insurance-doc-info{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.insurance-doc-field{background:white;padding:10px 15px;border-radius:8px;border-left:3px solid var(--blue)}
-.insurance-doc-field label{font-size:11px;color:#888;font-weight:600;display:block}
-.insurance-doc-field span{font-size:14px;color:#333;font-weight:700}
-.insurance-doc-footer{margin-top:15px;padding:10px;background:var(--blue);border-radius:8px;text-align:center;color:white;font-size:12px;font-weight:600}
-.insurance-content h2{font-size:38px;font-weight:900;color:var(--blue);margin-bottom:15px;line-height:1.2}
-.insurance-content h2 span{color:var(--red)}
-.insurance-content p{color:#555;font-size:16px;line-height:1.7;margin-bottom:25px}
-.insurance-features{list-style:none;margin-bottom:30px}
-.insurance-features li{padding:10px 0;display:flex;align-items:center;gap:12px;font-size:15px;color:#444;border-bottom:1px solid #eee}
-.insurance-features li
-  ::before{content:'✅';font-size:18px}
-.insurance-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
-.insurance-plan-card{background:white;border-radius:15px;padding:25px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all 0.3s;border-top:4px solid var(--blue);cursor:pointer}
-.insurance-plan-card:hover{transform:translateY(-8px);box-shadow:0 15px 40px rgba(0,0,0,0.15);border-top-color:var(--red)}
-.insurance-plan-icon{font-size:40px;margin-bottom:10px}
-.insurance-plan-name{font-size:17px;font-weight:800;color:var(--blue);margin-bottom:5px}
-.insurance-plan-price{font-size:26px;font-weight:900;color:var(--red);margin-bottom:5px}
-.insurance-plan-period{font-size:12px;color:#888;margin-bottom:12px}
-.insurance-plan-features{list-style:none;text-align:left;font-size:13px;color:#555}
-.insurance-plan-features li{padding:4px 0}
-.insurance-plan-features li::before{content:'✓ ';color:#4caf50;font-weight:700}
-/* VERIFY INSURANCE */
-.verify-insurance{padding:80px 40px;background:linear-gradient(135deg,var(--green),#2d8a2d)}
-.verify-insurance-container{max-width:700px;margin:0 auto;text-align:center}
-.verify-insurance-container h2{color:white;font-size:38px;font-weight:800;margin-bottom:15px}
-.verify-insurance-container p{color:rgba(255,255,255,0.85);font-size:17px;margin-bottom:40px}
-.verify-insurance-box{background:white;border-radius:20px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.verify-insurance-form{display:flex;flex-direction:column;gap:15px;margin-bottom:20px}
-.verify-insurance-form input{width:100%;padding:15px 20px;border:2px solid #e0e0e0;border-radius:10px;font-size:15px;outline:none;transition:border-color 0.3s}
-.verify-insurance-form input:focus{border-color:#4caf50}
-.btn-verify-insurance{width:100%;padding:16px;background:linear-gradient(135deg,var(--green),#2d8a2d);color:white;border:none;border-radius:12px;font-size:17px;font-weight:800;cursor:pointer;transition:all 0.3s}
-.btn-verify-insurance:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(26,122,26,0.4)}
-.insurance-result{margin-top:20px;padding:20px;border-radius:10px;font-size:15px;font-weight:600;text-align:left;display:none}
-.insurance-result.success{background:#e8f5e9;border:2px solid #4caf50;color:#2e7d32;display:block}
-.insurance-result.error{background:#ffebee;border:2px solid #f44336;color:#c62828;display:block}
-/* ORDER */
-.order-section{padding:80px 40px;background:linear-gradient(180deg,#f8f9fa,white)}
-.order-container{max-width:900px;margin:0 auto}
-.order-form-box{background:white;border-radius:25px;padding:50px;box-shadow:0 20px 60px rgba(0,48,135,0.15);position:relative;overflow:hidden}
-.order-form-box::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(to right,var(--blue),var(--red))}
-.form-section-title{font-size:18px;font-weight:800;color:var(--blue);margin:30px 0 20px;padding-bottom:10px;border-bottom:2px solid #f0f0f0}
-.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:20px}
-.form-group{display:flex;flex-direction:column;gap:8px}
-.form-group label{font-size:14px;font-weight:700;color:var(--blue)}
-.form-group input,.form-group select,.form-group textarea{padding:14px 18px;border:2px solid #e8e8e8;border-radius:12px;font-size:15px;outline:none;transition:all 0.3s;background:#fafafa}
-.form-group input:focus,.form-group select:focus{border-color:var(--blue);background:white;box-shadow:0 0 0 4px rgba(0,48,135,0.08)}
-.plan-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:20px 0 30px}
-.plan-card{border:2px solid #e8e8e8;border-radius:15px;padding:25px 20px;text-align:center;cursor:pointer;transition:all 0.3s;position:relative;background:white}
-.plan-card:hover{border-color:var(--blue);transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,48,135,0.15)}
-.plan-card.selected{border-color:var(--blue);background:linear-gradient(135deg,#f0f4ff,#e8eeff)}
-.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--red);color:white;font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap}
-.plan-icon{font-size:35px;margin-bottom:10px;display:block}
-.plan-name{font-size:16px;font-weight:800;color:var(--blue);margin-bottom:5px}
-.plan-price{font-size:28px;font-weight:900;color:var(--red);margin-bottom:5px}
-.plan-duration{font-size:12px;color:#888;margin-bottom:12px}
-.plan-features{list-style:none;text-align:left;font-size:13px;color:#555}
-.plan-features li{padding:3px 0}
-.plan-features li::before{content:'✓ ';color:#4caf50;font-weight:700}
-.delivery-options{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:15px 0 25px}
-.delivery-card{border:2px solid #e8e8e8;border-radius:12px;padding:20px 15px;text-align:center;cursor:pointer;transition:all 0.3s;background:white}
-.delivery-card:hover{border-color:var(--blue);transform:translateY(-3px)}
-.delivery-card.selected{border-color:var(--blue);background:#f0f4ff}
-.delivery-icon{font-size:28px;margin-bottom:8px;display:block}
-.delivery-name{font-size:14px;font-weight:700;color:var(--blue);margin-bottom:3px}
-.delivery-time{font-size:12px;color:#888;margin-bottom:5px}
-.delivery-price{font-size:15px;font-weight:800;color:var(--red)}
-.order-summary{background:linear-gradient(135deg,var(--dark-blue),var(--blue));border-radius:15px;padding:25px;margin:30px 0;color:white}
-.summary-title{font-size:18px;font-weight:800;margin-bottom:15px}
-.summary-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.1);font-size:14px}
-.summary-total{display:flex;justify-content:space-between;padding:15px 0 0;font-size:20px;font-weight:900;border-top:2px solid rgba(255,255,255,0.3);margin-top:10px}
-.summary-total span:last-child{color:#FFD700}
-.submit-btn{width:100%;padding:20px;background:linear-gradient(135deg,var(--blue),var(--light-blue));color:white;border:none;border-radius:15px;font-size:18px;font-weight:800;cursor:pointer;transition:all 0.3s;letter-spacing:1px;margin-top:20px}
-.submit-btn:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,48,135,0.4);background:linear-gradient(135deg,var(--red),#ff4444)}
-.security-badges{display:flex;justify-content:center;gap:20px;margin-top:20px;flex-wrap:wrap}
-.security-badge{display:flex;align-items:center;gap:6px;font-size:13px;color:#888;font-weight:500}
-/* TESTIMONIOS */
-.testimonials{padding:80px 40px;background:#f8f9fa}
-.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1100px;margin:0 auto}
-.testimonial-card{background:white;border-radius:20px;padding:30px;box-shadow:0 5px 20px rgba(0,0,0,0.08);transition:all 0.3s;position:relative}
-.testimonial-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.12)}
-.testimonial-card::before{content:'"';position:absolute;top:15px;right:20px;font-size:80px;color:#f0f0f0;font-family:Georgia,serif;line-height:1}
-.testimonial-stars{color:#FFD700;font-size:20px;margin-bottom:15px}
-.testimonial-text{color:#555;font-size:15px;line-height:1.7;margin-bottom:20px;font-style:italic}
-.testimonial-author{display:flex;align-items:center;gap:12px}
-.testimonial-avatar{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:white}
-.testimonial-name{font-size:15px;font-weight:700;color:var(--blue)}
-.testimonial-location{font-size:13px;color:#888}
+.hero-desc{color:rgba(255,255,255,0.82);font-size:17px;line-height:1.75;margin-bottom:32px}
+.hero-buttons{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.hero-trust{display:flex;gap:22px;flex-wrap:wrap}
+.hero-trust-item{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,0.85);font-size:13px}
+.hero-trust-item i{color:#FFD700;font-size:13px}
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hero-service-card{background:rgba(255,255,255,0.07);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.13);border-radius:16px;padding:25px 18px;text-align:center;cursor:pointer;transition:all 0.3s}
+.hero-service-card:hover{background:rgba(255,255,255,0.14);transform:translateY(-5px);border-color:rgba(255,255,255,0.28)}
+.hero-service-card i{font-size:30px;color:#FFD700;margin-bottom:12px;display:block}
+.hero-service-card h3{color:white;font-size:14px;font-weight:700;margin-bottom:6px}
+.hero-service-card p{color:rgba(255,255,255,0.6);font-size:12px;line-height:1.5}
+
+/* STATS */
+.stats{background:linear-gradient(90deg,var(--dark),var(--blue),var(--blue2));padding:40px 50px;display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stat-item{color:white;padding:15px;border-right:1px solid rgba(255,255,255,0.12)}
+.stat-item:last-child{border-right:none}
+.stat-icon{font-size:24px;color:#FFD700;margin-bottom:8px}
+.stat-number{font-size:38px;font-weight:900;display:block;line-height:1}
+.stat-label{font-size:12px;opacity:0.8;margin-top:5px;letter-spacing:0.5px}
+
+/* SECTION COMMONS */
+.section{padding:85px 50px}
+.section-gray{background:var(--gray)}
+.section-blue{background:linear-gradient(135deg,var(--dark),var(--blue))}
+.section-header{text-align:center;margin-bottom:55px}
+.section-badge{background:var(--red);color:white;padding:5px 16px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:2px;display:inline-block;margin-bottom:14px;text-transform:uppercase}
+.section-badge-blue{background:var(--blue4);color:var(--blue2);padding:5px 16px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:2px;display:inline-block;margin-bottom:14px;text-transform:uppercase}
+.section-header h2{font-size:36px;font-weight:900;color:var(--blue);margin-bottom:12px;line-height:1.2}
+.section-header h2.white{color:white}
+.section-header p{color:var(--text2);font-size:16px;max-width:600px;margin:0 auto;line-height:1.7}
+.section-header p.white{color:rgba(255,255,255,0.78)}
+
+/* SERVICES OVERVIEW */
+.services-overview{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1200px;margin:0 auto}
+.sov-card{background:white;border-radius:20px;padding:35px 22px;text-align:center;box-shadow:0 5px 25px rgba(0,48,135,0.07);transition:all 0.35s;border-top:4px solid var(--blue4);cursor:pointer;position:relative;overflow:hidden}
+.sov-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--blue),var(--blue2));opacity:0;transition:opacity 0.35s;z-index:0}
+.sov-card:hover::after{opacity:1}
+.sov-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(0,48,135,0.2);border-top-color:var(--blue)}
+.sov-card>*{position:relative;z-index:1}
+.sov-icon{width:68px;height:68px;background:var(--blue4);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;transition:all 0.35s}
+.sov-icon i{font-size:26px;color:var(--blue);transition:all 0.35s}
+.sov-card:hover .sov-icon{background:rgba(255,255,255,0.2)}
+.sov-card:hover .sov-icon i{color:white}
+.sov-card h3{font-size:17px;font-weight:800;color:var(--blue);margin-bottom:10px;transition:color 0.35s}
+.sov-card p{color:var(--text2);font-size:13px;line-height:1.6;margin-bottom:14px;transition:color 0.35s}
+.sov-card:hover h3,.sov-card:hover p,.sov-card:hover .sov-sub{color:white}
+.sov-sub{font-size:11px;color:var(--blue2);font-weight:700;margin-bottom:18px;transition:color 0.35s}
+.sov-btn{background:var(--blue4);color:var(--blue);border:none;padding:10px 20px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.35s;display:inline-flex;align-items:center;gap:6px}
+.sov-card:hover .sov-btn{background:white;color:var(--blue)}
+
+/* SERVICE SECTIONS */
+.service-section{padding:80px 50px;border-bottom:1px solid #e8eef8}
+.service-section:nth-child(even){background:var(--gray)}
+.service-section-wrap{max-width:1200px;margin:0 auto}
+.service-section-title{display:flex;align-items:center;gap:18px;margin-bottom:45px;padding-bottom:20px;border-bottom:2px solid var(--blue4)}
+.sst-icon{width:55px;height:55px;background:linear-gradient(135deg,var(--blue),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sst-icon i{font
+.sst-icon i{font-size:24px;color:white}
+.sst-text h2{font-size:30px;font-weight:900;color:var(--blue);margin-bottom:5px}
+.sst-text p{color:var(--text2);font-size:14px}
+.service-subsections{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:35px}
+.sub-card{background:white;border-radius:16px;padding:28px 22px;box-shadow:0 4px 20px rgba(0,48,135,0.07);transition:all 0.3s;border-left:4px solid var(--blue4);position:relative;overflow:hidden}
+.sub-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:var(--blue4);border-radius:0 0 0 80px;opacity:0.5;transition:all 0.3s}
+.sub-card:hover{transform:translateY(-6px);box-shadow:0 15px 40px rgba(0,48,135,0.13);border-left-color:var(--blue)}
+.sub-card:hover::before{background:var(--blue4);opacity:1}
+.sub-card-icon{width:48px;height:48px;background:var(--blue4);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:all 0.3s}
+.sub-card-icon i{font-size:20px;color:var(--blue)}
+.sub-card:hover .sub-card-icon{background:var(--blue);transform:scale(1.05)}
+.sub-card:hover .sub-card-icon i{color:white}
+.sub-card h3{font-size:16px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.sub-card p{color:var(--text2);font-size:13px;line-height:1.65;margin-bottom:16px}
+.sub-card-price{font-size:13px;font-weight:700;color:var(--red);margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.sub-card-btn{background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border:none;padding:10px 20px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.3s;display:inline-flex;align-items:center;gap:6px;width:100%;justify-content:center}
+.sub-card-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,82,204,0.35)}
+
+/* INSURANCE SECTION */
+.insurance-plans{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:900px;margin:0 auto}
+.ins-plan-card{background:white;border-radius:20px;padding:40px 35px;box-shadow:0 8px 30px rgba(0,48,135,0.1);transition:all 0.35s;position:relative;overflow:hidden;border:2px solid transparent}
+.ins-plan-card.featured{border-color:var(--blue2)}
+.ins-plan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--blue),var(--blue2))}
+.ins-plan-card.featured::before{background:linear-gradient(90deg,var(--red),#e01535)}
+.ins-plan-card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,48,135,0.18)}
+.ins-plan-badge{position:absolute;top:20px;right:20px;background:var(--red);color:white;font-size:10px;font-weight:700;padding:5px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase}
+.ins-plan-icon{width:65px;height:65px;background:var(--blue4);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.ins-plan-icon i{font-size:28px;color:var(--blue)}
+.ins-plan-name{font-size:22px;font-weight:900;color:var(--blue);margin-bottom:5px}
+.ins-plan-desc{font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.6}
+.ins-plan-price{font-size:42px;font-weight:900;color:var(--blue);margin-bottom:5px;line-height:1}
+.ins-plan-price span{font-size:16px;font-weight:500;color:var(--text2)}
+.ins-plan-period{font-size:12px;color:var(--text2);margin-bottom:25px}
+.ins-features{list-style:none;margin-bottom:28px}
+.ins-features li{padding:9px 0;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text);border-bottom:1px solid #f0f4ff}
+.ins-features li:last-child{border-bottom:none}
+.ins-features li i{color:var(--blue2);font-size:13px;flex-shrink:0}
+.ins-features li i.no{color:#ccc}
+.ins-features li.disabled{color:#bbb}
+.ins-plan-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.ins-plan-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,82,204,0.4)}
+.ins-plan-card.featured .ins-plan-btn{background:linear-gradient(135deg,var(--red),#e01535)}
+.ins-plan-card.featured .ins-plan-btn:hover{box-shadow:0 8px 25px rgba(191,10,48,0.4)}
+
+/* HOW IT WORKS */
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;max-width:1100px;margin:0 auto;position:relative}
+.how-steps::before{content:'';position:absolute;top:38px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--blue),var(--blue2));z-index:0}
+.how-step{text-align:center;position:relative;z-index:1}
+.how-step-num{width:76px;height:76px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;margin:0 auto 20px;border:4px solid white;box-shadow:0 5px 20px rgba(0,48,135,0.3)}
+.how-step h3{font-size:16px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.how-step p{color:var(--text2);font-size:13px;line-height:1.65}
+
+/* TESTIMONIALS */
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;max-width:1100px;margin:0 auto}
+.testi-card{background:white;border-radius:18px;padding:28px;box-shadow:0 5px 20px rgba(0,48,135,0.07);transition:all 0.3s;position:relative;overflow:hidden}
+.testi-card::after{content:'\201C';position:absolute;top:10px;right:18px;font-size:90px;color:var(--blue4);font-family:Georgia,serif;line-height:1;z-index:0}
+.testi-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,48,135,0.12)}
+.testi-stars{display:flex;gap:3px;margin-bottom:14px;position:relative;z-index:1}
+.testi-stars i{font-size:14px}
+.star-filled{color:#FFD700}
+.star-empty{color:#ddd}
+.testi-text{color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:18px;font-style:italic;position:relative;z-index:1}
+.testi-author{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.testi-avatar{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:white;flex-shrink:0}
+.testi-name{font-size:14px;font-weight:700;color:var(--blue)}
+.testi-location{font-size:12px;color:var(--text2);display:flex;align-items:center;gap:4px;margin-top:2px}
+.testi-location i{font-size:10px;color:var(--blue2)}
+.testi-service{font-size:11px;background:var(--blue4);color:var(--blue2);padding:3px 10px;border-radius:10px;font-weight:600;margin-top:5px;display:inline-block}
+
 /* FAQ */
-.faq-section{padding:80px 40px;background:white}
-.faq-container{max-width:800px;margin:0 auto}
-.faq-item{border:2px solid #e8e8e8;border-radius:15px;margin-bottom:15px;overflow:hidden;transition:all 0.3s}
-.faq-item.active{border-color:var(--blue)}
-.faq-question{padding:20px 25px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:white;transition:all 0.3s}
-.faq-question:hover{background:#f8f9fa}
-.faq-question h3{font-size:16px;font-weight:700;color:var(--blue)}
-.faq-icon{font-size:22px;color:var(--blue);transition:transform 0.3s;font-weight:700}
-.faq-item.active .faq-icon{transform:rotate(45deg)}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
-.faq-answer.open{max-height:300px}
-.faq-answer p{padding:0 25px 20px;color:#666;font-size:15px;line-height:1.7}
-/* WHATSAPP */
-.whatsapp-btn{position:fixed;bottom:30px;right:30px;width:65px;height:65px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:35px;box-shadow:0 5px 25px rgba(37,211,102,0.5);z-index:9997;text-decoration:none;animation:wapulse 2s infinite}
-@keyframes wapulse{0%,100%{box-shadow:0 5px 25px rgba(37,211,102,0.5)}50%{box-shadow:0 5px 40px rgba(37,211,102,0.8),0 0 0 10px rgba(37,211,102,0.1)}}
-.whatsapp-tooltip{position:absolute;right:75px;background:#333;color:white;padding:8px 15px;border-radius:8px;font-size:13px;font-weight:600;white-space:nowrap;opacity:0;transition:opacity 0.3s}
-.whatsapp-btn:hover .whatsapp-tooltip{opacity:1}
-/* MODAL */
-.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center}
-.modal-overlay.active{display:flex}
-.modal-box{background:white;border-radius:25px;padding:50px 40px;max-width:500px;width:90%;text-align:center;animation:popIn 0.4s ease}
-@keyframes popIn{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}
-.modal-icon{font-size:70px;margin-bottom:20px;display:block;animation:bounce 1s ease infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-.modal-box h2{font-size:28px;font-weight:900;color:var(--blue);margin-bottom:10px}
-.modal-box p{color:#666;font-size:16px;line-height:1.6;margin-bottom:20px}
-.modal-order-id{background:#f0f4ff;border:2px dashed var(--blue);border-radius:10px;padding:15px;font-size:22px;font-weight:900;color:var(--blue);letter-spacing:3px;margin-bottom:25px}
+.faq-wrap{max-width:800px;margin:0 auto}
+.faq-item{border:2px solid #e8eef8;border-radius:14px;margin-bottom:12px;overflow:hidden;transition:all 0.3s}
+.faq-item.open{border-color:var(--blue2);box-shadow:0 5px 20px rgba(0,82,204,0.1)}
+.faq-q{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:white;transition:background 0.3s;gap:15px}
+.faq-q:hover{background:var(--blue5)}
+.faq-q h3{font-size:15px;font-weight:700;color:var(--blue);line-height:1.4}
+.faq-icon{width:32px;height:32px;background:var(--blue4);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s}
+.faq-icon i{font-size:12px;color:var(--blue);transition:transform 0.3s}
+.faq-item.open .faq-icon{background:var(--blue)}
+.faq-item.open .faq-icon i{color:white;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease}
+.faq-a.open{max-height:250px}
+.faq-a p{padding:0 22px 18px;color:var(--text2);font-size:14px;line-height:1.75}
+
 /* FOOTER */
-.footer{background:var(--dark-blue);color:white;padding:60px 40px 30px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
-.footer-brand p{color:rgba(255,255,255,0.7);font-size:14px;line-height:1.7;margin:15px 0 20px}
-.footer-col h4{font-size:16px;font-weight:700;margin-bottom:20px;color:#FFD700}
-.footer-col ul
-  {list-style:none}
+.footer{background:var(--dark);color:white;padding:65px 50px 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:45px;margin-bottom:45px}
+.footer-brand .logo-text{font-size:22px}
+.footer-brand p{color:rgba(255,255,255,0.6);font-size:13px;line-height:1.75;margin:15px 0 22px}
+.footer-social{display:flex;gap:10px}
+.social-btn{width:38px;height:38px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);font-size:15px;text-decoration:none;transition:all 0.3s}
+.social-btn:hover{background:var(--blue2);color:white;transform:translateY(-3px)}
+.footer-col h4{font-size:14px;font-weight:700;margin-bottom:18px;color:#FFD700;letter-spacing:1px;text-transform:uppercase}
+.footer-col ul{list-style:none}
 .footer-col ul li{margin-bottom:10px}
-.footer-col ul li a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;transition:color 0.3s}
+.footer-col ul li a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:13px;transition:color 0.3s;display:flex;align-items:center;gap:7px}
+.footer-col ul li a i{font-size:11px;color:var(--blue3)}
 .footer-col ul li a:hover{color:white}
-.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:25px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
-.footer-bottom p{color:rgba(255,255,255,0.6);font-size:13px}
-.payment-icons{display:flex;gap:10px}
-.payment-icon{background:rgba(255,255,255,0.1);padding:5px 12px;border-radius:5px;font-size:12px;color:white;font-weight:600}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:25px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.footer-bottom p{color:rgba(255,255,255,0.45);font-size:12px}
+.footer-badges{display:flex;gap:8px;flex-wrap:wrap}
+.footer-badge{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:5px 12px;border-radius:6px;font-size:11px;color:rgba(255,255,255,0.6);display:flex;align-items:center;gap:5px}
+.footer-badge i{color:#FFD700;font-size:10px}
+
+/* WHATSAPP */
+.wa-btn{position:fixed;bottom:28px;right:28px;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 5px 25px rgba(37,211,102,0.5);z-index:9997;text-decoration:none;transition:all 0.3s}
+.wa-btn:hover{transform:scale(1.1);box-shadow:0 8px 35px rgba(37,211,102,0.7)}
+.wa-btn svg{width:32px;height:32px;fill:white}
+.wa-pulse{position:absolute;width:100%;height:100%;border-radius:50%;background:#25D366;animation:wapulse 2s ease-out infinite;z-index:-1}
+@keyframes wapulse{0%{transform:scale(1);opacity:0.8}100%{transform:scale(1.6);opacity:0}}
+.wa-tooltip{position:absolute;right:70px;background:var(--dark);color:white;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:600;white-space:nowrap;opacity:0;transition:opacity 0.3s;pointer-events:none}
+.wa-tooltip::after{content:'';position 
+.wa-tooltip::after{content:'';position:absolute;right:-6px;top:50%;transform:translateY(-50%);border:6px solid transparent;border-right:none;border-left-color:var(--dark)}
+.wa-btn:hover .wa-tooltip{opacity:1}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,20,60,0.75);z-index:9999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.active{display:flex}
+.modal-box{background:white;border-radius:24px;padding:45px 40px;max-width:580px;width:100%;position:relative;animation:popIn 0.35s ease;max-height:90vh;overflow-y:auto}
+@keyframes popIn{from{opacity:0;transform:scale(0.85) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:18px;right:18px;width:36px;height:36px;background:var(--gray);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--text2);transition:all 0.3s}
+.modal-close:hover{background:var(--red);color:white}
+.modal-header{text-align:center;margin-bottom:30px}
+.modal-icon{width:70px;height:70px;background:linear-gradient(135deg,var(--blue),var(--blue2));border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.modal-icon i{font-size:30px;color:white}
+.modal-icon.success{background:linear-gradient(135deg,#1a7a1a,#2d9e2d)}
+.modal-icon.insurance{background:linear-gradient(135deg,var(--blue2),var(--blue3))}
+.modal-header h2{font-size:24px;font-weight:900;color:var(--blue);margin-bottom:8px}
+.modal-header p{color:var(--text2);font-size:14px;line-height:1.6}
+.modal-service-badge{background:var(--blue4);color:var(--blue2);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;margin-bottom:20px}
+
+/* CONTACT FORM IN MODAL */
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:6px}
+.form-group label i{font-size:11px;color:var(--blue2)}
+.form-group input,
+.form-group select,
+.form-group textarea{padding:12px 16px;border:2px solid #e8eef8;border-radius:10px;font-size:14px;outline:none;transition:all 0.3s;background:#fafbff;color:var(--text);font-family:'Segoe UI',sans-serif}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--blue2);background:white;box-shadow:0 0 0 4px rgba(0,82,204,0.08)}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-group select{cursor:pointer}
+.form-submit-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:5px}
+.form-submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,82,204,0.4)}
+.form-note{text-align:center;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px}
+.form-note i{color:var(--blue2)}
+
+/* SUCCESS MODAL */
+.success-modal-box{background:white;border-radius:24px;padding:50px 40px;max-width:480px;width:100%;text-align:center;animation:popIn 0.35s ease}
+.success-id{background:var(--blue5);border:2px dashed var(--blue2);border-radius:12px;padding:16px;font-size:22px;font-weight:900;color:var(--blue);letter-spacing:3px;margin:20px 0}
+.success-steps{text-align:left;margin:20px 0;display:flex;flex-direction:column;gap:10px}
+.success-step{display:flex;align-items:center;gap:12px;padding:10px 14px;background:var(--blue5);border-radius:10px;font-size:13px;color:var(--text)}
+.success-step i{color:var(--blue2);font-size:14px;flex-shrink:0}
+
+/* VERIFY PAGE */
+.verify-hero{background:linear-gradient(135deg,var(--dark),var(--blue),var(--blue2));padding:80px 50px;text-align:center;position:relative;overflow:hidden}
+.verify-hero::before{content:'';position:absolute;inset:0;opacity:0.04;background-image:radial-gradient(circle,white 1px,transparent 1px);background-size:30px 30px}
+.verify-hero-content{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.verify-hero h1{color:white;font-size:44px;font-weight:900;margin-bottom:12px;line-height:1.15}
+.verify-hero h1 span{color:#FFD700}
+.verify-hero-sub{color:rgba(255,255,255,0.75);font-size:15px;line-height:1.7;margin-bottom:8px}
+.verify-hero-tagline{color:rgba(255,255,255,0.55);font-size:13px;font-style:italic;margin-bottom:35px}
+
+/* VERIFY FORM BOX */
+.verify-form-wrap{max-width:700px;margin:-40px auto 0;position:relative;z-index:2;padding:0 20px}
+.verify-box{background:white;border-radius:22px;padding:40px;box-shadow:0 20px 60px rgba(0,48,135,0.2)}
+.verify-box-title{font-size:18px;font-weight:800;color:var(--blue);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.verify-box-title i{color:var(--blue2)}
+.verify-service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.verify-service-opt{border:2px solid #e8eef8;border-radius:12px;padding:16px 10px;text-align:center;cursor:pointer;transition:all 0.3s;background:white}
+.verify-service-opt:hover{border-color:var(--blue2);background:var(--blue5)}
+.verify-service-opt.selected{border-color:var(--blue);background:var(--blue4)}
+.verify-service-opt i{font-size:22px;color:var(--blue2);margin-bottom:8px;display:block;transition:all 0.3s}
+.verify-service-opt.selected i{color:var(--blue)}
+.verify-service-opt span{font-size:12px;font-weight:700;color:var(--text);display:block;line-height:1.3}
+.verify-input-row{display:flex;gap:14px;margin-bottom:18px}
+.verify-input-row input{flex:1;padding:14px 18px;border:2px solid #e8eef8;border-radius:12px;font-size:15px;outline:none;transition:all 0.3s;background:#fafbff}
+.verify-input-row input:focus{border-color:var(--blue2);background:white;box-shadow:0 0 0 4px rgba(0,82,204,0.08)}
+.verify-btn{padding:14px 30px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.verify-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,82,204,0.4)}
+.verify-result-box{margin-top:22px;border-radius:14px;padding:22px;display:none;animation:fadeIn 0.4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.verify-result-box.success{background:#f0f9f0;border:2px solid #4caf50;display:block}
+.verify-result-box.error{background:#fff5f7;border:2px solid var(--red);display:block}
+.verify-result-box.pending{background:#fffbf0;border:2px solid #f59e0b;display:block}
+.vr-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.vr-status-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.vr-status-icon.success{background:#4caf50}
+.vr-status-icon.error{background:var(--red)}
+.vr-status-icon.pending{background:#f59e0b}
+.vr-status-icon i{font-size:20px;color:white}
+.vr-title{font-size:17px;font-weight:800}
+.vr-title.success{color:#2e7d32}
+.vr-title.error{color:var(--red)}
+.vr-title.pending{color:#92400e}
+.vr-details{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vr-detail-item{background:white;border-radius:10px;padding:12px 15px;border-left:3px solid var(--blue2)}
+.vr-detail-item label{font-size:11px;color:var(--text2);font-weight:600;display:block;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px}
+.vr-detail-item span{font-size:14px;font-weight:700;color:var(--text)}
+
+/* VERIFY INFO CARDS */
+.verify-info-section{padding:70px 50px;background:var(--gray)}
+.verify-info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1100px;margin:0 auto}
+.verify-info-card{background:white;border-radius:16px;padding:28px 22px;text-align:center;box-shadow:0 4px 18px rgba(0,48,135,0.07);transition:all 0.3s;border-top:3px solid var(--blue4)}
+.verify-info-card:hover{transform:translateY(-6px);box-shadow:0 14px 35px rgba(0,48,135,0.12);border-top-color:var(--blue)}
+.verify-info-icon{width:58px;height:58px;background:var(--blue4);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;transition:all 0.3s}
+.verify-info-icon i{font-size:24px;color:var(--blue)}
+.verify-info-card:hover .verify-info-icon{background:var(--blue)}
+.verify-info-card:hover .verify-info-icon i{color:white}
+.verify-info-card h3{font-size:15px;font-weight:800;color:var(--blue);margin-bottom:8px}
+.verify-info-card p{font-size:13px;color:var(--text2);line-height:1.6}
+
+/* SCROLL ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(30px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
 
 /* RESPONSIVE */
+@media(max-width:1024px){
+  .services-overview{grid-template-columns:repeat(2,1fr)}
+  .service-subsections{grid-template-columns:repeat(2,1fr)}
+  .how-steps{grid-template-columns:repeat(2,1fr)}
+  .how-steps::before{display:none}
+  .testimonials-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .hero-wrap{grid-template-columns:1fr}
+  .hero-cards{display:none}
+  .verify-service-grid{grid-template-columns:repeat(2,1fr)}
+  .verify-info-grid{grid-template-columns:repeat(2,1fr)}
+  .insurance-plans{grid-template-columns:1fr}
+}
 @media(max-width:768px){
-.navbar{padding:12px 20px}
-.nav-links{display:none}
-.hamburger{display:block}
-.hero{min-height:100vh;padding:40px 20px 60px;flex-direction:column;justify-content:center;text-align:center;align-items:center}
-.hero-content{max-width:100%;width:100%}
-.hero h1{font-size:38px;line-height:1.2}
-.hero p{font-size:15px}
-.hero-buttons{justify-content:center;flex-direction:column;align-items:center}
-.hero-buttons a{width:100%;text-align:center}
-.hero-trust{justify-content:center}
-.hero-image{position:relative;right:auto;top:auto;transform:none;margin-top:40px;display:flex;justify-content:center;width:100%}
-.plate-display{padding:20px 35px}
-.plate-number{font-size:38px}
-.stats{grid-template-columns:repeat(2,1fr);padding:20px}
-.stat-number{font-size:30px}
-.services{padding:50px 20px}
-.section-header h2{font-size:26px}
-.services-grid{grid-template-columns:1fr;gap:20px}
-.how-it-works{padding:50px 20px}
-.steps-grid{grid-template-columns:repeat(2,1fr)}
-.steps-grid::before{display:none}
-.verify-section{padding:50px 20px}
-.verify-container h2{font-size:26px}
-.verify-box{padding:25px 15px}
-.verify-tabs{flex-direction:column}
-.verify-form{flex-direction:column}
-.verify-form input,.verify-form select{width:100%;min-width:unset;flex:none}
-.insurance-section{padding:50px 20px}
-.insurance-grid{grid-template-columns:1fr;gap:30px}
-.insurance-plans{grid-template-columns:1fr}
-.insurance-doc-info{grid-template-columns:1fr}
-.verify-insurance{padding:50px 20px}
-.verify-insurance-container h2{font-size:26px}
-.verify-insurance-box{padding:25px 15px}
-.order-section{padding:50px 20px}
-.order-form-box{padding:25px 15px}
-.form-grid{grid-template-columns:1fr}
-.plan-selector{grid-template-columns:1fr}
-.delivery-options{grid-template-columns:1fr}
-.testimonials{padding:50px 20px}
-.testimonials-grid{grid-template-columns:1fr}
-.faq-section{padding:50px 20px}
-.footer{padding:40px 20px 20px}
-.footer-grid{grid-template-columns:1fr;gap:25px}
-.footer-bottom{flex-direction:column;text-align:center}
-.modal-box{padding:30px 20px}
-.whatsapp-btn{bottom:20px;right:20px;width:55px;height:55px;font-size:28px}
-[style*="grid-column:span 2"]{grid-column:1!important}
+  .navbar{padding:0 20px}
+  .nav-links{display:none}
+  .hamburger{display:block}
+  .hero{padding:60px 20px}
+  .hero h1{font-size:34px}
+  .stats{grid-template-columns:repeat(2,1fr);padding:30px 20px}
+  .section{padding:60px 20px}
+  .service-section{padding:60px 20px}
+  .services-overview{grid-template-columns:1fr 1fr;gap:15px}
+  .service-subsections{grid-template-columns:1fr}
+  .insurance-plans{grid-template-columns:1fr}
+  .how-steps{grid-template-columns:1fr 1fr}
+  .testimonials-grid{grid-template-columns:1fr}
+  .footer{padding:50px 20px 25px}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .modal-box{padding:30px 22px}
+  .form-row{grid-template-columns:1fr}
+  .verify-hero{padding:60px 20px}
+  .verify-hero h1{font-size:30px}
+  .verify-form-wrap{padding:0 15} 
+  /* continuación responsive */
+  .verify-form-wrap{padding:0 15px}
+  .verify-box{padding:25px 18px}
+  .verify-input-row{flex-direction:column}
+  .verify-service-grid{grid-template-columns:repeat(2,1fr)}
+  .verify-info-grid{grid-template-columns:1fr 1fr}
+  .vr-details{grid-template-columns:1fr}
+  .verify-info-section{padding:50px 20px}
 }
 @media(max-width:480px){
-.hero h1{font-size:30px}
-.logo-text{font-size:20px}
-.section-header h2{font-size:22px}
-.stat-number{font-size:26px}
-.steps-grid{grid-template-columns:1fr}
-.plate-number{font-size:32px}
-.plate-display{padding:15px 25px}
+  .hero h1{font-size:28px}
+  .services-overview{grid-template-columns:1fr}
+  .how-steps{grid-template-columns:1fr}
+  .verify-service-grid{grid-template-columns:repeat(2,1fr)}
+  .verify-info-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .section-header h2{font-size:26px}
+  .insurance-plans{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/1TUNUMERO" target="_blank" class="whatsapp-btn">
-  <span class="whatsapp-tooltip">¡Chatea con nosotros!</span>
-  💬
+<a href="https://wa.me/1TUNUMERO" target="_blank" class="wa-btn">
+  <div class="wa-pulse"></div>
+  <div class="wa-tooltip">Chatea con nosotros</div>
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 0C7.163 0 0 7.163 0 16c0 2.833.737 5.489 2.027 7.8L0 32l8.418-2.007A15.93 15.93 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.267 13.267 0 01-6.77-1.853l-.486-.29-5.002 1.193 1.216-4.87-.317-.5A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.927c-.398-.199-2.354-1.162-2.72-1.294-.365-.133-.631-.199-.897.199-.265.398-1.029 1.294-1.261 1.56-.232.265-.465.298-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.056-1.983-2.36-2.215-2.758-.232-.398-.025-.613.174-.811.179-.178.398-.465.597-.697.2-.232.266-.398.399-.664.132-.265.066-.497-.033-.696-.1-.199-.897-2.162-1.229-2.96-.324-.777-.653-.672-.897-.684l-.764-.013c-.265 0-.696.1-1.061.497-.365.398-1.394 1.362-1.394 3.325s1.427 3.856 1.626 4.122c.199.265 2.808 4.287 6.803 6.014.951.41 1.693.655 2.271.839.954.304 1.823.261 2.51.158.766-.114 2.354-.962 2.686-1.891.332-.93.332-1.727.232-1.892-.099-.165-.365-.265-.763-.464z"/>
+  </svg>
 </a>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-menu-close" onclick="toggleMenu()">✕</button>
-  <a href="#inicio" onclick="toggleMenu()">Inicio</a>
-  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
-  <a href="#seguros" onclick="toggleMenu()">Seguros</a>
-  <a href="#verificar" onclick="toggleMenu()">Verificar Placa</a>
-  <a href="#orden" onclick="toggleMenu()">Ordenar</a>
-  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
-  <a href="#orden" onclick="toggleMenu()" style="background:var(--red);padding:12px 30px;border-radius:25px">Obtener Mi Placa</a>
+  <button class="mobile-menu-close" onclick="toggleMenu()">
+    <i class="fas fa-times"></i>
+  </button>
+  <a href="#" onclick="navigateTo('home');toggleMenu()">
+    <i class="fas fa-home"></i> Inicio
+  </a>
+  <a href="#servicios" onclick="navigateTo('home');setTimeout(()=>scrollTo('servicios'),300);toggleMenu()">
+    <i class="fas fa-th-large"></i> Servicios
+  </a>
+  <a href="#seguros" onclick="navigateTo('home');setTimeout(()=>scrollTo('seguros'),300);toggleMenu()">
+    <i class="fas fa-shield-alt"></i> Seguros
+  </a>
+  <a href="#placas" onclick="navigateTo('home');setTimeout(()=>scrollTo('placas'),300);toggleMenu()">
+    <i class="fas fa-id-card"></i> Placas
+  </a>
+  <a href="#titulos" onclick="navigateTo('home');setTimeout(()=>scrollTo('titulos'),300);toggleMenu()">
+    <i class="fas fa-file-alt"></i> Títulos
+  </a>
+  <a href="#licencias" onclick="navigateTo('home');setTimeout(()=>scrollTo('licencias'),300);toggleMenu()">
+    <i class="fas fa-car"></i> Licencias
+  </a>
+  <a href="#" onclick="navigateTo('verify');toggleMenu()" class="mobile-cta">
+    <i class="fas fa-search"></i> Verificar
+  </a>
 </div>
 
 <!-- PROMO BANNER -->
 <div class="promo-banner">
-  <div class="promo-text">
-    <span>🚗 OFERTA ESPECIAL: Obtén tu Placa Temporal en 24 horas!</span>
-    <span>⭐ ENVÍO GRATIS en órdenes mayores a $50!</span>
-    <span>🇺🇸 Válido en los 50 Estados!</span>
-    <span>✅ 100% Legal y Aprobado por el DMV!</span>
-    <span>🛡️ Seguros de Auto disponibles en todo USA!</span>
-    <span>🚗 OFERTA ESPECIAL: Obtén tu Placa Temporal en 24 horas!</span>
+  <div class="promo-track">
+    <span><i class="fas fa-star"></i> Servicio #1 de Placas Temporales en USA</span>
+    <span><i class="fas fa-bolt"></i> Procesamiento en 24 horas</span>
+    <span><i class="fas fa-shield-alt"></i> 100% Legal y Aprobado por el DMV</span>
+    <span><i class="fas fa-truck"></i> Envío Gratis en órdenes mayores a $50</span>
+    <span><i class="fas fa-globe"></i> Válido en los 50 Estados de USA</span>
+    <span><i class="fas fa-headset"></i> Soporte en Español e Inglés</span>
+    <span><i class="fas fa-star"></i> Servicio #1 de Placas Temporales en USA</span>
+    <span><i class="fas fa-bolt"></i> Procesamiento en 24 horas</span>
+    <span><i class="fas fa-shield-alt"></i> 100% Legal y Aprobado por el DMV</span>
+    <span><i class="fas fa-truck"></i> Envío Gratis en órdenes mayores a $50</span>
+    <span><i class="fas fa-globe"></i> Válido en los 50 Estados de USA</span>
+    <span><i class="fas fa-headset"></i> Soporte en Español e Inglés</span>
   </div>
 </div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
-  <a href="#" class="logo">
-    <div class="logo-icon">🚗</div>
-    <span class="logo-text">DMV<span>CARS</span></span>
+  <a href="#" class="logo" onclick="navigateTo('home')">
+    <div>
+      <div class="logo-text">DMVCar<span>Portal</span></div>
+      <div class="logo-sub">Tu portal de trámites vehiculares</div>
+    </div>
   </a>
   <ul class="nav-links">
-    <li><a href="#inicio">Inicio</a></li>
-    <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#seguros">Seguros</a></li>
-    <li><a href="#verificar">Verificar Placa</a></li>
-    <li><a href="#orden">Ordenar</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-    <li><a href="#orden" class="nav-btn">Obtener Mi Placa</a></li>
+    <li><a href="#" onclick="navigateTo('home')" id="nav-home">
+      <i class="fas fa-home"></i> Inicio
+    </a></li>
+    <li><a href="#servicios" onclick="navigateTo('home');setTimeout(()=>scrollTo('servicios'),100)">
+      <i class="fas fa-th-large"></i> Servicios
+    </a></li>
+    <li><a href="#seguros" onclick="navigateTo('home');setTimeout(()=>scrollTo('seguros'),100)">
+      <i class="fas fa-shield-alt"></i> Seguros
+    </a></li>
+    <li><a href="#placas" onclick="navigateTo('home');setTimeout(()=>scrollTo('placas'),100)">
+      <i class="fas fa-id-card"></i> Placas
+    </a></li>
+    <li><a href="#titulos" onclick="navigateTo('home');setTimeout(()=>scrollTo('titulos'),100)">
+      <i class="fas fa-file-alt"></i> Títulos
+    </a></li>
+    <li><a href="#licencias" onclick="navigateTo('home');setTimeout(()=>scrollTo('licencias'),100)">
+      <i class="fas fa-car"></i> Licencias
+    </a></li>
+    <li><a href="#" onclick="navigateTo('verify')" class="nav-btn">
+      <i class="fas fa-search"></i> Verificar
+    </a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()">☰</button>
+  <button class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </button>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-content">
-    <div class="hero-badge">🇺🇸 Servicio #1 de Placas Temporales en USA</div>
-    <h1>Obtén Tu <span>Placa Temporal</span> Rápido y Fácil</h1>
-    <p>Ordena tu placa temporal oficial en línea. Válida en los 50 estados. Entregada en tu puerta en 24-48 horas.</p>
-    <div class="hero-buttons">
-      <a href="#orden" class="btn-primary">Ordenar Ahora →</a>
-      <a href="#verificar" class="btn-secondary">Verificar Mi Placa</a>
-    </div>
-    <div class="hero-trust">
-      <span>✅ Aprobado por DMV</span>
-      <span>🔒 Pago Seguro</span>
-      <span>⚡ Entrega Rápida</span>
-    </div>
-  </div>
-  <div class="hero-image">
-    <div class="plate-display">
-      <div class="plate-state">CALIFORNIA</div>
-      <div class="plate-number">ABC·1234</div>
-      <div class="plate-label">PERMISO TEMPORAL</div>
-      <div class="plate-temp">PLACA TEMP</div>
-    </div>
-  </div>
-</section>
+<!-- ==================== HOME PAGE ==================== -->
+<div class="page active" id="page-home">
 
-<!-- STATS -->
-<div class="stats">
-  <div class="stat-item"><span class="stat-number" id="s1">0</span><span class="stat-label">Placas Emitidas</span></div>
-  <div class="stat-item"><span class="stat-number" id="s2">0</span><span class="stat-label">Estados Cubiertos</span></div>
-  <div class="stat-item"><span class="stat-number" id="s3">0</span><span class="stat-label">Horas de Entrega</span></div>
-  <div class="stat-item"><span class="stat-number" id="s4">0</span><span class="stat-label">% Satisfacción</span></div>
-</div>
-
-<!-- SERVICES -->
-<section class="services" id="servicios">
-  <div class="section-header">
-    <div class="section-badge">NUESTROS SERVICIOS</div>
-    <h2>Todo lo que Necesitas para tu Placa Temporal</h2>
-    <p>Servicios rápidos, legales y sin complicaciones para todo tipo de vehículos.</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card"><div class="service-icon">🚗</div><h3>Placa Temporal Estándar</h3><p>Placa temporal oficial válida por 30 días. Perfecta para vehículos recién comprados.</p><div class="service-price">Desde $29.99</div></div>
-    <div class="service-card"><div class="service-icon">⚡</div><h3>Procesamiento Express</h3><p>Obtén tu placa procesada y enviada en 24 horas. Disponible el mismo día.</p><div class="service-price">Desde $49.99</div></div>
-    <div class="service-card"><div class="service-icon">🔄</div><h3>Renovación de Placa</h3><p>Renueva tu placa temporal fácilmente en línea. Opciones de validez extendida.</p><div class="service-price">Desde $19.99</div></div>
-    <div class="service-card"><div class="service-icon">🚛</div><h3>Vehículos Comerciales</h3><p>Placas temporales para camiones, furgonetas y vehículos comerciales.</p><div class="service-price">Desde $39.99</div></div>
-    <div class="service-card"><div class="service-icon">🏍️</div><h3>Placas para Motos</h3><p>Placas temporales especializadas para motocicletas y scooters.</p><div class="service-price">Desde $24.99</div></div>
-    <div class="service-card"><div class="service-icon">📋</div><h3>Asistencia DMV</h3><p>Asistencia completa con trámites del DMV y proceso de registro.</p><div class="service-price">Desde $59.99</div></div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how-it-works">
-  <div class="section-header">
-    <div class="section-badge">CÓMO FUNCIONA</div>
-    <h2>Obtén Tu Placa en 4 Simples Pasos</h2>
-    <p>Nuestro proceso simplificado hace que obtener tu placa temporal sea rápido y fácil.</p>
-  </div>
-  <div class="steps-grid">
-    <div class="step-item"><div class="step-number">1</div><h3>Llena el Formulario</h3><p>Ingresa la información de tu vehículo y datos personales en nuestro formulario seguro.</p></div>
-    <div class="step-item"><div class="step-number">2</div><h3>Elige tu Estado</h3><p>Selecciona tu estado y el tipo de placa temporal que necesitas.</p></div>
-    <div class="step-item"><div class="step-number">3</div><h3>Pago Seguro</h3><p>Paga de forma segura con tarjeta de crédito, débito o PayPal. 100% encriptado.</p></div>
-    <div class="step-item"><div class="step-number">4</div><h3>Recibe tu Placa</h3><p>Recibe tu placa temporal en tu puerta en 24-48 horas.</p></div>
-  </div>
-</section>
-
-<!-- VERIFY PLATE -->
-<section class="verify-section" id="verificar">
-  <div class="verify-container">
-    <div class="section-badge">VERIFICACIÓN DE PLACA</div>
-    <h2>Verifica Tu Placa Temporal</h2>
-    <p>Consulta el estado de tu placa temporal al instante.</p>
-    <div class="verify-box">
-      <div class="verify-tabs">
-        <button class="verify-tab active" onclick="switchTab('plate',event)">Por Número de Placa</button>
-        <button class="verify-tab" onclick="switchTab('order',event)">Por ID de Orden</button>
-      </div>
-      <div id="plate-tab" class="tab-content active">
-        <div class="verify-form">
-          <input type="text" id="plateInput" placeholder="Ingresa número de placa (ej. ABC1234)">
-          <select id="stateSelect">
-            <option value="">Selecciona Estado</option>
-            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
-            <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
-            <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
-            <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
-            <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
-            <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
-            <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
-            <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
-            <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
-            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
-            <option>South Dakota</option><option>Tennessee
-              </option><option>Texas</option><option>Utah</option>
-            <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
-            <option>Wisconsin</option><option>Wyoming</option>
-          </select>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-wrap">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-certificate"></i>
+          Servicio Oficial Número 1 en USA
         </div>
-        <button class="btn-primary" onclick="verifyPlate()" style="width:100%;padding:15px">🔍 Verificar Estado de Placa</button>
-      </div>
-      <div id="order-tab" class="tab-content">
-        <div class="verify-form">
-          <input type="text" id="orderInput" placeholder="Ingresa tu ID de Orden (ej. DMV-12345)">
+        <h1>Tu Portal de <span>Trámites Vehiculares</span> en USA</h1>
+        <p class="hero-desc">Obtén tus placas temporales, seguros, títulos y licencias de forma rápida, segura y 100% legal. Servicio disponible en los 50 estados.</p>
+        <div class="hero-buttons">
+          <button class="btn-red" onclick="openModal('general')">
+            <i class="fas fa-paper-plane"></i> Solicitar Servicio
+          </button>
+          <button class="btn-outline" onclick="navigateTo('verify')">
+            <i class="fas fa-search"></i> Verificar Estado
+          </button>
         </div>
-        <button class="btn-primary" onclick="verifyOrder()" style="width:100%;padding:15px">🔍 Verificar Estado de Orden</button>
-      </div>
-      <div id="verify-result" class="verify-result"></div>
-    </div>
-  </div>
-</section>
-
-<!-- SEGUROS -->
-<section class="insurance-section" id="seguros">
-  <div class="insurance-container">
-    <div class="section-header">
-      <div class="section-badge">SEGUROS DE AUTO</div>
-      <h2>Protege Tu Vehículo con Nuestros <span style="color:var(--red)">Seguros Verificados</span></h2>
-      <p>Cobertura completa disponible en los 50 estados de USA. Rápido, fácil y 100% legal.</p>
-    </div>
-    <div class="insurance-grid">
-      <div class="insurance-image-box">
-        <div class="insurance-card-img">
-          <div class="insurance-badge-verified">✅ Verificado</div>
-          <div class="insurance-doc">
-            <div class="insurance-doc-header">
-              <div class="insurance-doc-logo">DMV<span>CARS</span></div>
-              <span style="font-size:12px;color:#888;font-weight:600">ID: INS-2024-001</span>
-            </div>
-            <div class="insurance-doc-seal">🛡️</div>
-            <div class="insurance-doc-title">CERTIFICADO DE SEGURO VEHICULAR</div>
-            <div class="insurance-doc-info">
-              <div class="insurance-doc-field"><label>Titular</label><span>Juan García</span></div>
-              <div class="insurance-doc-field"><label>Vehículo</label><span>Toyota Camry 2023</span></div>
-              <div class="insurance-doc-field"><label>Estado</label><span>California</span></div>
-              <div class="insurance-doc-field"><label>Cobertura</label><span>Completa</span></div>
-              <div class="insurance-doc-field"><label>Vigencia</label><span>01/2024 - 01/2025</span></div>
-              <div class="insurance-doc-field"><label>Prima Mensual</label><span>$89.99/mes</span></div>
-            </div>
-            <div class="insurance-doc-footer">✅ SEGURO ACTIVO Y VERIFICADO - DMVCARS USA</div>
+        <div class="hero-trust">
+          <div class="hero-trust-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Aprobado por DMV</span>
+          </div>
+          <div class="hero-trust-item">
+            <i class="fas fa-lock"></i>
+            <span>100% Seguro</span>
+          </div>
+          <div class="hero-trust-item">
+            <i class="fas fa-bolt"></i>
+            <span>Entrega Rápida</span>
+          </div>
+          <div class="hero-trust-item">
+            <i class="fas fa-globe"></i>
+            <span>50 Estados</span>
           </div>
         </div>
       </div>
-      <div class="insurance-content">
-        <h2>Seguro de Auto <span>Completo</span> para Todo USA</h2>
-        <p>Obtén tu seguro de auto de forma rápida y sencilla. Cobertura inmediata disponible en los 50 estados con las mejores tarifas del mercado.</p>
-        <ul class="insurance-features">
-          <li>Cobertura de responsabilidad civil completa</li>
-          <li>Protección contra colisión y daños</li>
-          <li>Cobertura médica para conductor y pasajeros</li>
-          <li>Asistencia en carretera 24/7</li>
-          <li>Válido en los 50 estados de USA</li>
-          <li>Activación inmediata al contratar</li>
-          <li>Documentos digitales al instante</li>
-        </ul>
-        <a href="#orden-seguro" class="btn-primary">🛡️ Obtener Mi Seguro →</a>
+      <div class="hero-cards">
+        <div class="hero-service-card" onclick="navigateTo('home');setTimeout(()=>scrollTo('seguros'),100)">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Seguros de Auto</h3>
+          <p>Cobertura básica y full cover disponible</p>
+        </div>
+        <div class="hero-service-card" onclick="navigateTo('home');setTimeout(()=>scrollTo('placas'),100)">
+          <i class="fas fa-id-card"></i>
+          <h3>Placas Temporales</h3>
+          <p>Válidas en los 50 estados de USA</p>
+        </div>
+        <div class="hero-service-card" onclick="navigateTo('home');setTimeout(()=>scrollTo('titulos'),100)">
+          <i class="fas fa-file-alt"></i>
+          <h3>Títulos Vehiculares</h3>
+          <p>Transferencias y duplicados</p>
+        </div>
+        <div class="hero-service-card" onclick="navigateTo('home');setTimeout(()=>scrollTo('licencias'),100)">
+          <i class="fas fa-car"></i>
+          <h3>Licencias de Conducir</h3>
+          <p>Nuevas, renovaciones y duplicados</p>
+        </div>
       </div>
     </div>
-    <div class="section-header" style="margin-top:60px">
-      <div class="section-badge">PLANES DE SEGURO</div>
-      <h2>Elige el Plan que Mejor se Adapte a Ti</h2>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-icon"><i class="fas fa-id-card"></i></div>
+      <span class="stat-number" id="s1">0</span>
+      <div class="stat-label">Placas Emitidas</div>
     </div>
-    <div class="insurance-plans">
-      <div class="insurance-plan-card">
-        <div class="insurance-plan-icon">🛡️</div>
-        <div class="insurance-plan-name">Básico</div>
-        <div class="insurance-plan-price">$49.99</div>
-        <div class="insurance-plan-period">por mes</div>
-        <ul class="insurance-plan-features">
-          <li>Responsabilidad Civil</li>
-          <li>Daños a Terceros</li>
-          <li>Asistencia Básica</li>
-          <li>Válido en 50 Estados</li>
-        </ul>
-        <br>
-        <button class="btn-primary" style="width:100%;padding:12px" onclick="selectInsurancePlan('Básico','49.99')">Seleccionar</button>
-      </div>
-      <div class="insurance-plan-card" style="border-top-color:var(--red);position:relative">
-        <div class="popular-badge">⭐ MÁS POPULAR</div>
-        <div class="insurance-plan-icon">🛡️🛡️</div>
-        <div class="insurance-plan-name">Completo</div>
-        <div class="insurance-plan-price">$89.99</div>
-        <div class="insurance-plan-period">por mes</div>
-        <ul class="insurance-plan-features">
-          <li>Todo el Plan Básico</li>
-          <li>Cobertura por Colisión</li>
-          <li>Cobertura Médica</li>
-          <li>Asistencia 24/7</li>
-          <li>Auto de Reemplazo</li>
-        </ul>
-        <br>
-        <button class="btn-primary" style="width:100%;padding:12px" onclick="selectInsurancePlan('Completo','89.99')">Seleccionar</button>
-      </div>
-      <div class="insurance-plan-card">
-        <div class="insurance-plan-icon">👑</div>
-        <div class="insurance-plan-name">Premium</div>
-        <div class="insurance-plan-price">$129.99</div>
-        <div class="insurance-plan-period">por mes</div>
-        <ul class="insurance-plan-features">
-          <li>Todo el Plan Completo</li>
-          <li>Cobertura Total</li>
-          <li>Robo y Vandalismo</li>
-          <li>Desastres Naturales</li>
-          <li>Agente Personal</li>
-        </ul>
-        <br>
-        <button class="btn-primary" style="width:100%;padding:12px" onclick="selectInsurancePlan('Premium','129.99')">Seleccionar</button>
-      </div>
+    <div class="stat-item">
+      <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+      <span class="stat-number" id="s2">0</span>
+      <div class="stat-label">Estados Cubiertos</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon"><i class="fas fa-clock"></i></div>
+      <span class="stat-number" id="s3">0</span>
+      <div class="stat-label">Horas de Entrega</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon"><i class="fas fa-star"></i></div>
+      <span class="stat-number" id="s4">0</span>
+      <div class="stat-label">% Satisfacción</div>
     </div>
   </div>
-</section>
 
-<!-- VERIFY INSURANCE -->
-<section class="verify-insurance" id="verificar-seguro">
-  <div class="verify-insurance-container">
-    <div class="section-badge" style="background:white;color:var(--green)">VERIFICAR SEGURO</div>
-    <h2>Verifica el Estado de Tu Seguro</h2>
-    <p>Ingresa tu nombre e ID de seguro para consultar el estado de tu póliza al instante.</p>
-    <div class="verify-insurance-box">
-      <div class="verify-insurance-form">
-        <input type="text" id="insuranceName" placeholder="Ingresa tu Nombre Completo">
-        <input type="text" id="insuranceId" placeholder="Ingresa tu ID de Seguro (ej. INS-12345)">
+  <!-- SERVICES OVERVIEW -->
+  <section class="section section-gray" id="servicios">
+    <div class="section-header">
+      <div class="section-badge">Nuestros Servicios</div>
+      <h2>Todo lo que Necesitas en un Solo Lugar</h2>
+      <p>Trámites vehiculares rápidos, legales y sin complicaciones para todo tipo de vehículos en USA.</p>
+    </div>
+    <div class="services-overview">
+      <div class="sov-card fade-up" onclick="scrollTo('seguros')">
+        <div class="sov-icon"><i class="fas fa-shield-alt"></i></div>
+        <h3>Seguros de Auto</h3>
+        <p>Protege tu vehículo con nuestros planes de cobertura básica y full cover.</p>
+        <div class="sov-sub"><i class="fas fa-layer-group"></i> 2 planes disponibles</div>
+        <button class="sov-btn"><i class="fas fa-arrow-right"></i> Ver Planes</button>
       </div>
-      <button class="btn-verify-insurance" onclick="verifyInsurance()">🛡️ Verificar Estado de Seguro</button>
-      <div id="insurance-result" class="insurance-result"></div>
+      <div class="sov-card fade-up" onclick="scrollTo('placas')">
+        <div class="sov-icon"><i class="fas fa-id-card"></i></div>
+        <h3>Placas Temporales</h3>
+        <p>Obtén tu placa temporal oficial válida en los 50 estados de USA.</p>
+        <div class="sov-sub"><i class="fas fa-layer-group"></i> 3 tipos de servicio</div>
+        <button class="sov-btn"><i class="fas fa-arrow-right"></i> Ver Servicios</button>
+      </div>
+      <div class="sov-card fade-up" onclick="scrollTo('titulos')">
+        <div class="sov-icon"><i class="fas fa-file-alt"></i></div>
+        <h3>Títulos Vehiculares</h3>
+        <p>Transferencias, duplicados y correcciones de título vehicular.</p>
+        <div class="sov-sub"><i class="fas fa-layer-group"></i> 3 tipos de trámite</div>
+        <button class="sov-btn"><i class="fas fa-arrow-right"></i
+         > Ver Trámites</button>
+      </div>
+      <div class="sov-card fade-up" onclick="scrollTo('licencias')">
+        <div class="sov-icon"><i class="fas fa-car"></i></div>
+        <h3>Licencias de Conducir</h3>
+        <p>Nuevas licencias, renovaciones y duplicados para todos los estados.</p>
+        <div class="sov-sub"><i class="fas fa-layer-group"></i> 3 tipos de trámite</div>
+        <button class="sov-btn"><i class="fas fa-arrow-right"></i> Ver Trámites</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGUROS -->
+  <section class="service-section" id="seguros">
+    <div class="service-section-wrap">
+      <div class="service-section-title">
+        <div class="sst-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="sst-text">
+          <h2>Seguros de Auto</h2>
+          <p>Cobertura inmediata disponible en los 50 estados de USA</p>
+        </div>
+      </div>
+      <div class="insurance-plans fade-up">
+        <!-- BASICO -->
+        <div class="ins-plan-card">
+          <div class="ins-plan-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="ins-plan-name">Seguro Básico</div>
+          <div class="ins-plan-desc">Cobertura esencial para cumplir con los requisitos legales mínimos de tu estado.</div>
+          <div class="ins-plan-price">$49<span>.99/mes</span></div>
+          <div class="ins-plan-period">Activación inmediata al contratar</div>
+          <ul class="ins-features">
+            <li><i class="fas fa-check"></i> Responsabilidad Civil</li>
+            <li><i class="fas fa-check"></i> Daños a Terceros</li>
+            <li><i class="fas fa-check"></i> Protección Legal Básica</li>
+            <li><i class="fas fa-check"></i> Válido en 50 Estados</li>
+            <li><i class="fas fa-check"></i> Certificado Digital Inmediato</li>
+            <li><i class="fas fa-times no"></i> <span class="disabled">Cobertura por Colisión</span></li>
+            <li><i class="fas fa-times no"></i> <span class="disabled">Asistencia en Carretera</span></li>
+            <li><i class="fas fa-times no"></i> <span class="disabled">Auto de Reemplazo</span></li>
+          </ul>
+          <button class="ins-plan-btn" onclick="openModal('seguro-basico')">
+            <i class="fas fa-paper-plane"></i> Solicitar Seguro Básico
+          </button>
+        </div>
+        <!-- FULL COVER -->
+        <div class="ins-plan-card featured">
+          <div class="ins-plan-badge">Más Popular</div>
+          <div class="ins-plan-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="ins-plan-name">Full Cover</div>
+          <div class="ins-plan-desc">Cobertura total para máxima protección de tu vehículo en cualquier situación.</div>
+          <div class="ins-plan-price">$89<span>.99/mes</span></div>
+          <div class="ins-plan-period">Activación inmediata al contratar</div>
+          <ul class="ins-features">
+            <li><i class="fas fa-check"></i> Todo el Plan Básico</li>
+            <li><i class="fas fa-check"></i> Cobertura por Colisión</li>
+            <li><i class="fas fa-check"></i> Cobertura Médica Completa</li>
+            <li><i class="fas fa-check"></i> Asistencia en Carretera 24/7</li>
+            <li><i class="fas fa-check"></i> Auto de Reemplazo</li>
+            <li><i class="fas fa-check"></i> Robo y Vandalismo</li>
+            <li><i class="fas fa-check"></i> Desastres Naturales</li>
+            <li><i class="fas fa-check"></i> Agente Personal Asignado</li>
+          </ul>
+          <button class="ins-plan-btn" onclick="openModal('seguro-full')">
+            <i class="fas fa-paper-plane"></i> Solicitar Full Cover
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLACAS -->
+  <section class="service-section section-gray" id="placas">
+    <div class="service-section-wrap">
+      <div class="service-section-title">
+        <div class="sst-icon"><i class="fas fa-id-card"></i></div>
+        <div class="sst-text">
+          <h2>Placas Temporales</h2>
+          <p>Placas oficiales válidas en los 50 estados · Entrega en 24-48 horas</p>
+        </div>
+      </div>
+      <div class="service-subsections">
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-id-card"></i></div>
+          <h3>Placa Temporal Estándar</h3>
+          <p>Placa temporal oficial válida por 30 días. Perfecta para vehículos recién comprados o en proceso de registro.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $29.99</div>
+          <button class="sub-card-btn" onclick="openModal('placa-estandar')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-bolt"></i></div>
+          <h3>Placa Express</h3>
+          <p>Procesamiento prioritario con entrega en 24 horas. Validez de 60 días. Ideal cuando necesitas tu placa urgente.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $49.99</div>
+          <button class="sub-card-btn" onclick="openModal('placa-express')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-sync-alt"></i></div>
+          <h3>Renovación de Placa</h3>
+          <p>Renueva tu placa temporal fácilmente en línea. Opciones de validez extendida hasta 90 días disponibles.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $19.99</div>
+          <button class="sub-card-btn" onclick="openModal('placa-renovacion')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TITULOS -->
+  <section class="service-section" id="titulos">
+    <div class="service-section-wrap">
+      <div class="service-section-title">
+        <div class="sst-icon"><i class="fas fa-file-alt"></i></div>
+        <div class="sst-text">
+          <h2>Títulos Vehiculares</h2>
+          <p>Transferencias, duplicados y correcciones · Proceso 100% en línea</p>
+        </div>
+      </div>
+      <div class="service-subsections">
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-exchange-alt"></i></div>
+          <h3>Transferencia de Título</h3>
+          <p>Transfiere el título de tu vehículo de forma rápida y segura. Proceso completamente en línea sin visitar el DMV.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $39.99</div>
+          <button class="sub-card-btn" onclick="openModal('titulo-transferencia')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-copy"></i></div>
+          <h3>Duplicado de Título</h3>
+          <p>¿Perdiste tu título vehicular? Obtén un duplicado oficial de forma rápida. Entrega en 3-5 días hábiles.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $34.99</div>
+          <button class="sub-card-btn" onclick="openModal('titulo-duplicado')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-edit"></i></div>
+          <h3>Corrección de Título</h3>
+          <p>Corrige errores en tu título vehicular como nombre, dirección o datos del vehículo de manera oficial.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $29.99</div>
+          <button class="sub-card-btn" onclick="openModal('titulo-correccion')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LICENCIAS -->
+  <section class="service-section section-gray" id="licencias">
+    <div class="service-section-wrap">
+      <div class="service-section-title">
+        <div class="sst-icon"><i class="fas fa-car"></i></div>
+        <div class="sst-text">
+          <h2>Licencias de Conducir</h2>
+          <p>Nuevas licencias, renovaciones y duplicados · Asistencia personalizada</p>
+        </div>
+      </div>
+      <div class="service-subsections">
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-plus-circle"></i></div>
+          <h3>Nueva Licencia</h3>
+          <p>Obtén tu primera licencia de conducir con nuestra asistencia completa. Te guiamos en cada paso del proceso.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $59.99</div>
+          <button class="sub-card-btn" onclick="openModal('licencia-nueva')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-redo"></i></div>
+          <h3>Renovación de Licencia</h3>
+          <p>Renueva tu licencia de conducir antes de que venza. Proceso simplificado sin largas filas en el DMV.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $44.99</div>
+          <button class="sub-card-btn" onclick="openModal('licencia-renovacion')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+        <div class="sub-card fade-up">
+          <div class="sub-card-icon"><i class="fas fa-clone"></i></div>
+          <h3>Duplicado de Licencia</h3>
+          <p>¿Perdiste o te robaron tu licencia? Obtén un duplicado oficial rápidamente con nuestra asistencia.</p>
+          <div class="sub-card-price"><i class="fas fa-tag"></i> Desde $34.99</div>
+          <button class="sub-card-btn" onclick="openModal('licencia-duplicado')">
+            <i class="fas fa-paper-plane"></i> Solicitar Ahora
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section section-blue">
+    <div class="section-header">
+      <div class="section-badge">Cómo Funciona</div>
+      <h2 class="white">Obtén Tu Trámite en 4 Simples Pasos</h2>
+      <p class="white">Nuestro proceso simplificado hace que cualquier trámite vehicular sea rápido y sin complicaciones.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step fade-up">
+        <div class="how-step-num">1</div>
+        <h3>Elige tu Servicio</h3>
+        <p>Selecciona el trámite que necesitas entre nuestras opciones disponibles.</p>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-step-num">2</div>
+        <h3>Llena el Formulario</h3>
+        <p>Ingresa tus datos personales y la información de tu vehículo de forma segura.</p>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-step-num">3</div>
+        <h3>Un Asesor te Contacta</h3>
+        <p>Nuestro equipo se pondrá en contacto contigo en menos de 24 horas.</p>
+      </div>
+      <div class="how-step fade-up">
+        <div class="how-step-num">4</div>
+        <h3>Recibe tu Trámite</h3>
+        <p>Recibe tu documento oficial en la comodidad de tu hogar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section section-gray">
+    <div class="section-header">
+      <div class="section-badge">Testimonios</div>
+      <h2>Lo que Dicen Nuestros Clientes</h2>
+      <p>Miles de clientes satisfechos en todo USA confían en DMVCarPortal.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card fade-up">
+        <div class="testi-stars">
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+        </div>
+        <p class="testi-text">"Increíble servicio. Obtuve mi placa temporal en menos de 24 horas. El proceso fue muy fácil y el asesor me
+                guió en todo momento. Totalmente recomendado."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--blue)">MR</div>
+          <div>
+            <div class="testi-name">María Rodríguez</div>
+            <div class="testi-location"><i class="fas fa-map-marker-alt"></i> Miami, Florida</div>
+            <div class="testi-service">Placa Temporal</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+        </div>
+        <p class="testi-text">"Buen servicio en general. El trámite de mi título tardó un poco más de lo esperado pero al final todo salió bien. El asesor fue muy amable."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--blue2)">CL</div>
+          <div>
+            <div class="testi-name">Carlos López</div>
+            <div class="testi-location"><i class="fas fa-map-marker-alt"></i> Houston, Texas</div>
+            <div class="testi-service">Título Vehicular</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+        </div>
+        <p class="testi-text">"El seguro Full Cover es excelente. Tuve un accidente y todo fue cubierto sin problemas. El proceso de contratación fue muy rápido y sencillo."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#1a7a1a">AG</div>
+          <div>
+            <div class="testi-name">Ana González</div>
+            <div class="testi-location"><i class="fas fa-map-marker-alt"></i> Los Angeles, California</div>
+            <div class="testi-service">Seguro Full Cover</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-empty"></i>
+        </div>
+        <p class="testi-text">"Me ayudaron con la renovación de mi licencia de conducir. El proceso fue claro y el asesor estuvo disponible para responder mis dudas."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#7b1fa2">JM</div>
+          <div>
+            <div class="testi-name">José Martínez</div>
+            <div class="testi-location"><i class="fas fa-map-marker-alt"></i> Chicago, Illinois</div>
+            <div class="testi-service">Licencia de Conducir</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+        </div>
+        <p class="testi-text">"Pensé que sería complicado pero fue muy sencillo. Llené el formulario, me llamó un asesor y en 2 días tenía mi placa. El mejor servicio que he usado."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#e65100">LP</div>
+          <div>
+            <div class="testi-name">Laura Pérez</div>
+            <div class="testi-location"><i class="fas fa-map-marker-alt"></i> New York, NY</div>
+            <div class="testi-service">Placa Express</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars">
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-filled"></i>
+          <i class="fas fa-star star-empty"></i>
+          <i class="fas fa-star star-empty"></i>
+        </div>
+        <p class="testi-text">"El servicio de duplicado de título fue bueno. Tardó unos días más de lo indicado pero el resultado fue correcto. Recomendaría mejorar los tiempos."</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:#00838f">RF</div>
+          <div>
+            <div class="testi-name">Roberto Flores</div>
+            <div class="testi-location"><i class="fas fa-map-marker-alt"></i> Phoenix, Arizona</div>
+            <div class="testi-service">Duplicado de Título</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-badge">Preguntas Frecuentes</div>
+      <h2>Resolvemos tus Dudas</h2>
+      <p>Encuentra respuestas a las preguntas más comunes sobre nuestros servicios.</p>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Cuánto tiempo tarda en llegar mi placa temporal?</h3>
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <p>Dependiendo del plan elegido, tu placa puede llegar en 3-5 días hábiles con el plan Estándar, 24-48 horas con el plan Express, o el mismo día con el plan Premium. Un asesor te confirmará el tiempo exacto al contactarte.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Son legales las placas temporales que emiten?</h3>
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <p>Sí, todas nuestras placas temporales son 100% legales y están aprobadas por el DMV. Son válidas en los 50 estados de USA y cumplen con todos los requisitos legales vigentes.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Cómo funciona el proceso de contacto con el asesor?</h3>
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <p>Una vez que llenes el formulario de solicitud, un asesor especializado se pondrá en contacto contigo en un máximo de 24 horas por teléfono, WhatsApp o correo electrónico según tu preferencia.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Qué documentos necesito para obtener mi placa?</h3>
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <p>Solo necesitas el número VIN de tu vehículo, tu información personal y una forma de contacto válida. El asesor te indicará si se requiere algún documento adicional según tu estado.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Cuál es la diferencia entre el Seguro Básico y el Full Cover?</h3>
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <p>El Seguro Básico cubre responsabilidad civil y daños a terceros, cumpliendo con los requisitos mínimos legales. El Full Cover incluye además cobertura por colisión, médica, asistencia 24/7, auto de reemplazo, robo y desastres naturales.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Tienen servicio al cliente en español?</h3>
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <p>Sí, nuestro equipo de atención al cliente está disponible en español e inglés. Puedes contactarnos por WhatsApp, email o teléfono de lunes a domingo de 8am a 8pm EST.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Puedo verificar el estado de mi trámite en línea?</h3>
+          <div class="faq-icon"><i class="fas fa-plus"></i></div>
+        </div>
+        <div class="faq-a">
+          <p>Sí, puedes verificar el estado de cualquier trámite en nuestra sección de Verificación. Solo necesitas tu ID de trámite y seleccionar el tipo de servicio para consultar el estado en tiempo real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="contacto">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo-text">DMVCar<span>Portal</span></div>
+        <p>La fuente número 1 de confianza para trámites vehiculares en USA. Placas temporales, seguros, títulos y licencias de forma rápida, legal y sin complicaciones.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#" onclick="scrollTo('seguros')"><i class="fas fa-chevron-right"></i> Seguro Básico</a></li>
+          <li><a href="#" onclick="scrollTo('seguros')"><i class="fas fa-chevron-right"></i> Seguro Full Cover</a></li>
+          <li><a href="#" onclick="scrollTo('placas')"><i class="fas fa-chevron-right"></i> Placa Estándar</a></li>
+          <li><a href="#" onclick="scrollTo('placas')"><i class="fas fa-chevron-right"></i> Placa Express</a></li>
+          <li><a href="#" onclick="scrollTo('titulos')"><i class="fas fa-chevron-right"></i> Títulos Vehiculares</a></li>
+          <li><a href="#" onclick="scrollTo('licencias')"><i class="fas fa-chevron-right"></i> Licencias de Conducir</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Sobre Nosotros</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Cómo Funciona</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Testimonios</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Preguntas Frecuentes</a></li>
+          <li><a href="#" onclick="navigateTo('verify')"><i class="fas fa-chevron-right"></i> Verificar Trámite</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/1TUNUMERO"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+          <li><a href="mailto:info@dmvcarportal.com"><i class="fas fa-envelope"></i> info@dmvcarportal.com</a></li>
+          <li><a href="tel:+1TUNUMERO"><i class="fas fa-phone"></i> +1 (000) 000-0000</a></li>
+          <li><a href="#"><i class="fas fa-clock"></i> Lun-Dom 8am-8pm EST</a></li>
+          <li><a href="#"><i class="fas fa-globe"></i> Los 50 Estados de USA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 DMVCarPortal. Todos los derechos reservados. | No afiliado con ninguna agencia gubernamental.</p>
+      <div class="footer-badges">
+        <div class="footer-badge"><i class="fas fa-lock"></i> SSL Seguro</div>
+        <div class="footer-badge"><i class="fas fa-check-circle"></i> DMV Aprobado</div>
+        <div class="footer-badge"><i class="fas fa-globe"></i> 50 Estados</div>
+        </div>
+  </footer>
+
+</div>
+<!-- FIN HOME PAGE -->
+
+<!-- ==================== VERIFY PAGE ==================== -->
+<div class="page" id="page-verify">
+
+  <!-- VERIFY HERO -->
+  <section class="verify-hero">
+    <div class="verify-hero-content">
+      <div class="section-badge">Verificación de Trámites</div>
+      <h1>Verifica el Estado de <span>Tu Trámite</span></h1>
+      <p class="verify-hero-sub">Consulta el estado de cualquiera de tus trámites vehiculares de forma rápida y segura.</p>
+      <p class="verify-hero-tagline">Verifica con nosotros — Tu tranquilidad es nuestra prioridad</p>
+    </div>
+  </section>
+
+  <!-- VERIFY FORM -->
+  <div class="verify-form-wrap">
+    <div class="verify-box">
+      <div class="verify-box-title">
+        <i class="fas fa-search"></i>
+        Selecciona el servicio que deseas verificar
+      </div>
+      <div class="verify-service-grid">
+        <div class="verify-service-opt selected" onclick="selectVerifyService(this,'seguros')">
+          <i class="fas fa-shield-alt"></i>
+          <span>Seguros de Auto</span>
+        </div>
+        <div class="verify-service-opt" onclick="selectVerifyService(this,'placas')">
+          <i class="fas fa-id-card"></i>
+          <span>Placas Temporales</span>
+        </div>
+        <div class="verify-service-opt" onclick="selectVerifyService(this,'titulos')">
+          <i class="fas fa-file-alt"></i>
+          <span>Títulos Vehiculares</span>
+        </div>
+        <div class="verify-service-opt" onclick="selectVerifyService(this,'licencias')">
+          <i class="fas fa-car"></i>
+          <span>Licencias de Conducir</span>
+        </div>
+      </div>
+      <div class="verify-input-row">
+        <input type="text" id="verifyId" placeholder="Ingresa tu ID de trámite (ej. DMV-123456)" />
+        <button class="verify-btn" onclick="runVerify()">
+          <i class="fas fa-search"></i> Verificar
+        </button>
+      </div>
+      <p style="font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px;">
+        <i class="fas fa-info-circle" style="color:var(--blue2)"></i>
+        Tu ID de trámite fue enviado a tu correo electrónico al momento de realizar tu solicitud.
+      </p>
+      <div id="verify-result" class="verify-result-box"></div>
     </div>
   </div>
-</section>
 
-<!-- ORDER -->
-<section class="order-section" id="orden">
-  <div class="section-header">
-    <div class="section-badge">ORDENAR AHORA</div>
-    <h2>Ordena Tu Placa Temporal</h2>
-    <p>Llena el formulario para recibir tu placa temporal rápidamente.</p>
-  </div>
-  <div class="order-container">
-    <div class="order-form-box">
-      <div class="form-section-title">🚗 Elige Tu Plan</div>
-      <div class="plan-selector">
-        <div class="plan-card" onclick="selectPlan(this,'29.99','Estándar')">
-          <span class="plan-icon">🪪</span>
-          <div class="plan-name">Estándar</div>
-          <div class="plan-price">$29.99</div>
-          <div class="plan-duration">Validez 30 Días</div>
-          <ul class="plan-features">
-            <li>Procesamiento Estándar</li>
-            <li>Entrega 3-5 Días</li>
-            <li>Confirmación por Email</li>
-          </ul>
+  <!-- VERIFY INFO CARDS -->
+  <section class="verify-info-section">
+    <div class="section-header">
+      <div class="section-badge-blue">¿Cómo Verificar?</div>
+      <h2>Pasos para Verificar tu Trámite</h2>
+      <p>Sigue estos sencillos pasos para consultar el estado de tu trámite en segundos.</p>
+    </div>
+    <div class="verify-info-grid">
+      <div class="verify-info-card fade-up">
+        <div class="verify-info-icon"><i class="fas fa-th-large"></i></div>
+        <h3>1. Elige el Servicio</h3>
+        <p>Selecciona el tipo de trámite que deseas verificar: seguro, placa, título o licencia.</p>
+      </div>
+      <div class="verify-info-card fade-up">
+        <div class="verify-info-icon"><i class="fas fa-keyboard"></i></div>
+        <h3>2. Ingresa tu ID</h3>
+        <p>Escribe el ID único de tu trámite que recibiste por correo electrónico al solicitar el servicio.</p>
+      </div>
+      <div class="verify-info-card fade-up">
+        <div class="verify-info-icon"><i class="fas fa-search"></i></div>
+        <h3>3. Consulta el Estado</h3>
+        <p>Presiona el botón verificar y obtén el estado actual de tu trámite al instante.</p>
+      </div>
+      <div class="verify-info-card fade-up">
+        <div class="verify-info-icon"><i class="fas fa-headset"></i></div>
+        <h3>4. ¿Necesitas Ayuda?</h3>
+        <p>Si tienes dudas contáctanos por WhatsApp y un asesor te ayudará de inmediato.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFY CTA -->
+  <section class="section section-blue" style="text-align:center">
+    <div class="section-header">
+      <div class="section-badge">¿Aún no tienes un trámite?</div>
+      <h2 class="white">Inicia tu Trámite Hoy Mismo</h2>
+      <p class="white">Nuestros asesores están listos para ayudarte con cualquier trámite vehicular en USA.</p>
+    </div>
+    <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin-top:10px">
+      <button class="btn-red" onclick="navigateTo('home');setTimeout(()=>openModal('general'),300)">
+        <i class="fas fa-paper-plane"></i> Solicitar Servicio
+      </button>
+      <button class="btn-outline" onclick="navigateTo('home')">
+        <i class="fas fa-home"></i> Ir al Inicio
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER VERIFY PAGE -->
+  <footer class="footer">
+    <div class="footer-bottom" style="border-top:none;padding-top:0">
+      <p>© 2024 DMVCarPortal. Todos los derechos reservados.</p>
+      <div class="footer-badges">
+        <div class="footer-badge"><i class="fas fa-lock"></i> SSL Seguro</div>
+        <div class="footer-badge"><i class="fas fa-check-circle"></i> DMV Aprobado</div>
+        <div class="footer-badge"><i class="fas fa-globe"></i> 50 Estados</div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<!-- FIN VERIFY PAGE -->
+
+<!-- ==================== MODALES ==================== -->
+
+<!-- MODAL CONTACTO -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('contactModal')">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="modal-header">
+      <div class="modal-icon" id="modalIcon">
+        <i class="fas fa-paper-plane" id="modalIconInner"></i>
+      </div>
+      <div class="modal-service-badge" id="modalServiceBadge">
+        <i class="fas fa-shield-alt"></i>
+        <span id="modalServiceName">Servicio</span>
+      </div>
+      <h2 id="modalTitle">Solicitar Servicio</h2>
+      <p id="modalDesc">Completa el formulario y un asesor se pondrá en contacto contigo en menos de 24 horas.</p>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Nombre *</label>
+          <input type="text" id="cf-nombre" placeholder="Juan" required>
         </div>
-        <div class="plan-card popular" onclick="selectPlan(this,'49.99','Express')">
-          <div class="popular-badge">⭐ MÁS POPULAR</div>
-          <span class="plan-icon">⚡</span>
-          <div class="plan-name">Express</div>
-          <div class="plan-price">$49.99</div>
-          <div class="plan-duration">Validez 60 Días</div>
-          <ul class="plan-features">
-            <li>Procesamiento Express</li>
-            <li>Entrega 24-48hrs</li>
-            <li>SMS + Email</li>
-          </ul>
-        </div>
-        <div class="plan-card" onclick="selectPlan(this,'79.99','Premium')">
-          <span class="plan-icon">👑</span>
-          <div class="plan-name">Premium</div>
-          <div class="plan-price">$79.99</div>
-          <div class="plan-duration">Validez 90 Días</div>
-          <ul class="plan-features">
-            <li>Procesamiento Prioritario</li>
-            <li>Entrega Mismo Día</li>
-            <li>Soporte 24/7</li>
-          </ul>
+        <div class="form-group">
+          <label><i class="fas fa-user"></i> Apellido *</label>
+          <input type="text" id="cf-apellido" placeholder="García" required>
         </div>
       </div>
-
-      <div class="form-section-title">👤 Información Personal</div>
-      <div class="form-grid">
-        <div class="form-group"><label>Nombre *</label><input type="text" id="firstName" placeholder="Juan" required></div>
-        <div class="form-group"><label>Apellido *</label><input type="text" id="lastName" placeholder="García" required></div>
-        <div class="form-group"><label>Correo Electrónico *</label><input type="email" id="email" placeholder="juan@email.com" required></div>
-        <div class="form-group"><label>Teléfono *</label><input type="tel" id="phone" placeholder="(555) 000-0000" required></div>
-      </div>
-
-      <div class="form-section-title">🚗 Información del Vehículo</div>
-      <div class="form-grid">
-        <div class="form-group"><label>Marca *</label><input type="text" id="make" placeholder="Toyota" required></div>
-        <div class="form-group"><label>Modelo *</label><input type="text" id="model" placeholder="Camry" required></div>
-        <div class="form-group"><label>Año *</label><input type="number" id="year" placeholder="2024" min="1990" max="2025" required></div>
-        <div class="form-group"><label>Número VIN *</label><input type="text" id="vin" placeholder="1HGBH41JXMN109186" maxlength="17" required></div>
-        <div class="form-group"><label>Color *</label><input type="text" id="color" placeholder="Plateado" required></div>
-        <div class="form-group"><label>Tipo de Vehículo *</label>
-          <select id="vehicleType" required>
-            <option value="">Seleccionar Tipo</option>
-            <option>Sedán</option><option>SUV</option><option>Camioneta</option>
-            <option>Van</option><option>Motocicleta</option><option>Comercial</option>
-          </select>
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-envelope"></i> Correo Electrónico *</label>
+          <input type="email" id="cf-email" placeholder="juan@email.com" required>
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-phone"></i> Teléfono / WhatsApp *</label>
+          <input type="tel" id="cf-telefono" placeholder="(555) 000-0000" required>
         </div>
       </div>
-
-      <div class="form-section-title">📍 Estado y Dirección</div>
-      <div class="form-grid">
-        <div class="form-group"><label>Estado *</label>
-          <select id="orderState" required>
+      <div class="form-row">
+        <div class="form-group">
+          <label><i class="fas fa-map-marker-alt"></i> Estado *</label>
+          <select id="cf-estado" required>
             <option value="">Selecciona tu Estado</option>
-            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
-            <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
-            <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
-            <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
-            <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
-            <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
-            <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
-            <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
-            <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
-            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
-            <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
-            <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+            <option>Alabama</option><option>Alaska</option><option>Arizona</option>
+            <option>Arkansas</option><option>California</option><option>Colorado</option>
+            <option>Connecticut</option><option>Delaware</option><option>Florida</option>
+            <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+            <option>Illinois</option><option>Indiana</option><option>Iowa</option>
+            <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
+            <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
+            <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+            <option>Missouri</option><option>Montana</option><option>Nebraska</option>
+            <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
+            <option>New Mexico</option><option>New York</option><option>North Carolina</option>
+            <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
+            <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
+            <option>Texas</option><option>Utah</option><option>Vermont</option>
+            <option>Virginia</option><option>Washington</option><option>West Virginia</option>
             <option>Wisconsin</option><option>Wyoming</option>
           </select>
         </div>
-        <div class="form-group"><label>Código ZIP *</label><input type="text" id="zip" placeholder="90210" maxlength="5" required></div>
-        <div class="form-group" style="grid-column:span 2"><label>Dirección *</label><input type="text" id="address" placeholder="123 Calle Principal" required></div>
-        <div class="form-group"><label>Ciudad *</label><input type="text" id="city" placeholder="Los Angeles" required></div>
-      </div>
-
-      <div class="form-section-title">🚚 Método de Entrega</div>
-      <div class="delivery-options">
-        <div class="delivery-card" onclick="selectDelivery(this,'0.00','Envío Estándar')">
-                    <span class="delivery-icon">📦</span>
-          <div class="delivery-name">Estándar</div>
-          <div class="delivery-time">3-5 Días Hábiles</div>
-          <div class="delivery-price">GRATIS</div>
-        </div>
-        <div class="delivery-card selected" onclick="selectDelivery(this,'9.99','Envío Express')">
-          <span class="delivery-icon">⚡</span>
-          <div class="delivery-name">Express</div>
-          <div class="delivery-time">24-48 Horas</div>
-          <div class="delivery-price">$9.99</div>
-        </div>
-        <div class="delivery-card" onclick="selectDelivery(this,'24.99','Entrega Mismo Día')">
-          <span class="delivery-icon">🚀</span>
-          <div class="delivery-name">Mismo Día</div>
-          <div class="delivery-time">Hoy</div>
-          <div class="delivery-price">$24.99</div>
+        <div class="form-group">
+          <label><i class="fas fa-comments"></i> Método de Contacto Preferido *</label>
+          <select id="cf-contacto" required>
+            <option value="">Selecciona una opción</option>
+            <option>WhatsApp</option>
+            <option>Llamada Telefónica</option>
+            <option>Correo Electrónico</option>
+          </select>
         </div>
       </div>
-
-      <div class="form-section-title">💳 Información de Pago</div>
-      <div class="form-grid">
-        <div class="form-group" style="grid-column:span 2"><label>Número de Tarjeta *</label><input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCard(this)"></div>
-        <div class="form-group"><label>Fecha de Vencimiento *</label><input type="text" id="expiry" placeholder="MM/AA" maxlength="5" oninput="formatExpiry(this)"></div>
-        <div class="form-group"><label>CVV *</label><input type="text" id="cvv" placeholder="123" maxlength="3"></div>
-        <div class="form-group" style="grid-column:span 2"><label>Nombre en la Tarjeta *</label><input type="text" id="cardName" placeholder="Juan García"></div>
+      <div class="form-group" id="vehicleInfoGroup">
+        <label><i class="fas fa-car"></i> Información del Vehículo</label>
+        <input type="text" id="cf-vehiculo" placeholder="Marca, Modelo, Año (ej. Toyota Camry 2022)">
       </div>
-
-      <div class="order-summary">
-        <div class="summary-title">📋 Resumen de Orden</div>
-        <div class="summary-row"><span>Plan Seleccionado</span><span id="summaryPlan">No seleccionado</span></div>
-        <div class="summary-row"><span>Método de Entrega</span><span id="summaryDelivery">Envío Express</span></div>
-        <div class="summary-row"><span>Precio del Plan</span><span id="summaryPrice">$0.00</span></div>
-        <div class="summary-row"><span>Costo de Envío</span><span id="summaryDeliveryPrice">$9.99</span></div>
-        <div class="summary-total"><span>Total</span><span id="summaryTotal">$0.00</span></div>
+      <div class="form-group">
+        <label><i class="fas fa-comment-alt"></i> Mensaje o Consulta Adicional</label>
+        <textarea id="cf-mensaje" placeholder="Cuéntanos más sobre tu trámite o cualquier duda que tengas..."></textarea>
       </div>
-
-      <button class="submit-btn" onclick="submitOrder()">🚗 Completar Orden y Obtener Mi Placa →</button>
-
-      <div class="security-badges">
-        <span class="security-badge">🔒 SSL Encriptado</span>
-        <span class="security-badge">✅ Aprobado DMV</span>
-        <span class="security-badge">💳 Pago Seguro</span>
-        <span class="security-badge">🇺🇸 Oficial USA</span>
+      <input type="hidden" id="cf-servicio" value="">
+      <button class="form-submit-btn" onclick="submitContactForm()">
+        <i class="fas fa-paper-plane"></i> Enviar Solicitud — Un Asesor te Contactará
+      </button>
+      <div class="form-note">
+        <i class="fas fa-lock"></i>
+        Tu información es 100% confidencial y segura. No compartimos tus datos.
       </div>
     </div>
   </div>
-</section>
-
-<!-- TESTIMONIOS -->
-<section class="testimonials" id="testimonios">
-  <div class="section-header">
-    <div class="section-badge">TESTIMONIOS</div>
-    <h2>Lo que Dicen Nuestros Clientes</h2>
-    <p>Miles de clientes satisfechos en todo USA confían en DMVCars.</p>
-  </div>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p class="testimonial-text">"Increíble servicio! Obtuve mi placa temporal en menos de 24 horas. El proceso fue muy fácil y rápido. Totalmente recomendado!"</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:var(--blue)">MR</div>
-        <div>
-          <div class="testimonial-name">María Rodríguez</div>
-          <div class="testimonial-location">📍 Miami, Florida</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p class="testimonial-text">"Excelente atención al cliente. Tuve un problema con mi orden y lo resolvieron en minutos. El seguro también es muy bueno y económico."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:var(--red)">CL</div>
-        <div>
-          <div class="testimonial-name">Carlos López</div>
-          <div class="testimonial-location">📍 Houston, Texas</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p class="testimonial-text">"Llevaba semanas buscando cómo obtener mi placa temporal. DMVCars lo hizo súper fácil. En 2 días ya tenía todo listo. 100% recomendado!"</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:#25D366">AG</div>
-        <div>
-          <div class="testimonial-name">Ana González</div>
-          <div class="testimonial-location">📍 Los Angeles, California</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p class="testimonial-text">"El seguro de auto que contraté es excelente. Cobertura completa a un precio muy accesible. El proceso fue rápido y sin complicaciones."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:#FF6B35">JM</div>
-        <div>
-          <div class="testimonial-name">José Martínez</div>
-          <div class="testimonial-location">📍 Chicago, Illinois</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p class="testimonial-text">"Pensé que sería complicado pero fue muy sencillo. Llené el formulario, pagué y en 24 horas tenía mi placa. El mejor servicio que he usado!"</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:#9C27B0">LP</div>
-        <div>
-          <div class="testimonial-name">Laura Pérez</div>
-          <div class="testimonial-location">📍 New York, NY</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
-      <p class="testimonial-text">"Contraté el plan premium de seguro y estoy muy satisfecho. La asistencia en carretera me salvó cuando tuve una llanta ponchada. Gracias DMVCars!"</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar" style="background:#FF5722">RF</div>
-        <div>
-          <div class="testimonial-name">Roberto Flores</div>
-          <div class="testimonial-location">📍 Phoenix, Arizona</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq-section" id="faq">
-  <div class="section-header">
-    <div class="section-badge">PREGUNTAS FRECUENTES</div>
-    <h2>¿Tienes Preguntas? Tenemos Respuestas</h2>
-    <p>Encuentra respuestas a las preguntas más comunes sobre nuestros servicios.</p>
-  </div>
-  <div class="faq-container">
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <h3>¿Cuánto tiempo tarda en llegar mi placa temporal?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        <p>Dependiendo del plan que elijas, tu placa puede llegar en 3-5 días hábiles con el plan Estándar, 24-48 horas con el plan Express, o el mismo día con el plan Premium.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <h3>¿Es legal la placa temporal que emiten?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        <p>Sí, todas nuestras placas temporales son 100% legales y están aprobadas por el DMV. Son válidas en los 50 estados de USA y cumplen con todos los requisitos legales.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <h3>¿En qué estados puedo usar la placa temporal?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        <p>Nuestras placas temporales son válidas en los 50 estados de USA. No importa en qué estado te encuentres, nuestra placa será reconocida y aceptada legalmente.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <h3>¿Qué documentos necesito para obtener mi placa?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        <p>Solo necesitas el número VIN de tu vehículo, tu información personal y una forma de pago válida. No se requieren documentos físicos adicionales para el proceso en línea.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <h3>¿Puedo renovar mi placa temporal?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        <p>Sí, puedes renovar tu placa temporal fácilmente desde nuestra página web. El proceso de renovación es igual de rápido y sencillo que la primera vez.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <h3>¿Cómo funciona el seguro de auto?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        <p>Nuestros seguros de auto ofrecen cobertura inmediata al contratar. Recibirás tu certificado digital al instante y tu póliza física en 2-3 días hábiles. Cobertura disponible en los 50 estados.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <h3>¿Qué métodos de pago aceptan?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        <p>Aceptamos todas las tarjetas de crédito y débito principales (Visa, Mastercard, American Express), PayPal y transferencias bancarias. Todos los pagos son 100% seguros y encriptados.</p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-question" onclick="toggleFaq(this)">
-        <h3>¿Tienen servicio al cliente en español?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-answer">
-        <p>Sí! Nuestro equipo de atención al cliente está disponible en español e inglés. Puedes contactarnos por WhatsApp, email o teléfono de lunes a domingo de 8am a 8pm EST.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer" id="contacto">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="#" class="logo">
-        <div class="logo-icon">🚗</div>
-        <span class="logo-text">DMV<span>CARS</span></span>
-      </a>
-      <p>La fuente #1 de confianza para placas temporales y seguros de auto en USA. Servicio rápido, legal y sin complicaciones para los 50 estados.</p>
-    </div>
-    <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#">Placa Estándar</a></li><li><a href="#">Placa Express</a></li><li><a href="#">Renovación</a></li><li><a href="#">Seguros de Auto</a></li><li><a href="#">Vehículos Comerciales</a></li></ul></div>
-    <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#">Sobre Nosotros</a></li><li><a href="#">Cómo Funciona</a></li><li><a href="#">Testimonios</a></li><li><a href="#">Blog</a></li><li><a href="#">Carreras</a></li></ul></div>
-    <div class="footer-col"><h4>Soporte</h4><ul><li><a href="#">Contáctanos</a></li><li><a href="#">Preguntas Frecuentes</a></li><li><a href="#">Rastrear Orden</a></li><li><a href="#">Política de Privacidad</a></li><li><a href="#">Términos de Servicio</a></li></ul></div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2024 DMVCars. Todos los derechos reservados. | No afiliado con ninguna agencia gubernamental.</p>
-        <div class="payment-icons">
-      <span class="payment-icon">VISA</span>
-      <span class="payment-icon">MC</span>
-      <span class="payment-icon">AMEX</span>
-      <span class="payment-icon">PayPal</span>
-    </div>
-  </div>
-</footer>
+</div>
 
 <!-- MODAL EXITO -->
 <div class="modal-overlay" id="successModal">
-  <div class="modal-box">
-    <span class="modal-icon">🎉</span>
-    <h2>¡Orden Completada!</h2>
-    <p>Tu orden de placa temporal ha sido recibida. Recibirás un correo de confirmación en breve.</p>
-    <div class="modal-order-id" id="modalOrderId">DMV-000000</div>
-    <p style="font-size:14px;color:#888;margin-bottom:25px">Guarda este ID para rastrear tu placa</p>
-    <button class="btn-primary" onclick="closeModal()" style="width:100%;padding:15px">✅ ¡Entendido!</button>
+  <div class="modal-box" style="text-align:center;max-width:480px">
+    <div class="modal-header">
+      <div class="modal-icon success">
+        <i class="fas fa-check"></i>
+      </div>
+      <h2>¡Solicitud Enviada!</h2>
+      <p>Tu solicitud ha sido recibida exitosamente. Un asesor especializado se pondrá en contacto contigo pronto.</p>
+    </div>
+    <div class="success-id" id="successId">DMV-000000</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:20px">
+      Guarda este ID para verificar el estado de tu trámite
+    </p>
+    <div class="success-steps">
+      <div class="success-step">
+        <i class="fas fa-envelope"></i>
+        Recibirás un correo de confirmación en breve
+      </div>
+      <div class="success-step">
+        <i class="fas fa-headset"></i>
+        Un asesor te contactará en menos de 24 horas
+      </div>
+      <div class="success-step">
+        <i class="fas fa-search"></i>
+        Usa tu ID para verificar el estado de tu trámite
+      </div>
+    </div>
+    <button class="form-submit-btn" onclick="closeModal('successModal')" style="margin-top:20px">
+      <i class="fas fa-check-circle"></i> Entendido
+    </button>
   </div>
 </div>
 
-<!-- MODAL SEGURO -->
-<div class="modal-overlay" id="insuranceModal">
-  <div class="modal-box">
-    <span class="modal-icon">🛡️</span>
-    <h2>¡Seguro Activado!</h2>
-    <p>Tu seguro de auto ha sido procesado exitosamente. Recibirás tu certificado digital por correo.</p>
-    <div class="modal-order-id" id="modalInsuranceId">INS-000000</div>
-    <p style="font-size:14px;color:#888;margin-bottom:25px">Guarda este ID para verificar tu seguro</p>
-    <button class="btn-primary" onclick="closeInsuranceModal()" style="width:100%;padding:15px">✅ ¡Entendido!</button>
-  </div>
-</div>
-
+<!-- ==================== JAVASCRIPT ==================== -->
 <script>
-// MENU MOVIL
-function toggleMenu(){
+// ===== NAVEGACIÓN ENTRE PÁGINAS =====
+let currentPage = 'home';
+let selectedVerifyService = 'seguros';
+
+function navigateTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  currentPage = page;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateNavActive(page);
+}
+
+function updateNavActive(page) {
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-nav'));
+  if (page === 'home') {
+    document.getElementById('nav-home').classList.add('active-nav');
+  }
+}
+
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const offset = 80;
+    const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+}
+
+// ===== MENU MOVIL =====
+function toggleMenu() {
   const menu = document.getElementById('mobileMenu');
   menu.classList.toggle('active');
   document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
 }
 
-// CONTADOR ANIMADO
-function animateCounter(id, target, suffix){
+// ===== CONTADORES =====
+function animateCounter(id, target, suffix) {
   let count = 0;
-  const step = target / 60;
+  const step = target / 70;
   const timer = setInterval(() => {
     count += step;
-    if(count >= target){ count = target; clearInterval(timer); }
-    document.getElementById(id).textContent = Math.floor(count).toLocaleString() + (suffix||'');
-  }, 30);
-}
-window.addEventListener('load', () => {
-  animateCounter('s1', 50000, '+');
-  animateCounter('s2', 50, '');
-  animateCounter('s3', 24, 'h');
-  animateCounter('s4', 99, '%');
-});
-
-// PLAN PLACAS
-let selectedPlan = { price:0, name:'No seleccionado' };
-let selectedDeliveryPrice = 9.99;
-let selectedDeliveryName = 'Envío Express';
-
-function selectPlan(card, price, name){
-  document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
-  selectedPlan = { price:parseFloat(price), name:name };
-  updateSummary();
+    if (count >= target) { count = target; clearInterval(timer); }
+    document.getElementById(id).textContent = Math.floor(count).toLocaleString() + (suffix || '');
+  }, 25);
 }
 
-function selectDelivery(card, price, name){
-  document.querySelectorAll('.delivery-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
-  selectedDeliveryPrice = parseFloat(price);
-  selectedDeliveryName = name;
-  updateSummary();
+const statsObserver = new IntersectionObserver((entries) => {
+  entries.forEach
+  (entry => {
+    if (entry.isIntersecting) {
+      animateCounter('s1', 50000, '+');
+      animateCounter('s2', 50, '');
+      animateCounter('s3', 24, 'h');
+      animateCounter('s4', 99, '%');
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+const statsEl = document.querySelector('.stats');
+if (statsEl) statsObserver.observe(statsEl);
+
+// ===== FAQ =====
+function toggleFaq(questionEl) {
+  const item = questionEl.parentElement;
+  const answer = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-a').classList.remove('open');
+  });
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.classList.add('open');
+  }
 }
 
-function updateSummary(){
-  const total = selectedPlan.price + selectedDeliveryPrice;
-  document.getElementById('summaryPlan').textContent = selectedPlan.name;
-  document.getElementById('summaryDelivery').textContent = selectedDeliveryName;
-  document.getElementById('summaryPrice').textContent = '$' + selectedPlan.price.toFixed(2);
-  document.getElementById('summaryDeliveryPrice').textContent = selectedDeliveryPrice === 0 ? 'GRATIS' : '$' + selectedDeliveryPrice.toFixed(2);
-  document.getElementById('summaryTotal').textContent = '$' + total.toFixed(2);
+// ===== VERIFICACION =====
+function selectVerifyService(el, service) {
+  document.querySelectorAll('.verify-service-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedVerifyService = service;
+  document.getElementById('verify-result').style.display = 'none';
+  document.getElementById('verify-result').className = 'verify-result-box';
 }
 
-// SEGURO
-function selectInsurancePlan(name, price){
-  const insId = 'INS-' + Math.floor(Math.random() * 900000 + 100000);
-  document.getElementById('modalInsuranceId').textContent = insId;
-  document.getElementById('insuranceModal').classList.add('active');
-}
+function runVerify() {
+  const id = document.getElementById('verifyId').value.trim();
+  const resultBox = document.getElementById('verify-result');
 
-function closeInsuranceModal(){
-  document.getElementById('insuranceModal').classList.remove('active');
-}
-
-// VERIFICAR SEGURO
-function verifyInsurance(){
-  const name = document.getElementById('insuranceName').value.trim();
-  const id = document.getElementById('insuranceId').value.trim();
-  const result = document.getElementById('insurance-result');
-  if(!name || !id){
-    result.className = 'insurance-result error';
-    result.innerHTML = '❌ Por favor ingresa tu nombre e ID de seguro.';
+  if (!id) {
+    resultBox.className = 'verify-result-box error';
+    resultBox.innerHTML = `
+      <div class="vr-header">
+        <div class="vr-status-icon error"><i class="fas fa-times"></i></div>
+        <div class="vr-title error">Campo Requerido</div>
+      </div>
+      <p style="font-size:14px;color:var(--text2)">Por favor ingresa tu ID de trámite para continuar.</p>
+    `;
     return;
   }
-  result.className = 'insurance-result';
-  result.style.display = 'block';
-  result.innerHTML = '⏳ Verificando...';
+
+  resultBox.className = 'verify-result-box pending';
+  resultBox.innerHTML = `
+    <div class="vr-header">
+      <div class="vr-status-icon pending"><i class="fas fa-spinner fa-spin"></i></div>
+      <div class="vr-title pending">Verificando...</div>
+    </div>
+    <p style="font-size:14px;color:var(--text2)">Consultando el estado de tu trámite, por favor espera.</p>
+  `;
+
+  const serviceLabels = {
+    seguros: { name: 'Seguro de Auto', icon: 'fa-shield-alt' },
+    placas: { name: 'Placa Temporal', icon: 'fa-id-card' },
+    titulos: { name: 'Título Vehicular', icon: 'fa-file-alt' },
+    licencias: { name: 'Licencia de Conducir', icon: 'fa-car' }
+  };
+
+  const svc = serviceLabels[selectedVerifyService];
+
   setTimeout(() => {
-    if(id.toUpperCase().startsWith('INS-')){
-      result.className = 'insurance-result success';
-      result.innerHTML = `✅ <strong>SEGURO ACTIVO</strong><br>
-      Titular: ${name}<br>
-      ID de Póliza: ${id.toUpperCase()}<br>
-      Estado: Activo y Vigente<br>
-      Cobertura: Completa<br>
-      Vence: ${getRandomDate()}<br>
-      ✅ Válido en los 50 estados de USA`;
+    const prefixes = {
+      seguros: 'INS',
+      placas: 'PLT',
+      titulos: 'TTL',
+      licencias: 'LIC'
+    };
+
+    const prefix = prefixes[selectedVerifyService];
+    const idUpper = id.toUpperCase();
+    const isValid = idUpper.startsWith(prefix + '-') || idUpper.startsWith('DMV-');
+
+    if (isValid) {
+      const statuses = ['active', 'active', 'active', 'pending'];
+      const status = statuses[Math.floor(Math.random() * statuses.length)];
+
+      if (status === 'active') {
+        resultBox.className = 'verify-result-box success';
+        resultBox.innerHTML = `
+          <div class="vr-header">
+            <div class="vr-status-icon success"><i class="fas fa-check"></i></div>
+            <div class="vr-title success">Trámite Activo y Vigente</div>
+          </div>
+          <div class="vr-details">
+            <div class="vr-detail-item">
+              <label>Tipo de Servicio</label>
+              <span><i class="fas ${svc.icon}" style="color:var(--blue2);margin-right:5px"></i>${svc.name}</span>
+            </div>
+            <div class="vr-detail-item">
+              <label>ID de Trámite</label>
+              <span>${idUpper}</span>
+            </div>
+            <div class="vr-detail-item">
+              <label>Estado</label>
+              <span style="color:#2e7d32;font-weight:800">Activo y Vigente</span>
+            </div>
+            <div class="vr-detail-item">
+              <label>Fecha de Vencimiento</label>
+              <span>${getRandomDate()}</span>
+            </div>
+            <div class="vr-detail-item">
+              <label>Número de Seguimiento</label>
+              <span>TRK-${Math.floor(Math.random() * 900000 + 100000)}</span>
+            </div>
+            <div class="vr-detail-item">
+              <label>Válido en</label>
+              <span>Los 50 Estados de USA</span>
+            </div>
+          </div>
+          <div style="margin-top:15px;padding:12px 15px;background:white;border-radius:10px;font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px">
+            <i class="fas fa-info-circle" style="color:var(--blue2)"></i>
+            ¿Tienes alguna duda? Contáctanos por WhatsApp para asistencia inmediata.
+          </div>
+        `;
+      } else {
+        resultBox.className = 'verify-result-box pending';
+        resultBox.innerHTML = `
+          <div class="vr-header">
+            <div class="vr-status-icon pending"><i class="fas fa-clock"></i></div>
+            <div class="vr-title pending">Trámite en Proceso</div>
+          </div>
+          <div class="vr-details">
+            <div class="vr-detail-item">
+              <label>Tipo de Servicio</label>
+              <span><i class="fas ${svc.icon}" style="color:var(--blue2);margin-right:5px"></i>${svc.name}</span>
+            </div>
+            <div class="vr-detail-item">
+              <label>ID de Trámite</label>
+              <span>${idUpper}</span>
+            </div>
+            <div class="vr-detail-item">
+              <label>Estado</label>
+              <span style="color:#92400e;font-weight:800">En Proceso</span>
+            </div>
+            <div class="vr-detail-item">
+              <label>Entrega Estimada</label>
+              <span>${getRandomDate()}</span>
+            </div>
+          </div>
+          <div style="margin-top:15px;padding:12px 15px;background:white;border-radius:10px;font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px">
+            <i class="fas fa-headset" style="color:#f59e0b"></i>
+            Tu trámite está siendo procesado. Un asesor te contactará pronto con actualizaciones.
+          </div>
+        `;
+      }
     } else {
-      result.className = 'insurance-result error';
-      result.innerHTML = `❌ <strong>SEGURO NO ENCONTRADO</strong><br>
-      No se encontró ningún seguro con ID: ${id}<br>
-      Por favor verifica tu ID o contáctanos por WhatsApp.`;
+      resultBox.className = 'verify-result-box error';
+      resultBox.innerHTML = `
+        <div class="vr-header">
+          <div class="vr-status-icon error"><i class="fas fa-times"></i></div>
+          <div class="vr-title error">Trámite No Encontrado</div>
+        </div>
+        <p style="font-size:14px;color:var(--text2);margin-bottom:15px">
+          No encontramos ningún trámite con el ID <strong>${idUpper}</strong> en la categoría <strong>${svc.name}</strong>.
+        </p>
+        <div style="background:white;border-radius:10px;padding:14px;font-size:13px;color:var(--text2)">
+          <p style="margin-bottom:8px;font-weight:700;color:var(--blue)">Posibles razones:</p>
+          <p style="margin-bottom:5px;display:flex;align-items:center;gap:7px">
+            <i class="fas fa-chevron-right" style="color:var(--blue2);font-size:10px"></i>
+            El ID ingresado no es correcto
+          </p>
+          <p style="margin-bottom:5px;display:flex;align-items:center;gap:7px">
+            <i class="fas fa-chevron-right" style="color:var(--blue2);font-size:10px"></i>
+            Seleccionaste un tipo de servicio incorrecto
+          </p>
+          <p style="display:flex;align-items:center;gap:7px">
+            <i class="fas fa-chevron-right" style="color:var(--blue2);font-size:10px"></i>
+            El trámite aún no ha sido registrado en el sistema
+          </p>
+        </div>
+        <button onclick="window.open('https://wa.me/1TUNUMERO','_blank')" 
+          style="margin-top:15px;width:100%;padding:12px;background:#25D366;color:white;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+          <i class="fab fa-whatsapp"></i> Contactar Asesor por WhatsApp
+        </button>
+      `;
     }
-  }, 1500);
+  }, 1800);
 }
 
-// VERIFICAR PLACA
-function switchTab(tab, event){
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.verify-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(tab + '-tab').classList.add('active');
-  event.target.classList.add('active');
-}
-
-function verifyPlate(){
-  const plate = document.getElementById('plateInput').value.trim();
-  const state = document.getElementById('stateSelect').value;
-  const result = document.getElementById('verify-result');
-  if(!plate || !state){
-    result.className = 'verify-result error';
-    result.innerHTML = '❌ Por favor ingresa el número de placa y selecciona un estado.';
-    return;
-  }
-  result.className = 'verify-result';
-  result.style.display = 'block';
-  result.innerHTML = '⏳ Buscando...';
-  setTimeout(() => {
-    const statuses = ['active','expired','pending'];
-    const status = statuses[Math.floor(Math.random() * statuses.length)];
-    if(status === 'active'){
-      result.className = 'verify-result success';
-      result.innerHTML = `✅ <strong>PLACA ACTIVA</strong><br>Placa: ${plate.toUpperCase()} | Estado: ${state}<br>Estado: Válida y Activa<br>Vence: ${getRandomDate()}<br>ID de Orden: DMV-${Math.floor(Math.random()*90000+10000)}`;
-    } else if(status === 'expired'){
-      result.className = 'verify-result error';
-      result.innerHTML = `❌ <strong>PLACA VENCIDA</strong><br>Placa: ${plate.toUpperCase()} | Estado: ${state}<br>Esta placa temporal ha vencido. Por favor renuévala.`;
-    } else {
-      result.className = 'verify-result pending';
-      result.innerHTML = `⏳ <strong>PLACA EN PROCESO</strong><br>Placa: ${plate.toUpperCase()} | Estado: ${state}<br>Tu placa está siendo procesada. Verifica en 24 horas.`;
-    }
-  }, 1500);
-}
-
-function verifyOrder(){
-  const orderId = document.getElementById('orderInput').value.trim();
-  const result = document.getElementById('verify-result');
-  if(!orderId){
-    result.className = 'verify-result error';
-    result.innerHTML = '❌ Por favor ingresa tu ID de orden.';
-    return;
-  }
-  result.className = 'verify-result';
-  result.style.display = 'block';
-  result.innerHTML = '⏳ Buscando...';
-  setTimeout(() => {
-    if(orderId.toUpperCase().startsWith('DMV-')){
-      result.className = 'verify-result success';
-      result.innerHTML = `✅ <strong>ORDEN ENCONTRADA</strong><br>ID: ${orderId.toUpperCase()}<br>Estado: En Proceso<br>Entrega Estimada: ${getRandomDate()}<br>Rastreo: TRK${Math.floor(Math.random()*900000+100000)}`;
-    } else {
-      result.className = 'verify-result error';
-      result.innerHTML = `❌ <strong>ORDEN NO ENCONTRADA</strong><br>No se encontró orden con ID: ${orderId}<br>Revisa tu correo para el ID correcto.`;
-    }
-  }, 1500);
-}
-
-function getRandomDate(){
+function getRandomDate() {
   const d = new Date();
   d.setDate(d.getDate() + Math.floor(Math.random() * 60 + 30));
-  return d.toLocaleDateString('es-US',{year:'numeric',month:'long',day:'numeric'});
+  return d.toLocaleDateString('es-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-// FORMATO TARJETA
-function formatCard(input){
-  let value = input.value.replace(/\D/g,'').substring(0,16);
-  input.value = value.replace(/(.{4})/g,'$1 ').trim();
-}
-
-function formatExpiry(input){
-  let value = input.value.replace(/\D/g,'').substring(0,4);
-  if(value.length >= 2) value = value.substring(0,2) + '/' + value.substring(2);
-  input.value = value;
-}
-
-// ENVIAR ORDEN
-function submitOrder(){
-  const fields = ['firstName','lastName','email','phone','make','model','year','vin','color','vehicleType','orderState','zip','address','city','cardNumber','expiry','cvv','cardName'];
-  let empty = false;
-  fields.forEach(id => {
-    const el = document.getElementById(id);
-    if(!el.value){ el.style.borderColor = 'var(--red)'; empty = true; }
-    else { el.style.borderColor = '#4caf50'; }
-  });
-  if(empty){ alert('⚠️ Por favor completa todos los campos requeridos.'); return; }
-  if(selectedPlan.price === 0){ alert('⚠️ Por favor selecciona un plan.'); return; }
-  const btn = document.querySelector('.submit-btn');
-  btn.textContent = '⏳ Procesando tu orden...';
-  btn.style.background = '#ccc';
-  btn.style.pointerEvents = 'none';
-  setTimeout(() => {
-    const orderId = 'DMV-' + Math.floor(Math.random() * 900000 + 100000);
-    document.getElementById('modalOrderId').textContent = orderId;
-    document.getElementById('successModal').classList.add('active');
-    btn.textContent = '🚗 Completar Orden y Obtener Mi Placa →';
-    btn.style.background = '';
-    btn.style.pointerEvents = '';
-  }, 2500);
-}
-
-function closeModal(){
-  document.getElementById('successModal').classList.remove('active');
-}
-
-// FAQ
-function toggleFaq(question){
-  const item = question.parentElement;
-  const answer = item.querySelector('.faq-answer');
-  const icon = item.querySelector('.faq-icon');
-  const isOpen = item.classList.contains('active');
-  document.querySelectorAll('.faq-item').forEach(i => {
-    i.classList.remove('active');
-    i.querySelector('.faq-answer').classList.remove('open');
-    i.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
-  });
-  if(!isOpen){
-    item.classList.add('active');
-    answer.classList.add('open');
-    icon.style.transform = 'rotate(45deg)';
+// ===== MODALES =====
+const serviceConfig = {
+  'general': {
+    title: 'Solicitar Servicio',
+    desc: 'Completa el formulario y un asesor se pondrá en contacto contigo en menos de 24 horas.',
+    icon: 'fa-paper-plane',
+    badge: 'Consulta General',
+    badgeIcon: 'fa-headset'
+  },
+  'seguro-basico': {
+    title: 'Solicitar Seguro Básico',
+    desc: 'Completa tus datos y un asesor de seguros te contactará para finalizar tu cobertura básica.',
+    icon: 'fa-shield-alt',
+    badge: 'Seguro Básico — $49.99/mes',
+    badgeIcon: 'fa-shield-alt'
+  },
+  'seguro-full': {
+    title: 'Solicitar Seguro Full Cover',
+    desc: 'Completa tus datos y un asesor de seguros te contactará para activar tu cobertura completa.',
+    icon: 'fa-shield-alt',
+    badge: 'Full Cover — $89.99/mes',
+    badgeIcon: 'fa-shield-alt'
+  },
+  'placa-estandar': {
+    title: 'Solicitar Placa Estándar',
+    desc: 'Completa tus datos y un asesor te contactará para procesar tu placa temporal estándar.',
+    icon: 'fa-id-card',
+    badge: 'Placa Estándar — Desde $29.99',
+    badgeIcon: 'fa-id-card'
+  },
+  'placa-express': {
+    title: 'Solicitar Placa Express',
+    desc: 'Completa tus datos y un asesor te contactará para procesar tu placa temporal express en 24h.',
+    icon: 'fa-bolt',
+    badge: 'Placa Express — Desde $49.99',
+    badgeIcon: 'fa-bolt'
+  },
+  'placa-renovacion': {
+    title: 'Renovar Placa Temporal',
+    desc: 'Completa tus datos y un asesor te contactará para gestionar la renovación de tu placa.',
+    icon: 'fa-sync-alt',
+    badge: 'Renovación de Placa — Desde $19.99',
+    badgeIcon: 'fa-sync-alt'
+  },
+  'titulo-transferencia': {
+    title: 'Transferencia de Título',
+    desc: 'Completa tus datos y un asesor te contactará para gestionar la transferencia de tu título vehicular.',
+    icon: 'fa-exchange-alt',
+    badge: 'Transferencia de Título — Desde $39.99',
+    badgeIcon: 'fa-file-alt'
+  },
+  'titulo-duplicado': {
+    title: 'Duplicado de Título',
+    desc: 'Completa tus datos y un asesor te contactará para gestionar el duplicado de tu título vehicular.',
+    icon: 'fa-copy',
+    badge: 'Duplicado de Título — Desde $34.99',
+    badgeIcon: 'fa-file-alt'
+  },
+  'titulo-correccion': {
+    title: 'Corrección de Título',
+    desc: 'Completa tus datos y un asesor te contactará para gestionar la corrección de tu título vehicular.',
+    icon: 'fa-edit',
+    badge: 'Corrección de Título — Desde $29.99',
+    badgeIcon: 'fa-file-alt'
+  },
+  'licencia-nueva': {
+    title: 'Nueva Licencia de Conducir',
+    desc: 'Completa tus datos y un asesor te guiará en todo el proceso para obtener tu nueva licencia.',
+    icon: 'fa-plus-circle',
+    badge: 'Nueva Licencia — Desde $59.99',
+    badgeIcon: 'fa-car'
+  },
+  'licencia-renovacion': {
+    title: 'Renovación de Licencia',
+    desc: 'Completa tus datos y un asesor te contactará para gestionar la renovación de tu licencia.',
+    icon: 'fa-redo',
+    badge: 'Renovación de Licencia — Desde $44.99',
+    badgeIcon: 'fa-car'
+  },
+  'licencia-duplicado': {
+    title: 'Duplicado de Licencia',
+    desc: 'Completa tus datos y un asesor te contactará para gestionar el duplicado de tu licencia.',
+    icon: 'fa-clone',
+    badge: 'Duplicado de Licencia — Desde $34.99',
+    badgeIcon: 'fa-car'
   }
+};
+
+function openModal(serviceKey) {
+  const config = serviceConfig[serviceKey] || serviceConfig['general'];
+  document.getElementById('modalTitle').textContent = config.title;
+  document.getElementById('modalDesc').textContent = config.desc;
+  document.getElementById('modalIconInner').className = 'fas ' + config.icon;
+  document.getElementById('modalServiceName').textContent = config.badge;
+  document.getElementById('modalServiceBadge').querySelector('i').className = 'fas ' + config.badgeIcon;
+  document  .getElementById('cf-servicio').value = serviceKey;
+  
+  // Mostrar/ocultar campo de vehículo según servicio
+  const vehicleServices = ['placa-estandar','placa-express','placa-renovacion','titulo-transferencia','titulo-duplicado','titulo-correccion','seguro-basico','seguro-full'];
+  const vehicleGroup = document.getElementById('vehicleInfoGroup');
+  vehicleGroup.style.display = vehicleServices.includes(serviceKey) ? 'flex' : 'none';
+
+  // Limpiar formulario
+  ['cf-nombre','cf-apellido','cf-email','cf-telefono','cf-vehiculo','cf-mensaje'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) { el.value = ''; el.style.borderColor = '#e8eef8'; }
+  });
+  document.getElementById('cf-estado').value = '';
+  document.getElementById('cf-contacto').value = '';
+
+  document.getElementById('contactModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
-// ANIMACIONES SCROLL
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Cerrar modal clickando fuera
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === this) {
+      this.classList.remove('active');
+      document.body.style.overflow = '';
     }
   });
-}, { threshold:0.1 });
-
-document.querySelectorAll('.service-card,.step-item,.plan-card,.delivery-card,.testimonial-card,.insurance-plan-card,.faq-item').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
 });
 
-// SMOOTH SCROLL
+// ===== ENVIO DE FORMULARIO =====
+function submitContactForm() {
+  const fields = [
+    { id: 'cf-nombre', label: 'Nombre' },
+    { id: 'cf-apellido', label: 'Apellido' },
+    { id: 'cf-email', label: 'Correo Electrónico' },
+    { id: 'cf-telefono', label: 'Teléfono' },
+    { id: 'cf-estado', label: 'Estado' },
+    { id: 'cf-contacto', label: 'Método de Contacto' }
+  ];
+
+  let hasError = false;
+
+  fields.forEach(field => {
+    const el = document.getElementById(field.id);
+    if (!el.value.trim()) {
+      el.style.borderColor = 'var(--red)';
+      el.style.background = '#fff5f7';
+      hasError = true;
+    } else {
+      el.style.borderColor = '#4caf50';
+      el.style.background = '#f0fff4';
+    }
+  });
+
+  // Validar email
+  const emailEl = document.getElementById('cf-email');
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (emailEl.value && !emailRegex.test(emailEl.value)) {
+    emailEl.style.borderColor = 'var(--red)';
+    emailEl.style.background = '#fff5f7';
+    hasError = true;
+  }
+
+  if (hasError) {
+    // Shake animation en el botón
+    const btn = document.querySelector('.form-submit-btn');
+    btn.style.animation = 'shake 0.4s ease';
+    setTimeout(() => btn.style.animation = '', 400);
+    return;
+  }
+
+  // Mostrar loading en botón
+  const btn = document.querySelector('.form-submit-btn');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando solicitud...';
+  btn.style.pointerEvents = 'none';
+  btn.style.opacity = '0.8';
+
+  setTimeout(() => {
+    // Generar ID único
+    const serviceKey = document.getElementById('cf-servicio').value;
+    const prefixes = {
+      'seguro-basico': 'INS',
+      'seguro-full': 'INS',
+      'placa-estandar': 'PLT',
+      'placa-express': 'PLT',
+      'placa-renovacion': 'PLT',
+      'titulo-transferencia': 'TTL',
+      'titulo-duplicado': 'TTL',
+      'titulo-correccion': 'TTL',
+      'licencia-nueva': 'LIC',
+      'licencia-renovacion': 'LIC',
+      'licencia-duplicado': 'LIC',
+      'general': 'DMV'
+    };
+    const prefix = prefixes[serviceKey] || 'DMV';
+    const uniqueId = prefix + '-' + Math.floor(Math.random() * 900000 + 100000);
+
+    // Restaurar botón
+    btn.innerHTML = originalText;
+    btn.style.pointerEvents = '';
+    btn.style.opacity = '';
+
+    // Cerrar modal de contacto
+    closeModal('contactModal');
+
+    // Mostrar modal de éxito
+    document.getElementById('successId').textContent = uniqueId;
+    document.getElementById('successModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+  }, 2000);
+}
+
+// ===== ANIMACION SHAKE =====
+const shakeStyle = document.createElement('style');
+shakeStyle.textContent = `
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+`;
+document.head.appendChild(shakeStyle);
+
+// ===== SCROLL ANIMATIONS =====
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 100);
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => {
+  fadeObserver.observe(el);
+});
+
+// ===== SMOOTH SCROLL NAVBAR =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e){
+  anchor.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if(target) target.scrollIntoView({ behavior:'smooth' });
+    const target = document.querySelector(href);
+    if (target) {
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
   });
 });
 
-// CERRAR MODAL CLICKANDO FUERA
-document.getElementById('successModal').addEventListener('click', function(e){
-  if(e.target === this) closeModal();
+// ===== NAVBAR SCROLL EFFECT =====
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.4)';
+    navbar.style.height = '65px';
+  } else {
+    navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+    navbar.style.height = '70px';
+  }
 });
-document.getElementById('insuranceModal').addEventListener('click', function(e){
-  if(e.target === this) closeInsuranceModal();
+
+// ===== ACTIVE NAV ON SCROLL =====
+window.addEventListener('scroll', () => {
+  if (currentPage !== 'home') return;
+  const sections = ['servicios','seguros','placas','titulos','licencias'];
+  const scrollPos = window.scrollY + 100;
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      const top = el.offsetTop;
+      const bottom = top + el.offsetHeight;
+      if (scrollPos >= top && scrollPos < bottom) {
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-nav'));
+        const activeLink = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (activeLink) activeLink.classList.add('active-nav');
+      }
+    }
+  });
 });
+
+// ===== INICIALIZAR =====
+window.addEventListener('load', () => {
+  // Activar primera página
+  navigateTo('home');
+  
+  // Re-observar elementos fade-up cuando cambia de página
+  document.querySelectorAll('.fade-up').forEach(el => {
+    fadeObserver.observe(el);
+  });
+});
+
+// ===== KEYBOARD ESC PARA CERRAR MODALES =====
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
+});
+
+// ===== VALIDACION EN TIEMPO REAL =====
+document.addEventListener('DOMContentLoaded', () => {
+  const inputs = document.querySelectorAll('.contact-form input, .contact-form select');
+  inputs.forEach(input => {
+    input.addEventListener('blur', function() {
+      if (this.value.trim()) {
+        this.style.borderColor = '#4caf50';
+        this.style.background = '#f0fff4';
+      } else {
+        this.style.borderColor = '#e8eef8';
+        this.style.background = '#fafbff';
+      }
+    });
+    input.addEventListener('focus', function() {
+      this.style.borderColor = 'var(--blue2)';
+      this.style.background = 'white';
+      this.style.boxShadow = '0 0 0 4px rgba(0,82,204,0.08)';
+    });
+    input.addEventListener('blur', function() {
+      this.style.boxShadow = 'none';
+    });
+  });
+});
+
+// ===== TOOLTIP WHATSAPP =====
+const waBtn = document.querySelector('.wa-btn');
+if (waBtn) {
+  setTimeout(() => {
+    const tooltip = waBtn.querySelector('.wa-tooltip');
+    if (tooltip) {
+      tooltip.style.opacity = '1';
+      setTimeout(() => {
+        tooltip.style.opacity = '0';
+      }, 3000);
+    }
+  }, 2000);
+}
 </script>
 </body>
 </html>
+      
