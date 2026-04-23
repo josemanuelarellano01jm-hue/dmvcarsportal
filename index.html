@@ -143,7 +143,7 @@ body {
    PROMO BANNER
 ============================================ */
 .promo-banner {
-  background: linear-gradient(90deg, var(--blue), var(--blue-mid), var(--blue), var(--blue-light));
+  background: linear-gradient(90deg, var(--blue-dark), var(--blue-mid), var(--blue), var(--blue-light));
   background-size: 300% 100%;
   animation: shimmer 6s linear infinite;
   padding: 10px 0;
@@ -195,117 +195,26 @@ body {
   box-shadow: 0 4px 30px rgba(0,0,0,0.4);
 }
 
-/* ============================================
-   LOGO MEJORADO
-============================================ */
 .logo {
   text-decoration: none;
   display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-.logo:hover {
-  transform: translateY(-2px);
-}
-
-.logo-text {
-  display: flex;
   flex-direction: column;
-  line-height: 1;
+  line-height: 1.1;
+  cursor: pointer;
 }
-
 .logo-main {
-  font-family: 'Poppins', sans-serif;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 900;
-  letter-spacing: -0.5px;
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-}
-
-.logo-dmv {
   color: white;
-  background: linear-gradient(135deg, #ffffff, #e0e7ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 900;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 10px rgba(255,255,255,0.1);
+  letter-spacing: 0.5px;
 }
-
-.logo-car {
-  color: var(--gold);
-  background: linear-gradient(135deg, #FFD700, #FFA500);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 900;
-  font-style: italic;
-  margin: 0 2px;
-  position: relative;
-}
-.logo-car::before {
-  content: '';
-  position: absolute;
-  top: -3px;
-  right: -4px;
-  width: 5px;
-  height: 5px;
-  background: var(--gold);
-  border-radius: 50%;
-  box-shadow: 0 0 8px var(--gold);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.logo:hover .logo-car::before {
-  opacity: 1;
-}
-
-.logo-portal {
-  color: white;
-  font-weight: 600;
-  font-size: 23px;
-  position: relative;
-}
-.logo-portal::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.logo:hover .logo-portal::after {
-  opacity: 1;
-}
-
+.logo-main span { color: var(--gold); }
 .logo-sub {
   font-size: 9px;
-  color: rgba(255,255,255,0.6);
-  letter-spacing: 2px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  font-weight: 500;
-  margin-top: 4px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.logo-sub i {
-  font-size: 7px;
-  color: var(--gold);
-}
-
-/* Responsive para el logo */
-@media(max-width: 480px) {
-  .logo-main { font-size: 20px; }
-  .logo-portal { font-size: 18px; }
-  .logo-sub { font-size: 8px; letter-spacing: 1.5px; }
+  font-weight: 400;
 }
 
 .nav-links {
@@ -524,13 +433,11 @@ body {
 }
 
 .section-title {
-font-family: 'Playfair Display', Georgia, serif;
-  font-size: 42px;
+  font-size: 38px;
   font-weight: 900;
   color: var(--blue-dark);
   line-height: 1.15;
   margin-bottom: 14px;
-  letter-spacing: -0.5px;
 }
 .section-title.white { color: white; }
 .section-title span { color: var(--red); }
@@ -646,14 +553,12 @@ font-family: 'Playfair Display', Georgia, serif;
 .hero-badge i { color: var(--gold); }
 
 .hero h1 {
-font-family: 'Playfair Display', Georgia, serif;
-  font-size: 56px;
+  font-size: 52px;
   font-weight: 900;
   color: white;
   line-height: 1.1;
   margin-bottom: 20px;
   animation: fadeUp 0.7s ease 0.1s both;
-  letter-spacing: -0.5px;
 }
 .hero h1 span { color: var(--gold); }
 
@@ -1091,13 +996,11 @@ font-family: 'Playfair Display', Georgia, serif;
 }
 
 .sdp-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 50px;
+  font-size: 46px;
   font-weight: 900;
   color: white;
   line-height: 1.1;
   margin-bottom: 16px;
-  letter-spacing: -0.5px;
 }
 .sdp-title span { color: var(--gold); }
 
@@ -1621,13 +1524,10 @@ font-family: 'Playfair Display', Georgia, serif;
   background-size: 30px 30px;
 }
 .verify-hero-section {
-font-family: 'Playfair Display', Georgia, serif;
-  font-size: 50px;
-  font-weight: 900;
-  color: white;
-  margin-bottom: 14px;
-  line-height: 1.15;
-  letter-spacing: -0.5px;
+  padding: 80px 0 50px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 .verify-hero-section h1 {
   font-size: 46px;
@@ -2295,17 +2195,9 @@ font-family: 'Playfair Display', Georgia, serif;
      NAVBAR
 ============================================ -->
 <nav class="navbar" id="navbar">
- <div class="logo" style="margin-bottom:5px">
-  <div class="logo-icon">
-    <i class="fas fa-car-side"></i>
-    <div class="logo-icon-badge"><i class="fas fa-check"></i></div>
-  </div>
-  <div class="logo-text">
-    <div class="logo-main">
-      <span class="logo-dmv">DMV</span><span class="logo-car">Car</span><span class="logo-portal">Portal</span>
-    </div>
-    <div class="logo-sub">
-      <i class="fas fa-star"></i> Trámites USA
+  <div class="logo" onclick="goTo('home')">
+    <div class="logo-main">DMVCar<span>Portal</span></div>
+    <div class="logo-sub">Tu portal de trámites vehiculares</div>
   </div>
   <ul class="nav-links">
     <li>
@@ -2403,7 +2295,7 @@ font-family: 'Playfair Display', Georgia, serif;
             <div class="hero-card-icon">
               <i class="fas fa-shield-alt"></i>
             </div>
-            <h3>Seguros</h3>
+            <h3>Seguros de Auto</h3>
             <p>Básico y Full Cover disponible</p>
             <div class="hero-card-arrow">
               Ver planes <i class="fas fa-arrow-right"></i>
@@ -2423,7 +2315,7 @@ font-family: 'Playfair Display', Georgia, serif;
             <div class="hero-card-icon">
               <i class="fas fa-file-alt"></i>
             </div>
-            <h3>Títulos</h3>
+            <h3>Títulos Vehiculares</h3>
             <p>Transferencias y duplicados</p>
             <div class="hero-card-arrow">
               Ver trámites <i class="fas fa-arrow-right"></i>
@@ -2516,7 +2408,7 @@ font-family: 'Playfair Display', Georgia, serif;
           <div class="service-card-icon">
             <i class="fas fa-file-alt"></i>
           </div>
-          <h3>Títulos</h3>
+          <h3>Títulos Vehiculares</h3>
           <p>Transferencias, duplicados y correcciones de título vehicular.</p>
           <div class="service-sub">
             <i class="fas fa-layer-group"></i> 3 tipos de trámite
@@ -3073,9 +2965,9 @@ font-family: 'Playfair Display', Georgia, serif;
           <i class="fas fa-arrow-left"></i> Volver al Inicio
         </button>
         <div class="sdp-badge">
-          <i class="fas fa-file-alt"></i> Títulos
+          <i class="fas fa-file-alt"></i> Títulos Vehiculares
         </div>
-        <h1 class="sdp-title">Títulos<br><span>Sin Complicaciones</span></h1>
+        <h1 class="sdp-title">Títulos Vehiculares<br><span>Sin Complicaciones</span></h1>
         <p class="sdp-desc">
           Transferencias, duplicados y correcciones de título vehicular.
           Proceso completamente en línea sin visitar el DMV.
