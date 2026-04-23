@@ -195,26 +195,32 @@ body {
   box-shadow: 0 4px 30px rgba(0,0,0,0.4);
 }
 
+/* NUEVO LOGO TECH-CORPORATE */
 .logo {
   text-decoration: none;
   display: flex;
-  flex-direction: column;
-  line-height: 1.1;
+  align-items: center;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
 }
-.logo-main {
-  font-size: 22px;
-  font-weight: 900;
+
+.logo-dmv {
+  font-size: 26px;
+  font-weight: 900; /* Extra Bold para autoridad */
   color: white;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.5px;
 }
-.logo-main span { color: var(--gold); }
-.logo-sub {
-  font-size: 9px;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  font-weight: 400;
+
+.logo-portal {
+  font-size: 26px;
+  font-weight: 400; /* Regular para modernidad */
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.accent-a {
+  color: var(--red-light); /* Usa el rojo que ya tienes en tus variables */
+  font-weight: 700;
 }
 
 .nav-links {
@@ -2196,8 +2202,8 @@ body {
 ============================================ -->
 <nav class="navbar" id="navbar">
   <div class="logo" onclick="goTo('home')">
-    <div class="logo-main">DMVCar<span>Portal</span></div>
-    <div class="logo-sub">Tu portal de trámites vehiculares</div>
+    <span class="logo-dmv">DMV</span>
+    <span class="logo-portal">C<span class="accent-a">a</span>rPortal</span>
   </div>
   <ul class="nav-links">
     <li>
