@@ -212,52 +212,45 @@ body {
   align-items: center; /* Alinea texto e icono verticalmente */
   gap: 2px; /* Espacio sutil entre elementos */
 }
-  /* OPCIÓN B: ESTILO DMV BLANCO CON CORTES */
-.logo-dmv {
-    font-family: 'Arial Black', 'Inter', sans-serif;
+/* ESTILO DMV PROFESIONAL GEOMÉTRICO */
+.logo-dmv-clean {
+    font-family: 'Poppins', 'Inter', 'Segoe UI', sans-serif;
     font-size: 28px;
-    font-weight: 900;
-    font-style: italic; /* Inclinación característica */
+    font-weight: 900; /* Peso máximo para autoridad */
+    font-style: italic; /* Inclinación para dinamismo */
     color: #ffffff;
+    letter-spacing: -1.2px; /* Letras compactas para look de marca */
     display: inline-block;
-    letter-spacing: -1px;
-    
-    /* Efecto de cortes horizontales usando degradado */
-    background: linear-gradient(
-        to bottom,
-        #ffffff 0%, #ffffff 48%, 
-        transparent 48%, transparent 53%, 
-        #ffffff 53%, #ffffff 75%, 
-        transparent 75%, transparent 80%, 
-        #ffffff 80%, #ffffff 100%
-    );
-    
-    /* Esto aplica el degradado solo al texto */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    
-    /* Suavizado para pantallas de alta resolución */
+    position: relative;
+    text-transform: uppercase;
     -webkit-font-smoothing: antialiased;
 }
 
-.logo-portal {
-  color: var(--gold); /* Usa tu variable de color oro/amarillo */
+/* Línea decorativa inferior (opcional para un toque de diseño) */
+.logo-dmv-clean::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 40%;
+    height: 3px;
+    background-color: var(--gold); /* Usa el amarillo de tu marca */
+    border-radius: 2px;
 }
 
-/* ESTILO ESPECÍFICO PARA EL ICONO DEL CARRO */
-.car-icon {
-  font-size: 18px; /* Un poco más pequeño que el texto para equilibrio */
-  color: var(--gold); /* Mismo color que 'Portal' */
-  margin: 0 1px; /* Espaciado horizontal sutil */
+.logo-main {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
-.logo-sub {
-  font-size: 9px;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  font-weight: 400;
-  margin-top: 2px;
+.logo-portal-soft {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 400; /* Contraste: DMV fuerte, Portal ligero */
+    color: var(--gold);
+    letter-spacing: -0.5px;
+}
 }
 
 .accent-a {
@@ -2449,11 +2442,13 @@ body {
      NAVBAR
 ============================================ -->
 <nav class="navbar" id="navbar">
- <div class="logo" onclick="goTo('home')">
+<div class="logo" onclick="goTo('home')">
     <div class="logo-main">
-        <span class="logo-dmv">DMV</span>
-        <i class="fa-solid fa-car car-icon"></i>
-        <span class="logo-portal">Portal</span>
+        <span class="logo-dmv-clean">DMV</span>
+        <span class="logo-portal-soft">CarPortal</span>
+    </div>
+    <div class="logo-sub">Gestión Vehicular Inteligente</div>
+</div>
     </div>
     <div class="logo-sub">Tu portal de trámites vehiculares</div>
   </div>
