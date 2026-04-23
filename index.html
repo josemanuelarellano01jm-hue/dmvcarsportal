@@ -212,10 +212,32 @@ body {
   align-items: center; /* Alinea texto e icono verticalmente */
   gap: 2px; /* Espacio sutil entre elementos */
 }
-
-/* Estilo para el texto DMV y Portal por separado */
+  /* OPCIÓN B: ESTILO DMV BLANCO CON CORTES */
 .logo-dmv {
-  color: #ffffff;
+    font-family: 'Arial Black', 'Inter', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    font-style: italic; /* Inclinación característica */
+    color: #ffffff;
+    display: inline-block;
+    letter-spacing: -1px;
+    
+    /* Efecto de cortes horizontales usando degradado */
+    background: linear-gradient(
+        to bottom,
+        #ffffff 0%, #ffffff 48%, 
+        transparent 48%, transparent 53%, 
+        #ffffff 53%, #ffffff 75%, 
+        transparent 75%, transparent 80%, 
+        #ffffff 80%, #ffffff 100%
+    );
+    
+    /* Esto aplica el degradado solo al texto */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Suavizado para pantallas de alta resolución */
+    -webkit-font-smoothing: antialiased;
 }
 
 .logo-portal {
