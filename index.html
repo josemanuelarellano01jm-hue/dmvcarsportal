@@ -195,101 +195,74 @@ body {
   box-shadow: 0 4px 30px rgba(0,0,0,0.4);
 }
 
-/* NUEVO ESTILO DEL LOGO CON ICONO */
-.logo {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-  cursor: pointer;
-}
-
-.logo-main {
-  font-size: 22px;
-  font-weight: 900;
-  color: white;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center; /* Alinea texto e icono verticalmente */
-  gap: 2px; /* Espacio sutil entre elementos */
-}
-/* ESTILO PREMIUM INSPIRADO EN DELAWARE */
-.logo-main-container {
+/* CONCEPTO 3: INSTITUCIONAL PREMIUM */
+.logo-institucional {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: center; /* Centrado para look de sello oficial */
+    cursor: pointer;
+    user-select: none;
+}
+
+.dmv-wrapper {
     position: relative;
-    padding-left: 5px; /* Pequeño margen para la carretera */
-    line-height: 1;
+    line-height: 0.8;
 }
 
-/* La carretera curva (usando bordes y pseudo-elementos) */
-.logo-road {
-    position: relative;
-    width: 60px; /* Ancho de la carretera */
-    height: 40px; /* Alto de la carretera */
-    margin-right: 15px; /* Espacio para el texto */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* La carretera amarilla curva */
-.logo-road::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Degradado amarillo para la carretera */
-    background: linear-gradient(135deg, var(--gold), #ffeb3b);
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0; /* Curva superior */
-    border: 4px solid #ffffff; /* Contorno blanco de la carretera */
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-/* Las líneas discontinuas de la carretera */
-.logo-road::after {
-    content: '';
-    position: absolute;
-    bottom: 8px; /* Ajuste vertical de las líneas */
-    left: 10%;
-    width: 80%;
-    height: 6px;
-    background-image: linear-gradient(to right, #ffffff 50%, transparent 50%);
-    background-size: 15px 100%; /* Tamaño de las líneas */
-    border-radius: 3px;
-    z-index: 2;
-}
-
-/* El texto DMV con degradado metálico */
-.logo-dmv-delaware {
-    font-family: 'Arial Black', sans-serif; /* Tipografía gruesa */
-    font-size: 36px;
+.dmv-main {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 38px;
     font-weight: 900;
-    /* Degradado amarillo metálico para el texto */
-    background: linear-gradient(to bottom, #ffffff 0%, #ffea00 30%, #ffea00 70%, #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -2px;
-    margin-right: 15px; /* Espacio para el carro */
+    color: #ffffff;
+    letter-spacing: -1.5px;
+    text-transform: uppercase;
 }
 
-/* Icono del carro y Portal */
-.car-icon-premium, .logo-portal-premium {
-    color: var(--gold); /* Usando tu amarillo de marca */
-    font-style: normal;
+/* Línea curva que atraviesa el DMV sutilmente */
+.horizon-line {
+    position: absolute;
+    top: 55%;
+    left: -10%;
+    width: 120%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+    transform: rotate(-1deg);
+    pointer-events: none;
 }
 
-.car-icon-premium {
-    font-size: 24px;
-    margin: 0 5px;
+.brand-footer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+    background-color: var(--gold); /* El fondo amarillo para resaltar */
+    padding: 2px 10px;
+    border-radius: 3px;
+    transform: translateY(-2px); /* Lo pega un poco más al DMV */
 }
 
-.logo-portal-premium {
-    font-size: 28px;
-    font-weight: 400; /* Contraste: ligero */
-    letter-spacing: -1px;
+.car-mini {
+    font-size: 10px;
+    color: #001233; /* Color oscuro para contraste sobre el oro */
+}
+
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #001233; /* Texto oscuro sobre fondo oro */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Efecto al pasar el mouse */
+.logo-institucional:hover .dmv-main {
+    color: var(--gold);
+    transition: 0.3s;
+}
+.logo-institucional:hover .brand-footer {
+    background-color: #ffffff;
+    transition: 0.3s;
 }
 
 .accent-a {
@@ -2481,13 +2454,17 @@ body {
      NAVBAR
 ============================================ -->
 <nav class="navbar" id="navbar">
-<div class="logo" onclick="goTo('home')">
-    <div class="logo-main-container">
-        <div class="logo-road"></div>
-        <span class="logo-dmv-delaware">DMV</span>
-        <i class="fa-solid fa-car car-icon-premium"></i>
-        <span class="logo-portal-premium">CarPortal</span>
+  <div class="logo-institucional" onclick="goTo('home')">
+    <div class="dmv-wrapper">
+        <span class="dmv-main">DMV</span>
+        <div class="horizon-line"></div>
     </div>
+    <div class="brand-footer">
+        <i class="fa-solid fa-car car-mini"></i>
+        <span class="brand-name">Car Portal</span>
+    </div>
+</div>
+
     <div class="logo-sub-premium">Tu Portal Vehicular Inteligente</div>
 </div>
   <ul class="nav-links">
