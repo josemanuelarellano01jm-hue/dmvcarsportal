@@ -1,0 +1,32 @@
+{
+  "DMV-123456": {
+    "nombre": "María",
+    "apellido": "Rodríguez",
+    "id": "DMV-123456",
+    "estado": "Activo",
+    "ubicacion": "Miami, Florida",
+    "fecha_nacimiento": "15/03/1985",
+    "plan": "Seguro Full Cover",
+    "servicio": "Seguro de Auto",
+    "tramite": "Activación inmediata",
+    "fotos": [
+      "fotos/DMV-123456/seguro_frontal.jpg",
+      "fotos/DMV-123456/placa_temporal.jpg",
+      "fotos/DMV-123456/identificacion.jpg"
+    ]
+  },
+  "INS-789012": {
+    "nombre": "Carlos",
+    "apellido": "López",
+    "id": "INS-789012",
+    "estado": "En proceso",
+    "ubicacion": "Houston, Texas",
+    "fecha_nacimiento": "22/08/1990",
+    "plan": "Seguro Básico",
+    "servicio": "Seguro de Auto",
+    "tramite": "En revisión",
+    "fotos": [
+      "fotos/INS-789012/ine.jpg"
+    ]
+  }
+}
