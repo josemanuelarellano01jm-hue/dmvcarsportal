@@ -1,8 +1,8 @@
 {
-  "DMV-123456": {
+  "INS-123456": {
     "nombre": "María",
     "apellido": "Rodríguez",
-    "id": "DMV-123456",
+    "id": "INS-123456",
     "estado": "Activo",
     "ubicacion": "Miami, Florida",
     "fecha_nacimiento": "15/03/1985",
@@ -10,23 +10,51 @@
     "servicio": "Seguro de Auto",
     "tramite": "Activación inmediata",
     "fotos": [
-      "fotos/DMV-123456/seguro_frontal.jpg",
-      "fotos/DMV-123456/placa_temporal.jpg",
-      "fotos/DMV-123456/identificacion.jpg"
+      "fotos/seguros/INS-123456/poliza.jpg",
+      "fotos/seguros/INS-123456/tarjeta_verde.jpg"
     ]
   },
-  "INS-789012": {
+  "LIC-789012": {
     "nombre": "Carlos",
     "apellido": "López",
-    "id": "INS-789012",
-    "estado": "En proceso",
+    "id": "LIC-789012",
+    "estado": "Activo",
     "ubicacion": "Houston, Texas",
     "fecha_nacimiento": "22/08/1990",
-    "plan": "Seguro Básico",
-    "servicio": "Seguro de Auto",
-    "tramite": "En revisión",
+    "plan": "Licencia Estándar",
+    "servicio": "Licencia de Conducir",
+    "tramite": "Nueva Licencia",
     "fotos": [
-      "fotos/INS-789012/ine.jpg"
+      "fotos/licencias/LIC-789012/frontal.jpg",
+      "fotos/licencias/LIC-789012/posterior.jpg"
+    ]
+  },
+  "PLT-456789": {
+    "nombre": "Ana",
+    "apellido": "González",
+    "id": "PLT-456789",
+    "estado": "En proceso",
+    "ubicacion": "Los Angeles, California",
+    "fecha_nacimiento": "10/12/1995",
+    "plan": "Placa Express",
+    "servicio": "Placa Temporal",
+    "tramite": "Entrega en 24h",
+    "fotos": [
+      "fotos/placas/PLT-456789/placa_temporal.png"
+    ]
+  },
+  "TTL-111222": {
+    "nombre": "Roberto",
+    "apellido": "Flores",
+    "id": "TTL-111222",
+    "estado": "Completado",
+    "ubicacion": "Phoenix, Arizona",
+    "fecha_nacimiento": "05/05/1980",
+    "plan": "Transferencia",
+    "servicio": "Título Vehicular",
+    "tramite": "Transferencia completada",
+    "fotos": [
+      "fotos/titulos/TTL-111222/titulo.pdf"
     ]
   }
 }
