@@ -3502,7 +3502,7 @@ body {
               placeholder="Ingresa tu ID de trámite (ej. INS-123456)"
             />
             <button class="verify-btn" onclick="runVerify()">
-              <i class="fas fa-search"></i> Verificacion para nuestros clientes
+              <i class="fas fa-search"></i> Verificación para nuestros clientes
             </button>
           </div>
           <p class="verify-hint">
@@ -3713,7 +3713,7 @@ body {
 </div>
 
 <!-- ============================================
-     JAVASCRIPT COMPLETO
+     JAVASCRIPT COMPLETO (MODIFICADO)
 ============================================ -->
 <script>
 'use strict';
@@ -3729,25 +3729,16 @@ let currentService = 'general';
    NAVEGACIÓN
 ============================================ */
 function goTo(page) {
-  // Ocultar todas las páginas
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-
-  // Mostrar página destino
   const target = document.getElementById('page-' + page);
   if (target) {
     target.classList.add('active');
     currentPage = page;
   }
-
-  // Scroll al top
   window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Actualizar nav activo
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   const navEl = document.getElementById('nav-' + page);
   if (navEl) navEl.classList.add('active');
-
-  // Re-observar animaciones
   setTimeout(observeAnimations, 100);
 }
 
@@ -3768,11 +3759,8 @@ function closeMobileMenu() {
 ============================================ */
 window.addEventListener('scroll', () => {
   const navbar = document.getElementById('navbar');
-  if (window.scrollY > 60) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
+  if (window.scrollY > 60) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
 });
 
 /* ============================================
@@ -3822,12 +3810,9 @@ function observeAnimations() {
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.fade-up:not(.visible), .fade-left:not(.visible), .fade-right:not(.visible)')
     .forEach(el => observer.observe(el));
 }
-
-// Iniciar observación
 observeAnimations();
 
 /* ============================================
@@ -3837,14 +3822,10 @@ function toggleFaq(qEl) {
   const item = qEl.parentElement;
   const answer = item.querySelector('.faq-a');
   const isOpen = item.classList.contains('open');
-
-  // Cerrar todos
   document.querySelectorAll('.faq-item').forEach(i => {
     i.classList.remove('open');
     i.querySelector('.faq-a').classList.remove('open');
   });
-
-  // Abrir si estaba cerrado
   if (!isOpen) {
     item.classList.add('open');
     answer.classList.add('open');
@@ -3852,8 +3833,69 @@ function toggleFaq(qEl) {
 }
 
 /* ============================================
-   VERIFICACIÓN
+   VERIFICACIÓN CON ARCHIVOS ESTÁTICOS (NUEVO)
 ============================================ */
+let clientesData = null;
+
+async function cargarClientes() {
+  if (clientesData) return clientesData;
+  try {
+    const response = await fetch('data/clientes.json');
+    if (!response.ok) throw new Error('No se pudo cargar la base de datos');
+    clientesData = await response.json();
+    return clientesData;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+async function runVerify() {
+  const id = document.getElementById('verifyId').value.trim();
+  const resultDiv = document.getElementById('verifyResult');
+
+  if (!id) {
+    mostrarErrorVerificacion(resultDiv, 'Por favor ingresa tu ID de trámite.');
+    return;
+  }
+
+  resultDiv.className = 'verify-result show pending';
+  resultDiv.innerHTML = `
+    <div class="vr-head">
+      <div class="vr-icon p"><i class="fas fa-spinner fa-spin"></i></div>
+      <div class="vr-title p">Buscando tu información...</div>
+    </div>
+  `;
+
+  const clientes = await cargarClientes();
+  if (!clientes) {
+    mostrarErrorVerificacion(resultDiv, 'Error al cargar la base de datos. Intenta más tarde.');
+    return;
+  }
+
+  const cliente = clientes[id];
+  if (cliente) {
+    sessionStorage.setItem('clienteData', JSON.stringify(cliente));
+    window.location.href = 'verify-detail.html';
+  } else {
+    mostrarErrorVerificacion(resultDiv, `No encontramos ningún trámite con el ID ${id}. Verifica que esté bien escrito.`);
+  }
+}
+
+function mostrarErrorVerificacion(div, mensaje) {
+  div.className = 'verify-result show error';
+  div.innerHTML = `
+    <div class="vr-head">
+      <div class="vr-icon e"><i class="fas fa-exclamation-triangle"></i></div>
+      <div class="vr-title e">Error</div>
+    </div>
+    <p style="font-size:14px;color:var(--text2)">${mensaje}</p>
+    <button onclick="window.open('https://wa.me/1TUNUMERO','_blank')" style="margin-top:15px; background:#25D366; color:white; border:none; padding:10px 20px; border-radius:30px; font-weight:bold; cursor:pointer;">
+      <i class="fab fa-whatsapp"></i> Contactar Asesor
+    </button>
+  `;
+}
+
 function selectVerify(el, service) {
   document.querySelectorAll('.verify-opt').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
@@ -3863,167 +3905,8 @@ function selectVerify(el, service) {
   result.innerHTML = '';
 }
 
-function runVerify() {
-  const id = document.getElementById('verifyId').value.trim();
-  const result = document.getElementById('verifyResult');
-
-  if (!id) {
-    result.className = 'verify-result show error';
-    result.innerHTML = `
-      <div class="vr-head">
-        <div class="vr-icon e"><i class="fas fa-exclamation"></i></div>
-        <div class="vr-title e">Campo Requerido</div>
-      </div>
-      <p style="font-size:14px;color:var(--text2)">Por favor ingresa tu ID de trámite para continuar.</p>
-    `;
-    return;
-  }
-
-  // Loading
-  result.className = 'verify-result show pending';
-  result.innerHTML = `
-    <div class="vr-head">
-      <div class="vr-icon p"><i class="fas fa-spinner fa-spin"></i></div>
-      <div class="vr-title p">Verificando tu trámite...</div>
-    </div>
-    <p style="font-size:14px;color:var(--text2)">Consultando el estado, por favor espera un momento.</p>
-  `;
-
-  const serviceMap = {
-    seguros:   { name: 'Seguro de Auto',        icon: 'fa-shield-alt', prefix: 'INS' },
-    placas:    { name: 'Placa Temporal',         icon: 'fa-id-card',    prefix: 'PLT' },
-    titulos:   { name: 'Título Vehicular',       icon: 'fa-file-alt',   prefix: 'TTL' },
-    licencias: { name: 'Licencia de Conducir',   icon: 'fa-car',        prefix: 'LIC' }
-  };
-
-  const svc = serviceMap[currentVerifyService];
-
-  setTimeout(() => {
-    const idUp = id.toUpperCase();
-    const isValid = idUp.startsWith(svc.prefix + '-') || idUp.startsWith('DMV-');
-
-    if (isValid) {
-      // Aleatorio: activo o en proceso
-      const isActive = Math.random() > 0.3;
-
-      if (isActive) {
-        result.className = 'verify-result show success';
-        result.innerHTML = `
-          <div class="vr-head">
-            <div class="vr-icon s"><i class="fas fa-check"></i></div>
-            <div class="vr-title s">Trámite Activo y Vigente</div>
-          </div>
-          <div class="vr-grid">
-            <div class="vr-field">
-              <label>Tipo de Servicio</label>
-              <span><i class="fas ${svc.icon}" style="color:var(--blue);margin-right:5px"></i>${svc.name}</span>
-            </div>
-            <div class="vr-field">
-              <label>ID de Trámite</label>
-              <span>${idUp}</span>
-            </div>
-            <div class="vr-field">
-              <label>Estado</label>
-              <span style="color:#2e7d32;font-weight:800">Activo y Vigente</span>
-            </div>
-            <div class="vr-field">
-              <label>Fecha de Vencimiento</label>
-              <span>${getRandomDate()}</span>
-            </div>
-            <div class="vr-field">
-              <label>Número de Seguimiento</label>
-              <span>TRK-${Math.floor(Math.random()*900000+100000)}</span>
-            </div>
-            <div class="vr-field">
-              <label>Válido en</label>
-              <span>Los 50 Estados de USA</span>
-            </div>
-          </div>
-          <div style="margin-top:14px;padding:12px 16px;background:white;border-radius:10px;
-            font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px">
-            <i class="fas fa-info-circle" style="color:var(--blue)"></i>
-            ¿Tienes alguna duda? Contáctanos por WhatsApp para asistencia inmediata.
-          </div>
-        `;
-      } else {
-        result.className = 'verify-result show pending';
-        result.innerHTML = `
-          <div class="vr-head">
-            <div class="vr-icon p"><i class="fas fa-clock"></i></div>
-            <div class="vr-title p">Trámite en Proceso</div>
-          </div>
-          <div class="vr-grid">
-            <div class="vr-field">
-              <label>Tipo de Servicio</label>
-              <span><i class="fas ${svc.icon}" style="color:var(--blue);margin-right:5px"></i>${svc.name}</span>
-            </div>
-            <div class="vr-field">
-              <label>ID de Trámite</label>
-              <span>${idUp}</span>
-            </div>
-            <div class="vr-field">
-              <label>Estado</label>
-              <span style="color:#92400e;font-weight:800">En Proceso</span>
-            </div>
-            <div class="vr-field">
-              <label>Entrega Estimada</label>
-              <span>${getRandomDate()}</span>
-            </div>
-          </div>
-          <div style="margin-top:14px;padding:12px 16px;background:white;border-radius:10px;
-            font-size:13px;color:var(--text2);display:flex;align-items:center;gap:8px">
-            <i class="fas fa-headset" style="color:#f59e0b"></i>
-            Tu trámite está siendo procesado. Un asesor te contactará pronto con actualizaciones.
-          </div>
-        `;
-      }
-    } else {
-      result.className = 'verify-result show error';
-      result.innerHTML = `
-        <div class="vr-head">
-          <div class="vr-icon e"><i class="fas fa-times"></i></div>
-          <div class="vr-title e">Trámite No Encontrado</div>
-        </div>
-        <p style="font-size:14px;color:var(--text2);margin-bottom:16px">
-          No encontramos ningún trámite con el ID <strong>${idUp}</strong>
-          en la categoría <strong>${svc.name}</strong>.
-        </p>
-        <div style="background:white;border-radius:10px;padding:16px;font-size:13px;color:var(--text2);margin-bottom:16px">
-          <p style="font-weight:700;color:var(--blue-dark);margin-bottom:10px">Posibles razones:</p>
-          <p style="margin-bottom:6px;display:flex;align-items:center;gap:8px">
-            <i class="fas fa-chevron-right" style="color:var(--blue);font-size:10px"></i>
-            El ID ingresado no es correcto
-          </p>
-          <p style="margin-bottom:6px;display:flex;align-items:center;gap:8px">
-            <i class="fas fa-chevron-right" style="color:var(--blue);font-size:10px"></i>
-            Seleccionaste un tipo de servicio incorrecto
-          </p>
-          <p style="display:flex;align-items:center;gap:8px">
-            <i class="fas fa-chevron-right" style="color:var(--blue);font-size:10px"></i>
-            El trámite aún no ha sido registrado en el sistema
-          </p>
-        </div>
-        <button onclick="window.open('https://wa.me/1TUNUMERO','_blank')"
-          style="width:100%;padding:13px;background:#25D366;color:white;border:none;
-          border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;
-          display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.3s">
-          <i class="fab fa-whatsapp"></i> Contactar Asesor por WhatsApp
-        </button>
-      `;
-    }
-  }, 1800);
-}
-
-function getRandomDate() {
-  const d = new Date();
-  d.setDate(d.getDate() + Math.floor(Math.random() * 60 + 30));
-  return d.toLocaleDateString('es-US', {
-    year: 'numeric', month: 'long', day: 'numeric'
-  });
-}
-
 /* ============================================
-   CONFIGURACIÓN DE MODALES
+   CONFIGURACIÓN DE MODALES (SIN CAMBIOS)
 ============================================ */
 const serviceConfig = {
   'general': {
@@ -4181,25 +4064,19 @@ const serviceConfig = {
   }
 };
 
-/* ============================================
-   ABRIR / CERRAR MODAL
-============================================ */
 function openModal(serviceKey) {
   const cfg = serviceConfig[serviceKey] || serviceConfig['general'];
   currentService = serviceKey;
 
-  // Configurar contenido
-  document.getElementById('modalIcon').className    = 'fas ' + cfg.icon;
+  document.getElementById('modalIcon').className = 'fas ' + cfg.icon;
   document.getElementById('modalTagIcon').className = 'fas ' + cfg.tagIcon;
   document.getElementById('modalTagText').textContent = cfg.tag;
-  document.getElementById('modalTitle').textContent   = cfg.title;
-  document.getElementById('modalDesc').textContent    = cfg.desc;
-  document.getElementById('cfServicio').value         = serviceKey;
+  document.getElementById('modalTitle').textContent = cfg.title;
+  document.getElementById('modalDesc').textContent = cfg.desc;
+  document.getElementById('cfServicio').value = serviceKey;
 
-  // Mostrar/ocultar campo vehículo
   document.getElementById('cfVehicleGroup').style.display = cfg.vehicle ? 'flex' : 'none';
 
-  // Limpiar  // Limpiar campos
   ['cfNombre','cfApellido','cfEmail','cfTelefono','cfVehiculo','cfMensaje'].forEach(id => {
     const el = document.getElementById(id);
     if (el) { el.value = ''; el.className = 'cf-input'; }
@@ -4207,7 +4084,6 @@ function openModal(serviceKey) {
   document.getElementById('cfEstado').value = '';
   document.getElementById('cfContacto').value = '';
 
-  // Abrir modal
   document.getElementById('contactModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -4222,15 +4098,12 @@ function closeSuccess() {
   document.body.style.overflow = '';
 }
 
-// Cerrar modales clickando fuera
 document.getElementById('contactModal').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
 document.getElementById('successModal').addEventListener('click', function(e) {
   if (e.target === this) closeSuccess();
 });
-
-// Cerrar con ESC
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeModal();
@@ -4238,9 +4111,6 @@ document.addEventListener('keydown', e => {
   }
 });
 
-/* ============================================
-   ENVÍO DE FORMULARIO
-============================================ */
 function submitForm() {
   const required = [
     { id: 'cfNombre',   label: 'Nombre' },
@@ -4266,7 +4136,6 @@ function submitForm() {
     }
   });
 
-  // Validar email
   const emailEl = document.getElementById('cfEmail');
   if (emailEl && emailEl.value) {
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value);
@@ -4278,36 +4147,29 @@ function submitForm() {
   }
 
   if (hasError) {
-    // Shake en botón
     const btn = document.getElementById('cfSubmitBtn');
     btn.style.animation = 'shake 0.4s ease';
     setTimeout(() => btn.style.animation = '', 500);
     return;
   }
 
-  // Loading state
   const btn = document.getElementById('cfSubmitBtn');
   const originalHTML = btn.innerHTML;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando solicitud...';
   btn.disabled = true;
 
   setTimeout(() => {
-    // Generar ID único
     const cfg = serviceConfig[currentService] || serviceConfig['general'];
     const uniqueId = cfg.prefix + '-' + Math.floor(Math.random() * 900000 + 100000);
 
-    // Restaurar botón
     btn.innerHTML = originalHTML;
     btn.disabled = false;
 
-    // Cerrar modal contacto
     closeModal();
 
-    // Mostrar modal éxito
     document.getElementById('successId').textContent = uniqueId;
     document.getElementById('successModal').classList.add('open');
     document.body.style.overflow = 'hidden';
-
   }, 2200);
 }
 
@@ -4315,15 +4177,12 @@ function submitForm() {
    VALIDACIÓN EN TIEMPO REAL
 ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Inputs del formulario
   document.querySelectorAll('.cf-input').forEach(input => {
     input.addEventListener('focus', function() {
       this.style.borderColor = 'var(--blue)';
-      this.style.background  = 'white';
-      this.style.boxShadow   = '0 0 0 4px rgba(0,82,204,0.08)';
+      this.style.background = 'white';
+      this.style.boxShadow = '0 0 0 4px rgba(0,82,204,0.08)';
     });
-
     input.addEventListener('blur', function() {
       this.style.boxShadow = 'none';
       if (this.value.trim()) {
@@ -4332,10 +4191,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         this.classList.remove('valid');
         this.style.borderColor = '#e8eef8';
-        this.style.background  = 'var(--blue-pale)';
+        this.style.background = 'var(--blue-pale)';
       }
     });
-
     input.addEventListener('input', function() {
       if (this.classList.contains('invalid') && this.value.trim()) {
         this.classList.remove('invalid');
@@ -4343,14 +4201,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-  // Iniciar página home
   goTo('home');
 });
 
-/* ============================================
-   TOOLTIP WHATSAPP AUTO-SHOW
-============================================ */
 window.addEventListener('load', () => {
   const tooltip = document.querySelector('.wa-tooltip-box');
   if (tooltip) {
@@ -4365,37 +4218,13 @@ window.addEventListener('load', () => {
   }
 });
 
-/* ============================================
-   ANIMACIÓN SHAKE CSS DINÁMICA
-============================================ */
-(function() {
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes shake {
-      0%,100% { transform: translateX(0); }
-      20%      { transform: translateX(-8px); }
-      40%      { transform: translateX(8px); }
-      60%      { transform: translateX(-5px); }
-      80%      { transform: translateX(5px); }
-    }
-  `;
-  document.head.appendChild(style);
-})();
-
-/* ============================================
-   RE-OBSERVAR ANIMACIONES AL CAMBIAR PÁGINA
-============================================ */
 const pageObserver = new MutationObserver(() => {
   observeAnimations();
 });
-
 document.querySelectorAll('.page').forEach(page => {
   pageObserver.observe(page, { attributes: true, attributeFilter: ['class'] });
 });
 
-/* ============================================
-   SMOOTH SCROLL INTERNO
-============================================ */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
@@ -4409,12 +4238,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-/* ============================================
-   HERO CARDS PARALLAX SUAVE
-============================================ */
 document.addEventListener('mousemove', (e) => {
   const cards = document.querySelectorAll('.hero-card');
-  const x = (e.clientX / window.innerWidth  - 0.5) * 10;
+  const x = (e.clientX / window.innerWidth - 0.5) * 10;
   const y = (e.clientY / window.innerHeight - 0.5) * 10;
   cards.forEach((card, i) => {
     const factor = (i % 2 === 0) ? 1 : -1;
@@ -4422,9 +4248,6 @@ document.addEventListener('mousemove', (e) => {
   });
 });
 
-/* ============================================
-   PROMO BANNER - PAUSA EN HOVER
-============================================ */
 const promoTrack = document.querySelector('.promo-track');
 if (promoTrack) {
   promoTrack.addEventListener('mouseenter', () => {
@@ -4435,15 +4258,11 @@ if (promoTrack) {
   });
 }
 
-/* ============================================
-   NAVBAR LINKS - PREVENIR DEFAULT
-============================================ */
 document.querySelectorAll('.nav-links a, .footer-col a').forEach(link => {
   if (!link.getAttribute('href') || link.getAttribute('href') === '#') {
     link.addEventListener('click', e => e.preventDefault());
   }
 });
-
 </script>
 </body>
 </html>
